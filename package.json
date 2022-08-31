@@ -1,5 +1,5 @@
 {
-  "name": "Tech_Labs_Sustainablity",
+  "name": "tech_labs_sustainablity",
   "version": "1.0.0",
   "scripts": {
     "dev": "blitz dev",
