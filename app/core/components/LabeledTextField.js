@@ -1,5 +1,6 @@
 import { forwardRef } from "react"
 import { useField } from "react-final-form"
+// eslint-disable-next-line react/display-name
 export const LabeledTextField = forwardRef(
   ({ name, label, outerProps, fieldProps, labelProps, ...props }, ref) => {
     const {
