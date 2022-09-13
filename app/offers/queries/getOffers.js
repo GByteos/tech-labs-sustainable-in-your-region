@@ -1,6 +1,6 @@
-import { paginate } from "blitz";
-import { resolver } from "@blitzjs/rpc";
-import db from "db";
+import { paginate } from "blitz"
+import { resolver } from "@blitzjs/rpc"
+import db from "db"
 export default resolver.pipe(
   resolver.authorize(),
   async ({ where, orderBy, skip = 0, take = 100 }) => {
@@ -17,14 +17,13 @@ export default resolver.pipe(
         db.offer.count({
           where,
         }),
-      query: (paginateArgs) =>
-        db.offer.findMany({ ...paginateArgs, where, orderBy }),
-    });
+      query: (paginateArgs) => db.offer.findMany({ ...paginateArgs, where, orderBy }),
+    })
     return {
       offers,
       nextPage,
       hasMore,
       count,
-    };
+    }
   }
-);
+)
