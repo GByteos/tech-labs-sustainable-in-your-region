@@ -1,5 +1,13 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
-npm run lint
-npm run test
+case `uname` in
+  *CYGWIN*|*MINGW*|*MSYS*)
+    npm.cmd run lint
+    npm.cmd run test
+  ;;
+  *)
+    npm run lint
+    npm run test
+  ;;
+esac
