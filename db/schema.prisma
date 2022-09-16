@@ -23,6 +23,7 @@ model User {
 
   tokens   Token[]
   sessions Session[]
+  offers   Offer[]
 }
 
 model Session {
@@ -71,4 +72,6 @@ model Offer {
   name        String
   description String
   link        String
+  author      User     @relation(fields: [authorId], references: [id])
+  authorId    Int
 }
