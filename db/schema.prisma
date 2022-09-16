@@ -71,7 +71,22 @@ model Offer {
   updatedAt   DateTime @updatedAt
   name        String
   description String
-  link        String
-  author      User     @relation(fields: [authorId], references: [id])
-  authorId    Int
+  link        String?
+
+  author   User @relation(fields: [authorId], references: [id])
+  authorId Int
+
+  // offer type specific fields
+  openingTimes String?
+  date         DateTime?
+  OfferType    OfferType? @relation(fields: [offerTypeId], references: [id])
+  offerTypeId  Int?
+}
+
+model OfferType {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  name      String
+  offers    Offer[]
 }
