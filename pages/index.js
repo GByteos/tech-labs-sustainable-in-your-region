@@ -68,7 +68,7 @@ const Home = () => {
           <a href="mailto:kontakt@nachhaltig-in-marktschwaben.de">Kontakt</a>
         </p>
         <form>
-          <label hmtFor="search">
+          <label htmlFor="search">
             <img src={`${search.src}`} alt="Such-Lupe" />
           </label>
           <input type="text" id="search" placeholder="Suchen" />
