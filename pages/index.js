@@ -277,7 +277,7 @@ const Home = () => {
       </main>
       <footer>
         <Link href="/offers">
-          <a>/offers</a>
+          <a>/Your offer</a>
         </Link>
         <form className="footform">
           <div>
