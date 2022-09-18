@@ -2,7 +2,7 @@ import { ErrorComponent, ErrorBoundary } from "@blitzjs/next"
 import { AuthenticationError, AuthorizationError } from "blitz"
 import React from "react"
 import { withBlitz } from "app/blitz-client"
-import './style.css'
+import "./style.css"
 
 function RootErrorFallback({ error }) {
   if (error instanceof AuthenticationError) {
