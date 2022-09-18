@@ -72,6 +72,7 @@ model Offer {
   name        String
   description String
   link        String?
+  logo        Bytes?
 
   author   User @relation(fields: [authorId], references: [id])
   authorId Int
