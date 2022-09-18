@@ -14,13 +14,14 @@ const NewOfferPage = () => {
       <h1 className="newoffer">Create New Offer</h1>
 
       <OfferForm
-        submitText="Create Offer" // TODO use a zod schema for form validation
+        // TODO use a zod schema for form validation
         //  - Tip: extract mutation's schema into a shared `validations.ts` file and
         //         then import and use it here
         // schema={CreateOffer}
         // initialValues={{}}
         onSubmit={async (values) => {
           try {
+            console.log(values)
             const offer = await createOfferMutation(values)
             router.push(
               Routes.ShowOfferPage({
