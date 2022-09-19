@@ -6,7 +6,7 @@ const Layout = ({ title, children }) => {
     <>
       <Head>
         <title>{title || "Tech_Labs_Sustainablity"}</title>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/logo.png" />
       </Head>
 
       {children}

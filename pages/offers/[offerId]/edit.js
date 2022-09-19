@@ -9,6 +9,8 @@ import Layout from "app/core/layouts/Layout";
 import getOffer from "app/offers/queries/getOffer";
 import updateOffer from "app/offers/mutations/updateOffer";
 import { OfferForm, FORM_ERROR } from "app/offers/components/OfferForm";
+import HEADER from "pages/components/Header"
+
 export const EditOffer = () => {
   const router = useRouter();
   const offerId = useParam("offerId", "number");
@@ -67,6 +69,7 @@ export const EditOffer = () => {
 const EditOfferPage = () => {
   return (
     <div>
+      <HEADER/>
       <Suspense fallback={<div>Loading...</div>}>
         <EditOffer />
       </Suspense>

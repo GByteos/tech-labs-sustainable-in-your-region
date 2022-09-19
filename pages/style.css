@@ -29,7 +29,7 @@ body {
 }
 /* erste Leiste - Kontakt - Suchen */
 .up {
-  height: 35px;
+  height: 60px;
   background-color: var(--light);
   border-top: var(--dark) 1px solid;
   display: flex;
@@ -74,7 +74,7 @@ form input {
   display: flex;
   align-items: center;
 }
-h1 {
+h1, .newoffer {
   color: var(--dark);
   font-family: "Amatic SC", cursive;
   font-size: 60px;
@@ -105,7 +105,7 @@ header {
   border-bottom: var(--dark) 1px solid;
   justify-content: space-between;
   align-items: center;
-  padding: 10px;
+  padding: 0px;
 
   /*  sticky navigationsleiste */
   position: sticky;
@@ -133,7 +133,7 @@ nav ul {
 /*================================================
 --definiert die Blocküberschriften--*/
 #menu h3 {
-  padding: 5px 15px;
+  padding: 2px 15px;
   font-size: 15px;
   text-align: center;
   color: #f2f2f2;
@@ -141,7 +141,7 @@ nav ul {
 }
 
 /*--definiert die "Drop-Down-Links" im Normalzustand--*/
-#menu a {
+#menu a{
   text-decoration: none;
   display: block;
   text-align: center;
@@ -192,7 +192,7 @@ nav ul {
 } */
 #menu h3:hover {
   color: var(--red);
-  background: #344e41;
+   /* background: #344e41; */
 }
 
 *html #menu ul li a {
@@ -301,12 +301,13 @@ main a img:hover {
   height: 100%;
   align-items: center;
 }
-.nachh img {
+.NZUN {
   display: flex;
   margin: auto;
   margin-top: 50px;
+  justify-content: center;
 }
-.nachh img:hover {
+.NZUN:hover {
   transform: scale(1.7);
   filter: none;
 }

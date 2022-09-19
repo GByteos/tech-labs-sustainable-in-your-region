@@ -8,6 +8,8 @@ import { useParam } from "@blitzjs/next";
 import Layout from "app/core/layouts/Layout";
 import getOffer from "app/offers/queries/getOffer";
 import deleteOffer from "app/offers/mutations/deleteOffer";
+import HEADER from "pages/components/Header"
+
 export const Offer = () => {
   const router = useRouter();
   const offerId = useParam("offerId", "number");
@@ -17,10 +19,11 @@ export const Offer = () => {
   });
   return (
     <>
+    <HEADER/>
       <Head>
         <title>Offer {offer.id}</title>
       </Head>
-
+    
       <div>
         <h1>Offer {offer.id}</h1>
         <pre>{JSON.stringify(offer, null, 2)}</pre>
