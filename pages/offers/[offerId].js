@@ -19,9 +19,9 @@ export const Offer = () => {
   return (
     <>
    
-      <Head>
+      {/* <Head>
         <title>Offer {offer.id}</title>
-      </Head>
+      </Head> */}
     
       <div>
         <h1>Offer {offer.id}</h1>
@@ -57,8 +57,10 @@ export const Offer = () => {
 };
 
 const ShowOfferPage = () => {
+  const TITL =["Offer offer.id"]
   return (
-    <div>
+    <Layout title={TITL}>
+      <main>
       <p>
         <Link href={Routes.OffersPage()}>
           <a>Offers</a>
@@ -68,12 +70,13 @@ const ShowOfferPage = () => {
       <Suspense fallback={<div>Loading...</div>}>
         <Offer />
       </Suspense>
-    </div>
+      </main>
+    </Layout>
   );
 };
 
 ShowOfferPage.authenticate = true;
 
-ShowOfferPage.getLayout = (page) => <Layout>{page}</Layout>;
+// ShowOfferPage.getLayout = (page) => <Layout>{page}</Layout>;
 
 export default ShowOfferPage;
