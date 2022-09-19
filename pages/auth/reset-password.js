@@ -7,7 +7,7 @@ import { Routes } from "@blitzjs/next"
 import { useRouter } from "next/router"
 import { useMutation } from "@blitzjs/rpc"
 import Link from "next/link"
-import HEADER from "pages/components/Header"
+
 
 const ResetPasswordPage = () => {
   const router = useRouter()
@@ -63,7 +63,6 @@ const ResetPasswordPage = () => {
 ResetPasswordPage.redirectAuthenticatedTo = "/"
 
 ResetPasswordPage.getLayout = (page) => <Layout title="Reset Your Password">
-  <HEADER/>
-  {page}</Layout>
+   {page}</Layout>
 
 export default ResetPasswordPage

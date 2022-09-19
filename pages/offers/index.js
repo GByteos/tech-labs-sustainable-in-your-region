@@ -6,7 +6,6 @@ import { usePaginatedQuery } from "@blitzjs/rpc"
 import { useRouter } from "next/router"
 import Layout from "app/core/layouts/Layout"
 import getOffers from "app/offers/queries/getOffers"
-import HEADER from "pages/components/Header"
 const ITEMS_PER_PAGE = 100
 export const OffersList = () => {
   const router = useRouter()
@@ -65,7 +64,6 @@ const OffersPage = () => {
       <Head>
         <title>Offers</title>
       </Head>
-      <HEADER/>
 
       <div>
         <p>

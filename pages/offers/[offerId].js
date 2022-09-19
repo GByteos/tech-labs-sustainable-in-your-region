@@ -8,7 +8,6 @@ import { useParam } from "@blitzjs/next";
 import Layout from "app/core/layouts/Layout";
 import getOffer from "app/offers/queries/getOffer";
 import deleteOffer from "app/offers/mutations/deleteOffer";
-import HEADER from "pages/components/Header"
 
 export const Offer = () => {
   const router = useRouter();
@@ -19,7 +18,7 @@ export const Offer = () => {
   });
   return (
     <>
-    <HEADER/>
+   
       <Head>
         <title>Offer {offer.id}</title>
       </Head>

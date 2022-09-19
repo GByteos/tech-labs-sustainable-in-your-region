@@ -1,11 +1,9 @@
 import Image from "next/image"
-import Link from "next/link"
-import HEADER from "pages/components/Header"
 import Layout from "app/core/layouts/Layout"
 import NachhEntw from "public/nachEntw.png"
 import WSP from "public/weihersppl1.jpg"
 import AKU from "public/logo_aku.jpg"
-import FOOTER from "pages/components/FOOTER"
+
 /*
  * This file is just for a pleasant getting started page for your new app.
  * You can delete everything in here and start from scratch if you like.
@@ -53,8 +51,7 @@ import FOOTER from "pages/components/FOOTER"
 
 const Home = () => {
   return (
-    <Layout title="regional Handprint">
-      <HEADER />
+    <Layout title="regional Handprint" >
       <main>
         <section className="inhalt">
           <aside>
@@ -150,7 +147,6 @@ const Home = () => {
           </div>
         </section>
       </main>
-      <FOOTER/>
     </Layout>
   )
 }

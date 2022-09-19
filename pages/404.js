@@ -1,6 +1,6 @@
 import Head from "next/head"
 import { ErrorComponent } from "@blitzjs/next"
-import HEADER from "pages/components/Header" // ------------------------------------------------------
+// ------------------------------------------------------
 // This page is rendered if a route match is not found
 // ------------------------------------------------------
 
@@ -14,7 +14,6 @@ export default function Page404() {
           {statusCode}: {title}
         </title>
       </Head>
-      <HEADER/>
       <ErrorComponent statusCode={statusCode} title={title} />
     </>
   )

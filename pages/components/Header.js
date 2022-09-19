@@ -48,7 +48,8 @@ const UserInfo = () => {
   }
 }
 
-function HEADER(x) {
+function HEADER() {
+    // let currenturl = window.location.href
   return (
     <div>
       <div className="up">
@@ -68,7 +69,7 @@ function HEADER(x) {
           <Image src={logo} alt="Logo mit dem Handabdruck und Haken" />
           <div>
             <h1>Nachhaltig in Markt&nbsp;Schwaben</h1>
-            <h2>{window.location.href}</h2>
+            <h2></h2>
             <h3 className="mainh3">
               Die Mitmach-Seite für nachhaltige Angebote in und um Markt Schwaben
             </h3>
@@ -77,8 +78,8 @@ function HEADER(x) {
       </section>
       <header>
         <nav id="menu">
-          <ul>
-            <li id="minilogo">
+          <ul id="minilogo">
+            <li >
               <Link href={Routes.Home()}>
                 <Image src={logo} width="50px" height="50px" alt="Logo - back home Link" />
               </Link>
