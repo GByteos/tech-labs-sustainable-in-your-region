@@ -328,8 +328,12 @@ footer {
   background-color: var(--light);
   padding: 10px 20px;
   text-align: center;
+  
 }
-
+.impr{
+  border-top: none
+ 
+}
 .footform {
   display: flex;
   justify-content: space-evenly;
@@ -419,6 +423,8 @@ h3 {
   padding: 5px;
 }
 
+
+/* ************************** */
 .newoffer {
   color: var(--dark);
   font-family: "Amatic SC", cursive;

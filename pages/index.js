@@ -5,7 +5,7 @@ import Layout from "app/core/layouts/Layout"
 import NachhEntw from "public/nachEntw.png"
 import WSP from "public/weihersppl1.jpg"
 import AKU from "public/logo_aku.jpg"
-
+import FOOTER from "pages/components/FOOTER"
 /*
  * This file is just for a pleasant getting started page for your new app.
  * You can delete everything in here and start from scratch if you like.
@@ -150,17 +150,7 @@ const Home = () => {
           </div>
         </section>
       </main>
-      <footer>
-        <Link href="/offers">
-          <a>/Your offer</a>
-        </Link>
-
-        <div className="up">
-          <a href="mailto:kontakt@nachhaltig-in-marktschwaben.de">Kontakt</a>
-          <a href="mailto:kontakt@nachhaltig-in-marktschwaben.de">Datenschutz</a>
-          <a href="mailto:kontakt@nachhaltig-in-marktschwaben.de">Impressum</a>
-        </div>
-      </footer>
+      <FOOTER/>
     </Layout>
   )
 }

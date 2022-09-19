@@ -48,7 +48,7 @@ const UserInfo = () => {
   }
 }
 
-function HEADER() {
+function HEADER(x) {
   return (
     <div>
       <div className="up">
