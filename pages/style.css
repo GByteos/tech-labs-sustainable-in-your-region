@@ -74,7 +74,7 @@ form input {
   display: flex;
   align-items: center;
 }
-h1, .newoffer {
+h1 {
   color: var(--dark);
   font-family: "Amatic SC", cursive;
   font-size: 60px;
@@ -420,11 +420,9 @@ h3 {
 }
 
 .newoffer {
-  color: green;
-  text-align: center;
-  margin: 25px 25px 45px 25px;
-  letter-spacing: 2px;
-  text-shadow: 2px 2px grey;
+  color: var(--dark);
+  font-family: "Amatic SC", cursive;
+  font-size: 60px;
 }
 
 .offerlink {
