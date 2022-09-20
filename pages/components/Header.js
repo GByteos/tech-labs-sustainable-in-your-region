@@ -69,7 +69,7 @@ function HEADER() {
       </div>
       <section className="main">
         <article className="logo">
-          <Image src={logo} alt="Logo mit dem Handabdruck und Haken" />
+          <Image src={logo} alt="Logo mit dem Handabdruck und Haken" width="180" height="200"/>
           <div>
             <h1>Nachhaltig in Markt&nbsp;Schwaben</h1>
             <h2>{`${currenturl}`}</h2>
