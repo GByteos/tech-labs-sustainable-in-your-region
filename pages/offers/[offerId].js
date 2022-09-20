@@ -23,9 +23,28 @@ export const Offer = () => {
       </Head> */}
 
       <div>
-        <h1>Offer {offer.id}</h1>
-        <pre>{JSON.stringify(offer, null, 2)}</pre>
+        <h1>Offer {offer.name}</h1>
 
+        <article className="eintrag">
+          <a href="{offer.link}">
+            <img src="{offer.logo}" alt="" />
+          </a>
+          <div className="para_main">
+            <h3>{offer.name}</h3>
+            <p>{offer.description}</p>
+          </div>
+          <div className="para_main info">
+            <ul>
+              <li>{offer.openingTimes}</li>
+              {/* <li>Sa: 8-13 Uhr</li>
+							<br />
+							<li>Wolfmühle 1</li>
+							<li>85661 Forstinning</li>
+							<li>08121 / 3334</li> */}
+            </ul>
+          </div>
+        </article>
+        <pre>{JSON.stringify(offer, "", 2)}</pre>
         <Link
           href={Routes.EditOfferPage({
             offerId: offer.id,
@@ -56,10 +75,10 @@ export const Offer = () => {
 }
 
 const ShowOfferPage = () => {
-  // in the title should appear the offer id, no idea how to do that
-  const TITL = ["Offer offer.id"]
   return (
-    <Layout title={TITL}>
+    // in the title should appear the offer id, no idea how to do that
+    // <Layout title={` Offer ${offer.id}`}>
+    <Layout>
       <main>
         <p>
           <Link href={Routes.OffersPage()}>

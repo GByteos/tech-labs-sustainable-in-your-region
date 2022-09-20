@@ -3,6 +3,7 @@ import Layout from "app/core/layouts/Layout"
 import NachhEntw from "public/nachEntw.png"
 import WSP from "public/weihersppl1.jpg"
 import AKU from "public/logo_aku.jpg"
+import Cal from "public/Calendar.jpg"
 
 
 /*
@@ -55,40 +56,36 @@ const Home = () => {
     <Layout title="regional Handprint" >
       <main>
         <section className="inhalt">
-          <aside>
-            <div className="image_wrapper">
-              <p>Termine</p>
-              <a href="">
-                <img
-                  src="https://blankcalendarpages.com/printable_calendar/kalender1/Juli-2022-kalender-de1.jpg"
-                  alt="Kalender für Juli"
-                  width="200"
-                />
-              </a>
-            </div>
-            <div className="image_wrapper">
-              <p>Baumpfad am Weiherspielplatz</p>
-              <a href="../Baumpfad/index.html">
-                <Image
-                  src={WSP}
-                  width="200px"
-                  height="150px"
-                  alt="Bild vom Weiherspielplatz, an dem der Baumpfad entstehen soll"
-                />
-              </a>
-            </div>
-            <div className="image_wrapper">
-              <p>Aktivkreis Umwelt Markt&nbsp;Schwaben</p>
-              <a href="https://www.marktschwabenaktiv.de/aktivkreise/umwelt/index.html">
-                <Image
-                  src={AKU}
-                  width="200px"
-                  height="100px"
-                  alt="Logo des Aktivkreises Umwelt Markt Schwaben"
-                />
-              </a>
-            </div>
-          </aside>
+        <aside>
+      <div className="image_wrapper">
+        <p>Termine</p>
+        <a href="">
+          <Image src={Cal} width="200px" height="150px" alt="Kalender für Juli" />
+        </a>
+      </div>
+      <div className="image_wrapper">
+        <p>Baumpfad am Weiherspielplatz</p>
+        <a href="../Baumpfad/index.html">
+          <Image
+            src={WSP}
+            width="200px"
+            height="150px"
+            alt="Bild vom Weiherspielplatz, an dem der Baumpfad entstehen soll"
+          />
+        </a>
+      </div>
+      <div className="image_wrapper">
+        <p>Aktivkreis Umwelt Markt&nbsp;Schwaben</p>
+        <a href="https://www.marktschwabenaktiv.de/aktivkreise/umwelt/index.html">
+          <Image
+            src={AKU}
+            width="200px"
+            height="100px"
+            alt="Logo des Aktivkreises Umwelt Markt Schwaben"
+          />
+        </a>
+      </div>
+    </aside>
           <div className="einl">
             <div>
               <p className="para_main">

@@ -7,6 +7,7 @@ import { useCurrentUser } from "app/core/hooks/useCurrentUser"
 import logout from "app/auth/mutations/logout"
 import { useMutation } from "@blitzjs/rpc"
 import { Routes } from "@blitzjs/next"
+import { useEffect, useState } from 'react'
 
 const UserInfo = () => {
   const currentUser = useCurrentUser()
@@ -49,7 +50,9 @@ const UserInfo = () => {
 }
 
 function HEADER() {
-    // let currenturl = window.location.href
+    const [currenturl, setUrl] =useState("")
+    useEffect(() => setUrl(window.location.href), [])
+
   return (
     <div>
       <div className="up">
@@ -69,7 +72,7 @@ function HEADER() {
           <Image src={logo} alt="Logo mit dem Handabdruck und Haken" />
           <div>
             <h1>Nachhaltig in Markt&nbsp;Schwaben</h1>
-            <h2></h2>
+            <h2>{`${currenturl}`}</h2>
             <h3 className="mainh3">
               Die Mitmach-Seite für nachhaltige Angebote in und um Markt Schwaben
             </h3>
@@ -171,7 +174,7 @@ function HEADER() {
           <ul>
             <li>
               <Link href="/offers">
-                <a>/Your offer</a>
+                <a>/Offers</a>
               </Link>
             </li>
           </ul>

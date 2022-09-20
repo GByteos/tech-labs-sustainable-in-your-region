@@ -1,5 +1,7 @@
 import { forwardRef } from "react"
 import { useField } from "react-final-form"
+
+
 // eslint-disable-next-line react/display-name
 export const LabeledTextField = forwardRef(
   ({ name, label, outerProps, fieldProps, labelProps, ...props }, ref) => {
@@ -40,10 +42,11 @@ export const LabeledTextField = forwardRef(
             font-size: 1rem;
           }
           input {
+            background: #f2f2f2;
             font-size: 1rem;
             padding: 0.25rem 0.5rem;
             border-radius: 3px;
-            border: 1px solid purple;
+            box-shadow: 0 4px 8px 8px rgba(34, 60, 
             appearance: none;
             margin-top: 0.5rem;
           }
