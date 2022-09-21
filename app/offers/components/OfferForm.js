@@ -1,5 +1,6 @@
 import { Form } from "app/core/components/Form"
 import { Field } from "react-final-form"
+import { FileField } from "app/core/components/ImgSelectionField"
 export { FORM_ERROR } from "app/core/components/Form"
 export function OfferForm(props) {
   return (
@@ -32,7 +33,7 @@ export function OfferForm(props) {
         <Field name="link" id="link" component="input" placeholder="url" />
         <br />
         <label htmlFor="logo">Upload your image or logo</label>
-        <input type="file" id="file" name="logo" />
+        <FileField type="file" id="file" name="logo" />
         <br />
         <label htmlFor="submit">Submit your offer</label>
         <input type="submit" name="submit" id="submit" value="Let's go!" />

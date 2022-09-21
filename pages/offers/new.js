@@ -21,7 +21,20 @@ const NewOfferPage = () => {
         // initialValues={{}}
         onSubmit={async (values) => {
           try {
+            // upload image not working for now...
+            /*
+            const logoBase64 = (file) =>
+              new Promise((resolve, reject) => {
+                const logoRaw = new FileReader()
+                logoRaw.readAsDataURL(file)
+
+                logoRaw.onload = () => resolve(logoRaw.result)
+                logoRaw.onerror = (error) => reject(error)
+              })
+            values.logo = await logoBase64(values.logo[0])
             console.log(values)
+            */
+
             const offer = await createOfferMutation(values)
             router.push(
               Routes.ShowOfferPage({
