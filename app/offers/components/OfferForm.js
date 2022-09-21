@@ -16,37 +16,20 @@ export function OfferForm(props) {
       </div>
       <div className="part2">
         <label htmlFor="name">Heading</label>
-        <Field name="name">
-          {(props) => (
-            <div>
-              <input type="text" id="name" placeholder="My Offer" {...props.input} />
-            </div>
-          )}
-        </Field>
+        <Field name="name" component="input" id="name" placeholder="My Offer" />
         <br />
-        <Field name="description">
-          {(props) => (
-            <div>
-              <textarea
-                id="sonst"
-                cols="30"
-                rows="10"
-                placeholder="Description"
-                {...props.input}
-              ></textarea>
-            </div>
-          )}
-        </Field>
+        <Field
+          name="description"
+          component="textarea"
+          id="sonst"
+          cols="30"
+          rows="10"
+          placeholder="Description"
+        />
       </div>
       <div className="part3">
         <label htmlFor="link">Your Website</label>
-        <Field name="link">
-          {(props) => (
-            <div>
-              <input type="text" id="link" placeholder="url" {...props.input} />
-            </div>
-          )}
-        </Field>
+        <Field name="link" id="link" component="input" placeholder="url" />
         <br />
         <label htmlFor="logo">Upload your image or logo</label>
         <input type="file" id="file" name="logo" />
