@@ -5,6 +5,7 @@ import { useMutation } from "@blitzjs/rpc"
 import Layout from "app/core/layouts/Layout"
 import createOffer from "app/offers/mutations/createOffer"
 import { OfferForm, FORM_ERROR } from "app/offers/components/OfferForm"
+import axios from "axios"
 
 const NewOfferPage = () => {
   const router = useRouter()
@@ -21,19 +22,19 @@ const NewOfferPage = () => {
         // initialValues={{}}
         onSubmit={async (values) => {
           try {
-            // upload image not working for now...
-            /*
-            const logoBase64 = (file) =>
-              new Promise((resolve, reject) => {
-                const logoRaw = new FileReader()
-                logoRaw.readAsDataURL(file)
+            const formData = new FormData()
+            formData.append("logo", values.logo[0])
 
-                logoRaw.onload = () => resolve(logoRaw.result)
-                logoRaw.onerror = (error) => reject(error)
-              })
-            values.logo = await logoBase64(values.logo[0])
-            console.log(values)
-            */
+            const config = {
+              headers: { "content-type": "multipart/form-data" },
+              onUploadProgress: (event) => {
+                console.log(`Current progress:`, Math.round((event.loaded * 100) / event.total))
+              },
+            }
+
+            const response = await axios.post("/api/imageUpload", formData, config)
+
+            console.log("response", response.data)
 
             const offer = await createOfferMutation(values)
             router.push(

@@ -54,3 +54,7 @@ lib-cov
 
 # Stores VSCode versions used for testing VSCode extensions
 .vscode-test
+
+# File storage for images
+public/uploads/*
+!public/uploads/.gitkeep
