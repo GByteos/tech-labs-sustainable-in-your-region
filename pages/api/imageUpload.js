@@ -4,7 +4,7 @@ import { nanoid } from "nanoid"
 
 const upload = multer({
   storage: multer.diskStorage({
-    destination: "././public/uploads",
+    destination: process.env.IMAGE_UPLOAD_URL,
     filename: nameGenerator,
   }),
   limits: {
@@ -59,6 +59,7 @@ const imageUpload = nextConnect({
 imageUpload.use(upload.single("logo"))
 
 imageUpload.post((req, res) => {
+  // req.file.path => contains the full image path and extension
   res.status(200).json({ data: "sucess" })
 })
 
