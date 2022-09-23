@@ -58,9 +58,10 @@ const imageUpload = nextConnect({
 
 imageUpload.use(upload.single("logo"))
 
+// TODO: Discuss if this is save
 imageUpload.post((req, res) => {
   // req.file.path => contains the full image path and extension
-  res.status(200).json({ data: "sucess" })
+  res.status(200).json({ data: "sucess", logo: req.file.path })
 })
 
 export default imageUpload

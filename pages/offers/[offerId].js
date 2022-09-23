@@ -26,8 +26,8 @@ export const Offer = () => {
         <h1>Offer {offer.name}</h1>
 
         <article className="eintrag">
-          <a href="{offer.link}">
-            <img src="{offer.logo}" alt="Offer Logo" />
+          <a href={offer.link}>
+            <img src={offer.logo} alt="Offer Logo" />
           </a>
           <div className="para_main">
             <h3>{offer.name}</h3>

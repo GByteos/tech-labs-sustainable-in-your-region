@@ -34,7 +34,8 @@ const NewOfferPage = () => {
 
             const response = await axios.post("/api/imageUpload", formData, config)
 
-            console.log("response", response.data)
+            // TODO: error handling...
+            values.logo = response.data.logo
 
             const offer = await createOfferMutation(values)
             router.push(
