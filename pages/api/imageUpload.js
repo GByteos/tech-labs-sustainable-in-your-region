@@ -15,7 +15,7 @@ const upload = multer({
 
 /**
  * Filters the files to upload and rejects all other than images
- * @param {e.request} req
+ * @param {*} req
  * @param {*} file
  * @param {*} cb
  * @returns
@@ -25,8 +25,8 @@ function uploadFilter(req, file, cb) {
 
   // make sure logo is in a allowed file format (at least it has the right extension)
   if (
-    nameAndExtension.length === 2 &&
-    ["jpg", "png", "gif", "svg"].indexOf(nameAndExtension[1] >= 0)
+    nameAndExtension.length > 1 &&
+    ["jpg", "png", "gif", "svg"].indexOf(nameAndExtension[nameAndExtension.length - 2] >= 0)
   ) {
     cb(null, true)
     return
@@ -43,7 +43,8 @@ function uploadFilter(req, file, cb) {
  * @param {*} cb
  */
 function nameGenerator(req, file, cb) {
-  cb(null, nanoid() + "." + file.originalname.split(".")[1])
+  let nameAndExtension = file.originalname.split(".")
+  cb(null, nanoid() + "." + nameAndExtension[nameAndExtension.length - 1])
 }
 
 const imageUpload = nextConnect({
@@ -58,10 +59,10 @@ const imageUpload = nextConnect({
 
 imageUpload.use(upload.single("logo"))
 
-// TODO: Discuss if this is save
 imageUpload.post((req, res) => {
   // req.file.path => contains the full image path and extension
-  res.status(200).json({ data: "sucess", logo: req.file.path })
+  console.log(req.file)
+  res.status(200).json({ data: "sucess", logo: req.file.filename })
 })
 
 export default imageUpload
