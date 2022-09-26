@@ -50,7 +50,7 @@ const UserInfo = () => {
 }
 
 function HEADER() {
-    const [currenturl, setUrl] =useState("")
+    const [currenturl, setUrl] = useState("")
     useEffect(() => setUrl(window.location.href), [])
 
   return (

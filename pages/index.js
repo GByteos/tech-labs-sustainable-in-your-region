@@ -1,91 +1,18 @@
 import Image from "next/image"
 import Layout from "app/core/layouts/Layout"
 import NachhEntw from "public/nachEntw.png"
-import WSP from "public/weihersppl1.jpg"
-import AKU from "public/logo_aku.jpg"
-import Cal from "public/Calendar.jpg"
 
 
-/*
- * This file is just for a pleasant getting started page for your new app.
- * You can delete everything in here and start from scratch if you like.
- */
-
-// const UserInfo = () => {
-//   const currentUser = useCurrentUser()
-//   const [logoutMutation] = useMutation(logout)
-
-//   if (currentUser) {
-//     return (
-//       <>
-//         <button
-//           className="button small"
-//           onClick={async () => {
-//             await logoutMutation()
-//           }}
-//         >
-//           Logout
-//         </button>
-//         <div>
-//           User id: <code>{currentUser.id}</code>
-//           <br />
-//           User role: <code>{currentUser.role}</code>
-//         </div>
-//       </>
-//     )
-//   } else {
-//     return (
-//       <>
-//         <Link href={Routes.SignupPage()}>
-//           <a className="button small">
-//             <strong>Sign Up</strong>
-//           </a>
-//         </Link>
-//         <Link href={Routes.LoginPage()}>
-//           <a className="button small">
-//             <strong>Login</strong>
-//           </a>
-//         </Link>
-//       </>
-//     )
-//   }
-// }
 
 const Home = () => {
   return (
-    <Layout title="regional Handprint" >
+    <Layout title="regional Handprint">
       <main>
+        <div>
+
+        
         <section className="inhalt">
-        <aside>
-      <div className="image_wrapper">
-        <p>Termine</p>
-        <a href="">
-          <Image src={Cal} width="200px" height="150px" alt="Kalender für Juli" />
-        </a>
-      </div>
-      <div className="image_wrapper">
-        <p>Baumpfad am Weiherspielplatz</p>
-        <a href="../Baumpfad/index.html">
-          <Image
-            src={WSP}
-            width="200px"
-            height="150px"
-            alt="Bild vom Weiherspielplatz, an dem der Baumpfad entstehen soll"
-          />
-        </a>
-      </div>
-      <div className="image_wrapper">
-        <p>Aktivkreis Umwelt Markt&nbsp;Schwaben</p>
-        <a href="https://www.marktschwabenaktiv.de/aktivkreise/umwelt/index.html">
-          <Image
-            src={AKU}
-            width="200px"
-            height="100px"
-            alt="Logo des Aktivkreises Umwelt Markt Schwaben"
-          />
-        </a>
-      </div>
-    </aside>
+         
           <div className="einl">
             <div>
               <p className="para_main">
@@ -144,6 +71,7 @@ const Home = () => {
             <Image src={NachhEntw} alt="Die 17 Nachhaltigkeitsziele der UN" />
           </div>
         </section>
+        </div>
       </main>
     </Layout>
   )

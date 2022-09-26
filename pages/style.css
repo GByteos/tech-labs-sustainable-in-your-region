@@ -207,7 +207,7 @@ nav ul {
 ============= ENDE Navigationsleiste ====================== */
 
 /* ======================  INHALT DER SEITE .main ====================== */
-.inhalt {
+main, .inhalt {
   display: flex;
   margin: 0px 50px;
   /* color:white; */
@@ -228,7 +228,7 @@ main a img:hover {
 }
 
 /* ======================  Seitenteil Rechts .inhalt aside ====================== */
-.inhalt aside {
+ aside {
   order: 2;
   padding: 10px 0px 10px 10px;
   margin-top: 15px;
