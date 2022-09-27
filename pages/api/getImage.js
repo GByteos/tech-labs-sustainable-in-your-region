@@ -21,7 +21,9 @@ getImage.get((req, res) => {
     const imageBuffer = fs.readFileSync(filePath)
 
     res.setHeader("Content-Type", "image/jpg")
+    res.status(200)
     res.send(imageBuffer)
+    res.end()
   }
 })
 

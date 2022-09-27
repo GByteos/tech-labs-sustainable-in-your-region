@@ -1,13 +1,18 @@
 import Image from "next/image"
 import YL from "public/yourlogo.png"
 
-function DisplayOffer({offer}) {
+function DisplayOffer({ offer }) {
   console.log(offer)
   return (
     <article className="eintrag">
       <a href={offer.link}>
         {/* {LOGO} */}
-        <Image src={YL} alt="Offer Logo" width="150px" height="150px" />
+        <Image
+          src={"/api/getImage?imageId=" + offer.logo}
+          alt="Offer Logo"
+          width="150px"
+          height="150px"
+        />
       </a>
       <div className="para_main">
         <h3>{offer.name}</h3>
