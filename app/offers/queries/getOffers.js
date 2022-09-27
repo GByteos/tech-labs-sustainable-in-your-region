@@ -1,6 +1,7 @@
 import { paginate } from "blitz"
 import { resolver } from "@blitzjs/rpc"
 import db from "db"
+
 export default resolver.pipe(
   resolver.authorize(),
   async ({ where, orderBy, skip = 0, take = 100 }) => {

@@ -30,7 +30,7 @@ export const Offer = () => {
   return (
     <div>
       <h1>Offer {offer.name}</h1>
-      {/* <DisplayOffer /> */}
+      <DisplayOffer offer={offer} />
 
       <pre>{JSON.stringify(offer, "", 2)}</pre>
       <Link
@@ -61,10 +61,10 @@ export const Offer = () => {
   )
 }
 
-const ShowOfferPage = (offer) => {
+const ShowOfferPage = () => {
   return (
     // in the title should appear the offer id, no idea how to do that
-    //Layout title={` Offer ${offer.id}`}>
+    // <Layout title={offer}>
     <Layout>
       <main>
         <p>

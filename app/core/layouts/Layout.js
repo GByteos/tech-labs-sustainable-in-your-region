@@ -2,6 +2,7 @@ import Head from "next/head"
 import React from "react"
 import HEADER from "pages/components/Header"
 import FOOTER from "pages/components/Footer"
+import LatestOffers from "pages/components/LatestOffers"
 
 const Layout = ({ title, children}) => {
   return (
@@ -11,7 +12,7 @@ const Layout = ({ title, children}) => {
         <link rel="icon" href="/logo.png" />
       </Head>
       <HEADER />
-      <main> {children}</main>
+      <main> <LatestOffers/> {children}</main>
       <FOOTER />
     </>
   )
