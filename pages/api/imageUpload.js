@@ -1,6 +1,7 @@
 import nextConnect from "next-connect"
 import multer from "multer"
 import { nanoid } from "nanoid"
+import { getSession } from "@blitzjs/auth"
 
 const upload = multer({
   storage: multer.diskStorage({
@@ -57,7 +58,16 @@ const imageUpload = nextConnect({
   },
 })
 
-imageUpload.use(upload.single("logo"))
+imageUpload
+  .use(async (req, res, next) => {
+    const session = await getSession(req, res)
+    if (session.userId === null) {
+      throw new Error("Authentication error!")
+    } else {
+      next()
+    }
+  })
+  .use(upload.single("logo"))
 
 imageUpload.post((req, res) => {
   // req.file.path => contains the full image path and extension

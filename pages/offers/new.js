@@ -6,6 +6,8 @@ import Layout from "app/core/layouts/Layout"
 import createOffer from "app/offers/mutations/createOffer"
 import { OfferForm, FORM_ERROR } from "app/offers/components/OfferForm"
 import axios from "axios"
+import { getAntiCSRFToken } from "@blitzjs/auth"
+import { get } from "http"
 
 const NewOfferPage = () => {
   const router = useRouter()
@@ -25,8 +27,11 @@ const NewOfferPage = () => {
             const formData = new FormData()
             formData.append("logo", values.logo[0])
 
+            const antiCSRFToken = getAntiCSRFToken()
+
             const config = {
-              headers: { "content-type": "multipart/form-data" },
+              credentials: "include",
+              headers: { "content-type": "multipart/form-data", "anti-csrf": antiCSRFToken },
               onUploadProgress: (event) => {
                 console.log(`Current progress:`, Math.round((event.loaded * 100) / event.total))
               },
