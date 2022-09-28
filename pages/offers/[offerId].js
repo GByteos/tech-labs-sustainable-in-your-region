@@ -29,34 +29,38 @@ export const Offer = () => {
 
   return (
     <div>
-      <h1>Offer {offer.name}</h1>
-      <DisplayOffer offer={offer} />
-
-      <pre>{JSON.stringify(offer, "", 2)}</pre>
-      <Link
-        href={Routes.EditOfferPage({
-          offerId: offer.id,
-        })}
-      >
-        <a>Edit</a>
-      </Link>
-
-      <button
-        type="button"
-        onClick={async () => {
-          if (window.confirm("This will be deleted")) {
-            await deleteOfferMutation({
-              id: offer.id,
-            })
-            router.push(Routes.OffersPage())
-          }
-        }}
-        style={{
-          marginLeft: "0.5rem",
-        }}
-      >
-        Delete
-      </button>
+      <div>
+        <br />
+        <br />
+        <h3> Your offer: {offer.name}</h3>
+        <pre>{JSON.stringify(offer, "", 2)}</pre>
+        <Link
+          href={Routes.EditOfferPage({
+            offerId: offer.id,
+          })}
+        >
+          <a>Edit</a>
+        </Link>
+        <button
+          type="button"
+          onClick={async () => {
+            if (window.confirm("This will be deleted")) {
+              await deleteOfferMutation({
+                id: offer.id,
+              })
+              router.push(Routes.OffersPage())
+            }
+          }}
+          style={{
+            marginLeft: "0.5rem",
+          }}
+        >
+          Delete
+        </button>
+        <br /> <br />
+        <h3>It will look like this:</h3>
+        <DisplayOffer offer={offer} />
+      </div>
     </div>
   )
 }
