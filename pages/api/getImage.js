@@ -1,5 +1,5 @@
 import fs from "fs"
-import path from "path"
+import path, { resolve } from "path"
 import nextConnect from "next-connect"
 
 const getImage = nextConnect({
@@ -12,18 +12,28 @@ const getImage = nextConnect({
   },
 })
 
-getImage.get((req, res) => {
+getImage.get(async (req, res) => {
   console.log(req.query.imageId)
-  if (req.query.imageId === undefined) {
-    throw new Error("No image id was specifyied")
-  } else {
-    const filePath = path.resolve("./public/uploads/", req.query.imageId)
-    const imageBuffer = fs.readFileSync(filePath)
 
+  if (req.query.imageId === undefined) {
+    throw new Error("No image id was specified")
+  } else {
     res.setHeader("Content-Type", "image/jpg")
-    res.status(200)
-    res.send(imageBuffer)
-    res.end()
+
+    const filePath = path.resolve("./public/uploads/", req.query.imageId)
+    const imageBuffer = fs.createReadStream(filePath)
+
+    await new Promise(function (resolve) {
+      imageBuffer.pipe(res)
+      imageBuffer.on("end", resolve)
+      imageBuffer.on("error", function (err) {
+        if (err.code === "ENOENT") {
+          throw new Error("Image not found")
+        } else {
+          throw new Error("Stream error")
+        }
+      })
+    })
   }
 })
 
