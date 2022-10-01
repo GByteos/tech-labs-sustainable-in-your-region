@@ -12,8 +12,8 @@ import { useEffect, useState } from 'react'
 const UserInfo = () => {
   const currentUser = useCurrentUser()
   const [logoutMutation] = useMutation(logout)
-  const currenUserId = currentUser
-  console.log(currentUser )
+  const currenUserId = currentUser.id 
+  console.log(currentUser.id )
   if (currentUser) {
     return (
       <>
@@ -30,7 +30,7 @@ const UserInfo = () => {
           <br />
           User role: <code>{currentUser.role}</code>
         </div>
-        <div>  <Link href="/offers/">
+        <div>  <Link href={Routes.MyOffersPage()}>
                 <a>My Offers</a>
               </Link></div>
       </>
