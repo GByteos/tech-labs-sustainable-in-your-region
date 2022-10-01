@@ -1,17 +1,13 @@
 import { Routes } from "@blitzjs/next"
 import Link from "next/link"
 import { useRouter } from "next/router"
-import { useMutation } from "@blitzjs/rpc"
 import Layout from "app/core/layouts/Layout"
-import createOffer from "app/offers/mutations/createOffer"
 import { OfferForm, FORM_ERROR } from "app/offers/components/OfferForm"
 import axios from "axios"
 import { getAntiCSRFToken } from "@blitzjs/auth"
-import { get } from "http"
 
 const NewOfferPage = () => {
   const router = useRouter()
-  const [createOfferMutation] = useMutation(createOffer)
   return (
     <Layout title={"Create New Offer"}>
       <h1 className="newoffer">Create New Offer</h1>
@@ -25,27 +21,26 @@ const NewOfferPage = () => {
         onSubmit={async (values) => {
           try {
             const formData = new FormData()
-            console.log(values)
+
+            // put all fields onto the formData for multer
             formData.append("logo", values.logo[0])
             formData.append("name", values.name)
             formData.append("description", values.description)
             formData.append("link", values.link)
-            //formData.append("logo", values.logo[0])
 
+            // is needed, to identify and verify the user on server side
             const antiCSRFToken = getAntiCSRFToken()
 
             const config = {
               credentials: "include",
               headers: { "content-type": "multipart/form-data", "anti-csrf": antiCSRFToken },
               onUploadProgress: (event) => {
+                // TODO: add a progres bar or similar here
                 console.log(`Current progress:`, Math.round((event.loaded * 100) / event.total))
               },
             }
 
-            const response = await axios.post("/api/imageUpload", formData, config)
-
-            // TODO: error handling...
-            values.logo = response.data.logo
+            const response = await axios.post("/api/createOffer", formData, config)
 
             const offer = response.data.offer
             //await createOfferMutation(values)

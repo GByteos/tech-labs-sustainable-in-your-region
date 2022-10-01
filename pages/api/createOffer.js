@@ -49,7 +49,7 @@ function nameGenerator(req, file, cb) {
   cb(null, nanoid() + "." + nameAndExtension[nameAndExtension.length - 1])
 }
 
-const imageUpload = nextConnect({
+const createOffer = nextConnect({
   onError(error, req, res) {
     console.log(req.file)
     res.status(501).json({ error: `Sorry something Happened! ${error.message}` })
@@ -60,7 +60,7 @@ const imageUpload = nextConnect({
   },
 })
 
-imageUpload
+createOffer
   .use(async (req, res, next) => {
     const session = await getSession(req, res)
     if (session.userId === null) {
@@ -91,7 +91,7 @@ imageUpload
     res.status(200).json({ data: "sucess", offer: offer })
   })
 
-export default imageUpload
+export default createOffer
 
 export const config = {
   api: {
