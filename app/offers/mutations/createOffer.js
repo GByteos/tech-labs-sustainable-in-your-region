@@ -1,7 +1,7 @@
 import { resolver } from "@blitzjs/rpc"
 import db from "db"
 import { z } from "zod"
-import { CreateOffer } from "../validations"
+import { CreateOffer } from "../validation"
 
 export default resolver.pipe(
   resolver.zod(CreateOffer),

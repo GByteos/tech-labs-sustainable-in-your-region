@@ -5,6 +5,7 @@ import Layout from "app/core/layouts/Layout"
 import { OfferForm, FORM_ERROR } from "app/offers/components/OfferForm"
 import axios from "axios"
 import { getAntiCSRFToken } from "@blitzjs/auth"
+import { RESPONSE_LIMIT_DEFAULT } from "next/dist/server/api-utils"
 
 const NewOfferPage = () => {
   const router = useRouter()
@@ -24,9 +25,9 @@ const NewOfferPage = () => {
 
             // put all fields onto the formData for multer
             formData.append("logo", values.logo[0])
-            formData.append("name", values.name)
-            formData.append("description", values.description)
-            formData.append("link", values.link)
+            values.name ? formData.append("name", values.name) : ""
+            values.description ? formData.append("description", values.description) : ""
+            values.link ? formData.append("link", values.link) : ""
 
             // is needed, to identify and verify the user on server side
             const antiCSRFToken = getAntiCSRFToken()
@@ -41,14 +42,17 @@ const NewOfferPage = () => {
             }
 
             const response = await axios.post("/api/createOffer", formData, config)
+            if (response.data.data === "sucess") {
+              const offer = response.data.offer
 
-            const offer = response.data.offer
-            //await createOfferMutation(values)
-            router.push(
-              Routes.ShowOfferPage({
-                offerId: offer.id,
-              })
-            )
+              router.push(
+                Routes.ShowOfferPage({
+                  offerId: offer.id,
+                })
+              )
+            } else {
+              // TODO: add some information, why the data was not accepted
+            }
           } catch (error) {
             console.error(error)
             return {

@@ -3,6 +3,7 @@ import multer from "multer"
 import { nanoid } from "nanoid"
 import { getSession } from "@blitzjs/auth"
 import db from "db"
+import { CreateOffer } from "app/offers/validation"
 
 const upload = multer({
   storage: multer.diskStorage({
@@ -74,21 +75,30 @@ createOffer
     // req.file.path => contains the full image path and extension
     const session = await getSession(req, res)
 
-    // add server side values to the dataset
-    const values = {
-      ...req.body,
-      logo: req.file.filename,
-      author: {
-        connect: {
-          id: session.userId,
+    let values = CreateOffer.safeParse(JSON.parse(JSON.stringify(req.body)))
+
+    console.log(values)
+
+    if (values.success === true) {
+      // add server side values to the dataset
+      values = {
+        ...req.body,
+        logo: req.file.filename,
+        author: {
+          connect: {
+            id: session.userId,
+          },
         },
-      },
+      }
+      const offer = await db.offer.create({
+        data: values,
+      })
+      console.log(offer)
+      res.status(200).json({ data: "sucess", offer: offer })
+    } else {
+      // TODO: remove uploaded fiel
+      res.status(400).json({ data: "failed" })
     }
-    const offer = await db.offer.create({
-      data: values,
-    })
-    console.log(offer)
-    res.status(200).json({ data: "sucess", offer: offer })
   })
 
 export default createOffer
