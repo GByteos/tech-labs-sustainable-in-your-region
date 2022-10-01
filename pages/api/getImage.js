@@ -53,9 +53,11 @@ getImage.get(async (req, res) => {
       imageBuffer.on("end", resolve)
       imageBuffer.on("error", function (err) {
         if (err.code === "ENOENT") {
-          throw new Error("Image not found")
+          res.status(501).json({ error: `Sorry something Happened! Image not found` })
+          res.end()
         } else {
-          throw new Error("Stream error")
+          res.status(501).json({ error: `Sorry something Happened! Stream error` })
+          res.end()
         }
       })
     })
