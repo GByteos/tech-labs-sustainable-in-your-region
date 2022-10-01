@@ -12,8 +12,10 @@ import { useEffect, useState } from 'react'
 const UserInfo = () => {
   const currentUser = useCurrentUser()
   const [logoutMutation] = useMutation(logout)
+  
 
   if (currentUser) {
+    const currenUserId = currentUser.id 
     return (
       <>
         <button
@@ -29,6 +31,9 @@ const UserInfo = () => {
           <br />
           User role: <code>{currentUser.role}</code>
         </div>
+        <div>  <Link href={Routes.MyOffersPage()}>
+                <a>My Offers</a>
+              </Link></div>
       </>
     )
   } else {
@@ -173,9 +178,15 @@ function HEADER() {
           </ul>
           <ul>
             <li>
-              <Link href="/offers">
-                <a>/Offers</a>
-              </Link>
+            
+              
+              <div>
+              
+                <Link href="/offers">
+                  <a>Offers</a>
+                </Link>
+              </div>
+            
             </li>
           </ul>
         </nav>

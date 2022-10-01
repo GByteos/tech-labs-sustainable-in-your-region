@@ -25,7 +25,7 @@ body {
   background-color: #f2f2f2;
   color: #344e41;
   width: 1200px;
-  margin: auto;
+  margin: 0;
 }
 /* erste Leiste - Kontakt - Suchen */
 .up {
@@ -65,10 +65,16 @@ form input {
 /* =========== Ende Erste Leiste ================== */
 
 /* ======= Hauptüberschriften Block mit logo ========== */
+main {
+  /* display: flex; */
+  justify-content: center;
+  /* flex-direction: column; */
+  /* margin: 50px; */
+}
 .main {
   display: flex;
   flex-direction: column;
-  margin: 20px 50px;
+  margin: 50px;
 }
 .logo {
   display: flex;
@@ -141,7 +147,7 @@ nav ul {
 }
 
 /*--definiert die "Drop-Down-Links" im Normalzustand--*/
-#menu a{
+#menu a {
   text-decoration: none;
   display: block;
   text-align: center;
@@ -192,7 +198,7 @@ nav ul {
 } */
 #menu h3:hover {
   color: var(--red);
-   /* background: #344e41; */
+  /* background: #344e41; */
 }
 
 *html #menu ul li a {
@@ -208,9 +214,9 @@ nav ul {
 
 /* ======================  INHALT DER SEITE .main ====================== */
 main {
-  justify-content: space-between;
+  justify-content: flex-end;
   display: flex;
-  margin: 0px 50px;
+  /* margin: 0px 50px; */
   /* color:white; */
 }
 main a img {
@@ -229,13 +235,14 @@ main a img:hover {
 }
 
 /* ======================  Seitenteil Rechts .inhalt aside ====================== */
- aside {
+aside {
   /* justify-content: flex-end; */
+  width: 20%;
   order: 2;
   padding: 10px 0px 10px 10px;
   margin-top: 15px;
   margin-bottom: 10px;
-  margin-left: 10px;
+  /* margin-left: 10px; */
   border-left: #333d29 1px solid;
   /* gap: 20px; */
 }
@@ -273,7 +280,7 @@ main a img:hover {
 /*  ====================== NACHHALTIGKEIT =============== */
 .nachh,
 .eintraege {
-  margin: 50px;
+  /* margin: 50px; */
 }
 .nachh article {
   display: flex;
@@ -324,27 +331,17 @@ main a img:hover {
   color: var(--red);
 }
 /* ================= FOOTER ================ */
-
-footer {
-  border-top: var(--dark) 1px solid;
-  background-color: var(--light);
-  padding: 10px 20px;
-  text-align: center;
-  
-}
-.impr{
-  border-top: none
- 
+.impr {
+  /* border-top: none; */
 }
 .footform {
-  display: flex;
-  justify-content: space-evenly;
+  display:block;
+  justify-content: center;
   padding: 20px 0px;
-  box-shadow: 0 4px 8px 8px rgba(34, 60, 80, 0.16);
+  /* box-shadow: 0 4px 8px 8px rgba(34, 60, 80, 0.16); */
 }
 .footform div {
-  display: flex;
-  flex-direction: column;
+  align-self: center;
   text-align: left;
 }
 input,
@@ -383,17 +380,17 @@ select {
 
 /*  ============================ */
 /*  =======================   Seiten mit Einträgen ================== */
-.eintraege {
-  margin: 20px 0px;
-}
 
 .eintrag {
+  padding: 10px 0px;
   display: flex;
+  justify-content: flex-start;
   gap: 10px;
-  margin-bottom: 50px;
+
+  /* margin-left: 50px; */
 }
 .eintrag img {
-  width: 150px;
+  width: 20%;
   height: 150px;
   object-fit: contain;
   box-shadow: none;
@@ -416,15 +413,17 @@ select {
   padding: 0px;
   margin: 5px;
 }
+.offertext {
+  width: 50%;
+}
 .eintrag .para_main p,
 h3 {
   padding: 5px;
 }
-.info ul {
-  width: 180px;
+.info {
+  width: 30%;
   padding: 5px;
 }
-
 
 /* ************************** */
 .newoffer {
@@ -459,3 +458,13 @@ h3 {
   margin: 0px 0px 0px 500px;
   padding: 5px;
 }
+
+.DisplayList {
+  display: flex;
+  list-style-type: none;
+  flex-direction: column;
+}
+
+/* .DisplayOffer {
+  margin-left: -200px;
+} */

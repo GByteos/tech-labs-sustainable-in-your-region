@@ -6,7 +6,8 @@ import { usePaginatedQuery } from "@blitzjs/rpc"
 import { useRouter } from "next/router"
 import Layout from "app/core/layouts/Layout"
 import getOffers from "app/offers/queries/getOffers"
-const ITEMS_PER_PAGE = 100
+import DisplayOffer from "app/offers/components/DisplayOffer"
+const ITEMS_PER_PAGE = 20
 export const OffersList = () => {
   const router = useRouter()
   const page = Number(router.query.page) || 0
@@ -17,6 +18,7 @@ export const OffersList = () => {
     skip: ITEMS_PER_PAGE * page,
     take: ITEMS_PER_PAGE,
   })
+  // console.log(offers)
 
   const goToPreviousPage = () =>
     router.push({
@@ -33,17 +35,18 @@ export const OffersList = () => {
     })
 
   return (
-    <div>
-      <ul>
+    <div className="DisplayOffer">
+      <ul className="DisplayList">
         {offers.map((offer) => (
           <li key={offer.id}>
-            <Link
+            {/* <Link
               href={Routes.ShowOfferPage({
                 offerId: offer.id,
               })}
-            >
-              <a>{offer.name}</a>
-            </Link>
+            > */}
+
+            {/* </Link> */}
+            <DisplayOffer offer={offer} />
           </li>
         ))}
       </ul>

@@ -4,11 +4,15 @@ import React from "react"
 import { withBlitz } from "app/blitz-client"
 import "./style.css"
 import Layout from "app/core/layouts/Layout"
-
+import DisplayList from "app/offers/components/DisplayList"
 function RootErrorFallback({ error }) {
   if (error instanceof AuthenticationError) {
-    return <Layout>Error: You are not authenticated <br/> You need to login before adding an offer</Layout>
-  
+    return (
+      <Layout>
+        {/* <DisplayList/> */}
+        {/* Error: You are not authenticated <br /> You need to login before adding an offer */}
+      </Layout>
+    )
   } else if (error instanceof AuthorizationError) {
     return (
       <ErrorComponent
