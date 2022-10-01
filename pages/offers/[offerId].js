@@ -65,10 +65,11 @@ export const Offer = () => {
   )
 }
 
-const ShowOfferPage = () => {
+const ShowOfferPage = ({offer}) => {
+  console.log({offer})
   return (
     // in the title should appear the offer id, no idea how to do that
-    // <Layout title={offer}>
+    // <Layout title={offer.id}>
     <Layout>
       <main>
         <p>

@@ -389,7 +389,7 @@ select {
 
   /* margin-left: 50px; */
 }
-.eintrag img {
+.eintrag .displaylogo {
   width: 20%;
   height: 150px;
   object-fit: contain;
