@@ -8,6 +8,7 @@ import Layout from "app/core/layouts/Layout"
 import getOffers from "app/offers/queries/getOffers"
 import DisplayOffer from "app/offers/components/DisplayOffer"
 const ITEMS_PER_PAGE = 20
+
 export const OffersList = () => {
   const router = useRouter()
   const page = Number(router.query.page) || 0
