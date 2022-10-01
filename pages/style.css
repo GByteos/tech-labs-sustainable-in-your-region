@@ -141,7 +141,7 @@ nav ul {
 }
 
 /*--definiert die "Drop-Down-Links" im Normalzustand--*/
-#menu a{
+#menu a {
   text-decoration: none;
   display: block;
   text-align: center;
@@ -192,7 +192,7 @@ nav ul {
 } */
 #menu h3:hover {
   color: var(--red);
-   /* background: #344e41; */
+  /* background: #344e41; */
 }
 
 *html #menu ul li a {
@@ -208,7 +208,7 @@ nav ul {
 
 /* ======================  INHALT DER SEITE .main ====================== */
 main {
-  justify-content: space-between;
+  justify-content: flex-end;
   display: flex;
   margin: 0px 50px;
   /* color:white; */
@@ -229,7 +229,7 @@ main a img:hover {
 }
 
 /* ======================  Seitenteil Rechts .inhalt aside ====================== */
- aside {
+aside {
   /* justify-content: flex-end; */
   order: 2;
   padding: 10px 0px 10px 10px;
@@ -330,11 +330,9 @@ footer {
   background-color: var(--light);
   padding: 10px 20px;
   text-align: center;
-  
 }
-.impr{
-  border-top: none
- 
+.impr {
+  border-top: none;
 }
 .footform {
   display: flex;
@@ -424,7 +422,6 @@ h3 {
   width: 180px;
   padding: 5px;
 }
-
 
 /* ************************** */
 .newoffer {

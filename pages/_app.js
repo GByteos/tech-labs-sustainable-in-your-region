@@ -7,8 +7,11 @@ import Layout from "app/core/layouts/Layout"
 
 function RootErrorFallback({ error }) {
   if (error instanceof AuthenticationError) {
-    return <Layout>Error: You are not authenticated <br/> You need to login before adding an offer</Layout>
-  
+    return (
+      <Layout>
+        Error: You are not authenticated <br /> You need to login before adding an offer
+      </Layout>
+    )
   } else if (error instanceof AuthorizationError) {
     return (
       <ErrorComponent

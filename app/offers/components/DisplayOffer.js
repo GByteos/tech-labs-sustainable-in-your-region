@@ -1,11 +1,12 @@
 import Image from "next/image"
+import Link from "next/link"
 import YL from "public/yourlogo.png"
+import { Routes } from "@blitzjs/next"
 
 function DisplayOffer({ offer }) {
-  console.log(offer)
   return (
     <article className="eintrag">
-      <a href={offer.link}>
+      <a className="LOGO" href={offer.link}>
         {/* {LOGO} */}
         <Image
           src={"/api/getImage?imageId=" + offer.logo}
@@ -14,10 +15,20 @@ function DisplayOffer({ offer }) {
           height="150px"
         />
       </a>
-      <div className="para_main">
-        <h3>{offer.name}</h3>
-        <p>{offer.description}</p>
-      </div>
+      <div className="para_main offertext">
+         <Link
+        href={Routes.ShowOfferPage({
+          offerId: offer.id,
+        })}
+      >
+        <a>
+         
+            <h3>{offer.name}</h3>
+            </a>
+      </Link> 
+            <p>{offer.description}</p>
+        
+        </div>
       <div className="para_main info">
         <ul>
           <li>{offer.openingTimes}</li>

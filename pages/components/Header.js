@@ -12,7 +12,8 @@ import { useEffect, useState } from 'react'
 const UserInfo = () => {
   const currentUser = useCurrentUser()
   const [logoutMutation] = useMutation(logout)
-
+  const currenUserId = currentUser
+  console.log(currentUser )
   if (currentUser) {
     return (
       <>
@@ -29,6 +30,9 @@ const UserInfo = () => {
           <br />
           User role: <code>{currentUser.role}</code>
         </div>
+        <div>  <Link href="/offers/">
+                <a>My Offers</a>
+              </Link></div>
       </>
     )
   } else {
@@ -173,9 +177,15 @@ function HEADER() {
           </ul>
           <ul>
             <li>
-              <Link href="/offers">
-                <a>/Offers</a>
-              </Link>
+            
+              
+              <div>
+              
+                <Link href="/offers">
+                  <a>Offers</a>
+                </Link>
+              </div>
+            
             </li>
           </ul>
         </nav>
