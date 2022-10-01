@@ -12,9 +12,10 @@ import { useEffect, useState } from 'react'
 const UserInfo = () => {
   const currentUser = useCurrentUser()
   const [logoutMutation] = useMutation(logout)
-  const currenUserId = currentUser.id 
-  console.log(currentUser.id )
+  
+
   if (currentUser) {
+    const currenUserId = currentUser.id 
     return (
       <>
         <button
