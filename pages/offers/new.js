@@ -25,7 +25,12 @@ const NewOfferPage = () => {
         onSubmit={async (values) => {
           try {
             const formData = new FormData()
+            console.log(values)
             formData.append("logo", values.logo[0])
+            formData.append("name", values.name)
+            formData.append("description", values.description)
+            formData.append("link", values.link)
+            //formData.append("logo", values.logo[0])
 
             const antiCSRFToken = getAntiCSRFToken()
 
@@ -42,7 +47,8 @@ const NewOfferPage = () => {
             // TODO: error handling...
             values.logo = response.data.logo
 
-            const offer = await createOfferMutation(values)
+            const offer = response.data.offer
+            //await createOfferMutation(values)
             router.push(
               Routes.ShowOfferPage({
                 offerId: offer.id,

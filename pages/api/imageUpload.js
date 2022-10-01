@@ -2,6 +2,7 @@ import nextConnect from "next-connect"
 import multer from "multer"
 import { nanoid } from "nanoid"
 import { getSession } from "@blitzjs/auth"
+import db from "db"
 
 const upload = multer({
   storage: multer.diskStorage({
@@ -50,6 +51,7 @@ function nameGenerator(req, file, cb) {
 
 const imageUpload = nextConnect({
   onError(error, req, res) {
+    console.log(req.file)
     res.status(501).json({ error: `Sorry something Happened! ${error.message}` })
   },
   onNoMatch(req, res) {
@@ -68,12 +70,26 @@ imageUpload
     }
   })
   .use(upload.single("logo"))
+  .post(async (req, res) => {
+    // req.file.path => contains the full image path and extension
+    const session = await getSession(req, res)
 
-imageUpload.post((req, res) => {
-  // req.file.path => contains the full image path and extension
-  console.log(req.file)
-  res.status(200).json({ data: "sucess", logo: req.file.filename })
-})
+    // add server side values to the dataset
+    const values = {
+      ...req.body,
+      logo: req.file.filename,
+      author: {
+        connect: {
+          id: session.userId,
+        },
+      },
+    }
+    const offer = await db.offer.create({
+      data: values,
+    })
+    console.log(offer)
+    res.status(200).json({ data: "sucess", offer: offer })
+  })
 
 export default imageUpload
 

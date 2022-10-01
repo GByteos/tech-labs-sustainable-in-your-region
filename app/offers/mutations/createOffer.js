@@ -20,7 +20,6 @@ export default resolver.pipe(
     },
   }),
   async (input) => {
-    // TODO: in multi-tenant app, you must add validation to ensure correct tenant
     const offer = await db.offer.create({
       data: input,
     })
