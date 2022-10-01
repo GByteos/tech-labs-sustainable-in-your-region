@@ -5,7 +5,7 @@ import Layout from "app/core/layouts/Layout"
 import { OfferForm, FORM_ERROR } from "app/offers/components/OfferForm"
 import axios from "axios"
 import { getAntiCSRFToken } from "@blitzjs/auth"
-import { RESPONSE_LIMIT_DEFAULT } from "next/dist/server/api-utils"
+import { CreateOffer } from "app/offers/validation"
 
 const NewOfferPage = () => {
   const router = useRouter()
@@ -17,7 +17,7 @@ const NewOfferPage = () => {
         // TODO use a zod schema for form validation
         //  - Tip: extract mutation's schema into a shared `validations.ts` file and
         //         then import and use it here
-        // schema={CreateOffer}
+        schema={CreateOffer}
         // initialValues={{}}
         onSubmit={async (values) => {
           try {
