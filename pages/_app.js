@@ -4,7 +4,7 @@ import React from "react"
 import { withBlitz } from "app/blitz-client"
 import "./style.css"
 import Layout from "app/core/layouts/Layout"
-import DisplayList from "app/offers/components/DisplayList"
+// import DisplayList from "app/offers/components/DisplayList"
 function RootErrorFallback({ error }) {
   if (error instanceof AuthenticationError) {
     return (

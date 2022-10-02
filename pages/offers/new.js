@@ -1,17 +1,14 @@
 import { Routes } from "@blitzjs/next"
 import Link from "next/link"
 import { useRouter } from "next/router"
-import { useMutation } from "@blitzjs/rpc"
 import Layout from "app/core/layouts/Layout"
-import createOffer from "app/offers/mutations/createOffer"
 import { OfferForm, FORM_ERROR } from "app/offers/components/OfferForm"
 import axios from "axios"
 import { getAntiCSRFToken } from "@blitzjs/auth"
-import { get } from "http"
+import { CreateOffer } from "app/offers/validation"
 
 const NewOfferPage = () => {
   const router = useRouter()
-  const [createOfferMutation] = useMutation(createOffer)
   return (
     <Layout title={"Create New Offer"}>
       <h1 className="newoffer">Create New Offer</h1>
@@ -20,34 +17,42 @@ const NewOfferPage = () => {
         // TODO use a zod schema for form validation
         //  - Tip: extract mutation's schema into a shared `validations.ts` file and
         //         then import and use it here
-        // schema={CreateOffer}
+        schema={CreateOffer}
         // initialValues={{}}
         onSubmit={async (values) => {
           try {
             const formData = new FormData()
-            formData.append("logo", values.logo[0])
 
+            // put all fields onto the formData for multer
+            formData.append("logo", values.logo[0])
+            values.name ? formData.append("name", values.name) : ""
+            values.description ? formData.append("description", values.description) : ""
+            values.link ? formData.append("link", values.link) : ""
+
+            // is needed, to identify and verify the user on server side
             const antiCSRFToken = getAntiCSRFToken()
 
             const config = {
               credentials: "include",
               headers: { "content-type": "multipart/form-data", "anti-csrf": antiCSRFToken },
               onUploadProgress: (event) => {
+                // TODO: add a progres bar or similar here
                 console.log(`Current progress:`, Math.round((event.loaded * 100) / event.total))
               },
             }
 
-            const response = await axios.post("/api/imageUpload", formData, config)
+            const response = await axios.post("/api/createOffer", formData, config)
+            if (response.data.data === "sucess") {
+              const offer = response.data.offer
 
-            // TODO: error handling...
-            values.logo = response.data.logo
-
-            const offer = await createOfferMutation(values)
-            router.push(
-              Routes.ShowOfferPage({
-                offerId: offer.id,
-              })
-            )
+              router.push(
+                Routes.ShowOfferPage({
+                  offerId: offer.id,
+                })
+              )
+            } else {
+              // TODO: add some information, why the data was not accepted
+            }
           } catch (error) {
             console.error(error)
             return {
