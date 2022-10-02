@@ -16,7 +16,7 @@ export const FileField = ({ name, ...props }) => {
         />
       )}
       <Field name={name}>
-        {({ input: { value, onChange, ...input } }) => (
+        {({ input: { value, onChange, ...input }, meta }) => (
           <div>
             <input
               {...input}
@@ -27,6 +27,7 @@ export const FileField = ({ name, ...props }) => {
               }}
               {...props}
             />
+            {meta.error && meta.touched && <span>{meta.error}</span>}
           </div>
         )}
       </Field>

@@ -14,12 +14,10 @@ const NewOfferPage = () => {
       <h1 className="newoffer">Create New Offer</h1>
 
       <OfferForm
-        //schema={CreateOffer}
+        schema={CreateOffer}
         onSubmit={async (values) => {
           try {
             const formData = new FormData()
-
-            console.log(values)
 
             // put all fields onto the formData for multer
             formData.append("logo", values.logo[0])

@@ -1,6 +1,6 @@
 import { Form } from "app/core/components/Form"
 import { Field } from "react-final-form"
-import { FileField } from "app/core/components/ImgSelectionField"
+import { FileField } from "app/core/components/FileField"
 //import styles from "pages/styles/OfferForm.module.css"
 export { FORM_ERROR } from "app/core/components/Form"
 export function OfferForm(props) {
@@ -17,42 +17,70 @@ export function OfferForm(props) {
         </Field>
       </div>
 
-      <div className="part2">
-        <label htmlFor="name">Title</label>
-        <br />
-        <Field name="name" component="input" id="name" cols="30" placeholder="Title of my offer" />
-      </div>
+      <Field name="name">
+        {({ input, meta }) => (
+          <div className="part2">
+            <label htmlFor="name">Title</label>
+            <br />
+            <input {...input} type="text" id="name" cols="30" placeholder="Title of my offer" />
+            {meta.error && meta.touched && <span>{meta.error}</span>}
+          </div>
+        )}
+      </Field>
 
-      <div>
-        <Field
-          name="description"
-          component="textarea"
-          id="sonst"
-          cols="30"
-          rows="10"
-          placeholder="Description"
-        />
-      </div>
-      <div>
-        <label htmlFor="openingTimes">Opening Times </label>
-        <Field
-          name="openingTimes"
-          component="textarea"
-          cols="30"
-          rows="5"
-          id="openingTimes"
-          placeholder="e.g. Mo-Fr: 9-18:00"
-        />
-      </div>
+      <Field name="description">
+        {({ input, meta }) => (
+          <div>
+            <input
+              {...input}
+              type="textarea"
+              id="sonst"
+              cols="30"
+              rows="10"
+              placeholder="Description"
+            />
+            {meta.error && meta.touched && <span>{meta.error}</span>}
+          </div>
+        )}
+      </Field>
 
-      <div>
-        <label htmlFor="date">Date </label>
-        <Field name="date" component="textarea" id="date" />
-      </div>
+      <Field name="openingTimes">
+        {({ input, meta }) => (
+          <div>
+            <label htmlFor="openingTimes">Opening Times </label>
+            <input
+              {...input}
+              type="textarea"
+              cols="30"
+              rows="5"
+              id="openingTimes"
+              placeholder="e.g. Mo-Fr: 9-18:00"
+            />
+            {meta.error && meta.touched && <span>{meta.error}</span>}
+          </div>
+        )}
+      </Field>
+
+      <Field name="date">
+        {({ input, meta }) => (
+          <div>
+            <label htmlFor="date">Date </label>
+            <input {...input} name="date" type="date" id="date" />
+            {meta.error && meta.touched && <span>{meta.error}</span>}
+          </div>
+        )}
+      </Field>
 
       <div className="part3">
-        <label htmlFor="link">Your Website</label>
-        <Field name="link" id="link" component="input" placeholder="https://" />
+        <Field name="link">
+          {({ input, meta }) => (
+            <div>
+              <label htmlFor="link">Your Website</label>
+              <input {...input} id="link" component="input" placeholder="https://" />
+              {meta.error && meta.touched && <span>{meta.error}</span>}
+            </div>
+          )}
+        </Field>
         <br />
         <label htmlFor="logo">Upload your image or logo</label>
         <FileField type="file" id="file" name="logo" />
