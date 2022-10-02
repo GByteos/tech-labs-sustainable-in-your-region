@@ -1,16 +1,16 @@
 import { Form } from "app/core/components/Form"
 import { Field } from "react-final-form"
 import { FileField } from "app/core/components/ImgSelectionField"
-import styles from "pages/styles/OfferForm.module.css"
+//import styles from "pages/styles/OfferForm.module.css"
 export { FORM_ERROR } from "app/core/components/Form"
 export function OfferForm(props) {
   return (
     <Form {...props} className="footform">
       <div>
-        <label htmlFor="OfferType">What type of offer do you have?</label>
-        <Field id="OfferType" name="OfferType" component="select">
+        <label htmlFor="offerType">What type of offer do you have?</label>
+        <Field id="offerType" name="offerType" component="select">
           <option value="Shop">Shop</option>
-          <option value="Event">Even</option>
+          <option value="Event">Event</option>
           {/* <option value="Bildung">Bildungsangebot</option>
           <option value="Sharing">Sharing-Angebot</option>
           <option value="Tausch">Tausch-Angebot</option> */}

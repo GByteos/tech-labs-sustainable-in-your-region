@@ -14,25 +14,22 @@ const NewOfferPage = () => {
       <h1 className="newoffer">Create New Offer</h1>
 
       <OfferForm
-        // TODO use a zod schema for form validation
-        //  - Tip: extract mutation's schema into a shared `validations.ts` file and
-        //         then import and use it here
-        schema={CreateOffer}
-        // initialValues={{}}
+        //schema={CreateOffer}
         onSubmit={async (values) => {
           try {
             const formData = new FormData()
 
+            console.log(values)
+
             // put all fields onto the formData for multer
             formData.append("logo", values.logo[0])
             values.name ? formData.append("name", values.name) : ""
-            
-            values.OfferType ? formData.append("OfferType", values.OfferType) : ""
+
+            values.offerType ? formData.append("offerType", values.offerType) : ""
 
             values.description ? formData.append("description", values.description) : ""
 
-            values.openingTimes ? formData.append
-            ("openingTimes", values.openingTimes) : ""
+            values.openingTimes ? formData.append("openingTimes", values.openingTimes) : ""
 
             values.date ? formData.append("date", values.date) : ""
 
@@ -73,7 +70,7 @@ const NewOfferPage = () => {
 
       <p>
         <Link href={Routes.OffersPage()}>
-          <a >Offers</a>
+          <a>Offers</a>
         </Link>
       </p>
     </Layout>
