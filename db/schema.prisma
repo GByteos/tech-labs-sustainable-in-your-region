@@ -80,18 +80,14 @@ model Offer {
   // offer type specific fields
   openingTimes String?
   date         DateTime?
-  OfferType    OfferType? @relation(fields: [offerTypeId], references: [id])
-  offerTypeId  Int?
+  OfferType    OfferType?
   OfferTag     OfferTag?  @relation(fields: [offerTagId], references: [id])
   offerTagId   Int?
 }
 
-model OfferType {
-  id        Int      @id @default(autoincrement())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  name      String
-  offers    Offer[]
+enum OfferType {
+  SHOP
+  EVENT
 }
 
 model OfferTag {
