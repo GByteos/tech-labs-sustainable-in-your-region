@@ -9,8 +9,8 @@ export function OfferForm(props) {
       <div>
         <label htmlFor="offerType">What type of offer do you have?</label>
         <Field id="offerType" name="offerType" component="select">
-          <option value="Shop">Shop</option>
-          <option value="Event">Event</option>
+          <option value="SHOP">Shop</option>
+          <option value="EVENT">Event</option>
           {/* <option value="Bildung">Bildungsangebot</option>
           <option value="Sharing">Sharing-Angebot</option>
           <option value="Tausch">Tausch-Angebot</option> */}
