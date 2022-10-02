@@ -4,4 +4,7 @@ export const CreateOffer = z.object({
   name: z.string(),
   description: z.string(),
   link: z.string(),
+  OfferType: z.string(),
+  openingTimes: z.string(),
+  date: z.string(),
 })

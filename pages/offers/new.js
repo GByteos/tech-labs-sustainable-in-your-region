@@ -26,7 +26,16 @@ const NewOfferPage = () => {
             // put all fields onto the formData for multer
             formData.append("logo", values.logo[0])
             values.name ? formData.append("name", values.name) : ""
+            
+            values.OfferType ? formData.append("OfferType", values.OfferType) : ""
+
             values.description ? formData.append("description", values.description) : ""
+
+            values.openingTimes ? formData.append
+            ("openingTimes", values.openingTimes) : ""
+
+            values.date ? formData.append("date", values.date) : ""
+
             values.link ? formData.append("link", values.link) : ""
 
             // is needed, to identify and verify the user on server side
@@ -64,7 +73,7 @@ const NewOfferPage = () => {
 
       <p>
         <Link href={Routes.OffersPage()}>
-          <a className="offerlink">Offers</a>
+          <a >Offers</a>
         </Link>
       </p>
     </Layout>

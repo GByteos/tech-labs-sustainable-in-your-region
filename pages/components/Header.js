@@ -72,7 +72,7 @@ function HEADER() {
           <input type="text" id="search" placeholder="Suchen" />
         </form>
       </div>
-      <section className="main">
+      <section className="mainHeader">
         <article className="logo">
           <Image src={logo} alt="Logo mit dem Handabdruck und Haken" width="180" height="200"/>
           <div>

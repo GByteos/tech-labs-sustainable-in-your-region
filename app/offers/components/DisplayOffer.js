@@ -46,12 +46,8 @@ function DisplayOffer({ offer }) {
       </div>
       <div className="para_main info">
         <ul>
-          <li>{offer.openingTimes}</li>
-          {/* <li>Sa: 8-13 Uhr</li>
-                    <br />
-                    <li>Wolfmühle 1</li>
-                    <li>85661 Forstinning</li>
-                    <li>08121 / 3334</li> */}
+          <li>{offer.OpeningTimes}</li>
+
         </ul>
       </div>
     </article>

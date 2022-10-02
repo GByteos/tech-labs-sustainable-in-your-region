@@ -1,24 +1,29 @@
 import { Form } from "app/core/components/Form"
 import { Field } from "react-final-form"
 import { FileField } from "app/core/components/ImgSelectionField"
+import styles from "pages/styles/OfferForm.module.css"
 export { FORM_ERROR } from "app/core/components/Form"
 export function OfferForm(props) {
   return (
     <Form {...props} className="footform">
       <div>
-        <label htmlFor="offerType">What type of offer do you have?</label>
-        <select id="offerType" name="offerType">
-          <option value="Laden">Geschäft</option>
-          <option value="Veranstaltung">Veranstaltung</option>
-          <option value="Bildung">Bildungsangebot</option>
+        <label htmlFor="OfferType">What type of offer do you have?</label>
+        <Field id="OfferType" name="OfferType" component="select">
+          <option value="Shop">Shop</option>
+          <option value="Event">Even</option>
+          {/* <option value="Bildung">Bildungsangebot</option>
           <option value="Sharing">Sharing-Angebot</option>
-          <option value="Tausch">Tausch-Angebot</option>
-        </select>
+          <option value="Tausch">Tausch-Angebot</option> */}
+        </Field>
       </div>
+
       <div className="part2">
-        <label htmlFor="name">Heading</label>
-        <Field name="name" component="input" id="name" placeholder="My Offer" />
+        <label htmlFor="name">Title</label>
         <br />
+        <Field name="name" component="input" id="name" cols="30" placeholder="Title of my offer" />
+      </div>
+
+      <div>
         <Field
           name="description"
           component="textarea"
@@ -28,9 +33,26 @@ export function OfferForm(props) {
           placeholder="Description"
         />
       </div>
+      <div>
+        <label htmlFor="openingTimes">Opening Times </label>
+        <Field
+          name="openingTimes"
+          component="textarea"
+          cols="30"
+          rows="5"
+          id="openingTimes"
+          placeholder="e.g. Mo-Fr: 9-18:00"
+        />
+      </div>
+
+      <div>
+        <label htmlFor="date">Date </label>
+        <Field name="date" component="textarea" id="date" />
+      </div>
+
       <div className="part3">
         <label htmlFor="link">Your Website</label>
-        <Field name="link" id="link" component="input" placeholder="url" />
+        <Field name="link" id="link" component="input" placeholder="https://" />
         <br />
         <label htmlFor="logo">Upload your image or logo</label>
         <FileField type="file" id="file" name="logo" />
