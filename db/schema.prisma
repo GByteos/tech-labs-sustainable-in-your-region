@@ -80,8 +80,8 @@ model Offer {
   // offer type specific fields
   openingTimes String?
   date         DateTime?
-  OfferType    OfferType?
-  OfferTag     OfferTag?  @relation(fields: [offerTagId], references: [id])
+  OfferType    OfferType @default(SHOP)
+  OfferTag     OfferTag? @relation(fields: [offerTagId], references: [id])
   offerTagId   Int?
 }
 
