@@ -8,7 +8,7 @@ export function OfferForm(props) {
     <Form {...props} className="footform">
       <div>
         <label htmlFor="offerType">What type of offer do you have?</label>
-        <Field id="offerType" name="offerType" component="select">
+        <Field id="offerType" name="offerType" component="select" defaultValue="SHOP">
           <option value="SHOP">Shop</option>
           <option value="EVENT">Event</option>
           {/* <option value="Bildung">Bildungsangebot</option>
