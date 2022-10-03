@@ -46,7 +46,7 @@ function DisplayOffer({ offer }) {
       </div>
       <div className="para_main info">
         <ul>
-          <li>{offer.OpeningTimes}</li>
+          <li>{offer.openingTimes}</li>
 
         </ul>
       </div>

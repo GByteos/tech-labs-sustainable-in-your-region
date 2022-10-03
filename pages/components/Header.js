@@ -8,6 +8,7 @@ import logout from "app/auth/mutations/logout"
 import { useMutation } from "@blitzjs/rpc"
 import { Routes } from "@blitzjs/next"
 import { useEffect, useState } from 'react'
+import OffersPage from "pages/offers/index"
 
 const UserInfo = () => {
   const currentUser = useCurrentUser()
@@ -182,7 +183,7 @@ function HEADER() {
               
               <div>
               
-                <Link href="/offers">
+                <Link href={Routes.OffersPage()}>
                   <a>Offers</a>
                 </Link>
               </div>

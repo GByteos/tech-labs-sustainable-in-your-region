@@ -5,14 +5,14 @@ import Link from "next/link"
 import { usePaginatedQuery } from "@blitzjs/rpc"
 import { useRouter } from "next/router"
 import Layout from "app/core/layouts/Layout"
-import getOffers from "app/offers/queries/getOffers"
+import getPublicOffers from "app/offers/queries/getPublicOffers"
 import DisplayOffer from "app/offers/components/DisplayOffer"
 const ITEMS_PER_PAGE = 20
 
 export const OffersList = () => {
   const router = useRouter()
   const page = Number(router.query.page) || 0
-  const [{ offers, hasMore }] = usePaginatedQuery(getOffers, {
+  const [{ offers, hasMore }] = usePaginatedQuery(getPublicOffers, {
     orderBy: {
       id: "asc",
     },
@@ -36,7 +36,7 @@ export const OffersList = () => {
     })
 
   return (
-    <div className="DisplayOffer">
+    <div c>
       <ul className="DisplayList">
         {offers.map((offer) => (
           <li key={offer.id}>
@@ -68,13 +68,10 @@ const OffersPage = () => {
       <Head>
         <title>Offers</title>
       </Head>
-
-      <div>
-        <p>
-          <Link href={Routes.NewOfferPage()}>
-            <a>Create Offer</a>
-          </Link>
-        </p>
+      <div className="DisplayOffer">
+        <Link href={Routes.NewOfferPage()}>
+          <a>Create Offer</a>
+        </Link>
 
         <Suspense fallback={<div>Loading...</div>}>
           <OffersList />
