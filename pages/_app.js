@@ -9,8 +9,8 @@ function RootErrorFallback({ error }) {
   if (error instanceof AuthenticationError) {
     return (
       <Layout>
-        {/* <DisplayList/> */}
-        {/* Error: You are not authenticated <br /> You need to login before adding an offer */}
+        {/* <DisplayList/> */} 
+        Error: You are not authenticated <br /> You need to login before adding an offer
       </Layout>
     )
   } else if (error instanceof AuthorizationError) {
