@@ -83,7 +83,7 @@ createOffer
       // add server side values to the dataset
       values = {
         ...req.body,
-        logo: req.file.filename,
+        logo: req.file ? req.file.filename : undefined,
         author: {
           connect: {
             id: session.userId,

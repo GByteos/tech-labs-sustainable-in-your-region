@@ -20,18 +20,13 @@ const NewOfferPage = () => {
             const formData = new FormData()
 
             // put all fields onto the formData for multer
-            formData.append("logo", values.logo[0])
-            values.name ? formData.append("name", values.name) : ""
-
-            values.offerType ? formData.append("offerType", values.offerType) : ""
-
-            values.description ? formData.append("description", values.description) : ""
-
-            values.openingTimes ? formData.append("openingTimes", values.openingTimes) : ""
-
-            values.date ? formData.append("date", values.date) : ""
-
-            values.link ? formData.append("link", values.link) : ""
+            if (values.logo) formData.append("logo", values.logo[0])
+            if (values.name) formData.append("name", values.name)
+            if (values.offerType) formData.append("offerType", values.offerType)
+            if (values.description) formData.append("description", values.description)
+            if (values.openingTimes) formData.append("openingTimes", values.openingTimes)
+            if (values.date) formData.append("date", values.date)
+            if (values.link) formData.append("link", values.link)
 
             // is needed, to identify and verify the user on server side
             const antiCSRFToken = getAntiCSRFToken()
