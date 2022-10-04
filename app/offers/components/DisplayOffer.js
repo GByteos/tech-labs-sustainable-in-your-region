@@ -3,15 +3,15 @@ import Link from "next/link"
 import YL from "public/yourlogo.png"
 import { Routes } from "@blitzjs/next"
 
-function Logo ({offer}) {
-  console.log({offer})
+function Logo({ offer }) {
+  console.log({ offer })
   if (!offer.logo) {
     return (
       <>
         <Image className="displaylogo" src={YL} alt="Offer Logo" width="150px" height="150px" />
-      </>)
-  }
-  else
+      </>
+    )
+  } else
     return (
       <>
         <Image
@@ -19,7 +19,8 @@ function Logo ({offer}) {
           src={"/api/getImage?imageId=" + offer.logo}
           alt="Offer Logo"
           width="150px"
-          height="150px" />
+          height="150px"
+        />
       </>
     )
 }
@@ -28,7 +29,6 @@ function DisplayOffer({ offer }) {
   return (
     <article className="eintrag">
       <a className="LOGO" href={offer.link}>
-
         <Logo offer={offer} />
       </a>
 
@@ -45,10 +45,7 @@ function DisplayOffer({ offer }) {
         <p>{offer.description}</p>
       </div>
       <div className="para_main info">
-        <ul>
-          <li>{offer.openingTimes}</li>
-
-        </ul>
+        {offer.openingTimes}
       </div>
     </article>
   )
