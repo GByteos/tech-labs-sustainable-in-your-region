@@ -3,6 +3,8 @@ import db from "db"
 import { z } from "zod"
 import { unlink } from "node:fs/promises"
 import path from "path"
+import { NotFoundError } from "blitz"
+import { isThrowStatement } from "typescript"
 
 const DeleteOffer = z.object({
   id: z.number(),
@@ -28,7 +30,17 @@ export default resolver.pipe(
       })
       // remove linked files
       if (deleted.count !== 0) {
-        await unlink(path.resolve(process.env.IMAGE_UPLOAD_URL, offer.logo))
+        try {
+          await unlink(path.resolve(process.env.IMAGE_UPLOAD_URL, offer.logo))
+        } catch (error) {
+          if (error instanceof TypeError) {
+            // offer.logo was empty
+          } else if (error instanceof NotFoundError) {
+            // File was not found
+          } else {
+            throw error
+          }
+        }
       }
     } else {
       throw new Error("You are not authorized to delete this entry or the entry was not found.")
