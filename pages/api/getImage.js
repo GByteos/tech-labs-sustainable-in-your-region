@@ -1,5 +1,5 @@
 import fs from "fs"
-import path, { resolve } from "path"
+import path from "path"
 import nextConnect from "next-connect"
 
 const getImage = nextConnect({
