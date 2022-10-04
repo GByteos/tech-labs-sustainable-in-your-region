@@ -3,6 +3,7 @@ import multer from "multer"
 import { nanoid } from "nanoid"
 import { getSession } from "@blitzjs/auth"
 import db from "db"
+import { unlink } from "node:fs/promises"
 import { CreateOffer } from "app/offers/validation"
 
 const upload = multer({
@@ -51,8 +52,10 @@ function nameGenerator(req, file, cb) {
 }
 
 const createOffer = nextConnect({
-  onError(error, req, res) {
-    console.log(req.file)
+  async onError(error, req, res) {
+    if (req.file) {
+      await unlink(req.file.path)
+    }
     res.status(501).json({ error: `Sorry something Happened! ${error.message}` })
   },
   onNoMatch(req, res) {
@@ -75,9 +78,8 @@ createOffer
     // req.file.path => contains the full image path and extension
     const session = await getSession(req, res)
 
+    // mak an object and validate the content
     let values = CreateOffer.safeParse(JSON.parse(JSON.stringify(req.body)))
-
-    console.log(values)
 
     if (values.success === true) {
       // add server side values to the dataset
@@ -97,6 +99,9 @@ createOffer
       res.status(200).json({ data: "sucess", offer: offer })
     } else {
       // TODO: remove uploaded fiel
+      if (req.file) {
+        await unlink(req.file.path)
+      }
       res.status(400).json({ data: "failed" })
     }
   })
