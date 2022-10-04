@@ -6,7 +6,7 @@ export { FORM_ERROR } from "app/core/components/Form"
 export function OfferForm(props) {
   return (
     <Form {...props} className="footform">
-      <div>
+      <div className="FormElement">
         <label htmlFor="offerType">What type of offer do you have?</label>
         <br />
         <Field id="offerType" name="offerType" component="select" defaultValue="SHOP">
@@ -20,7 +20,7 @@ export function OfferForm(props) {
 
       <Field name="name">
         {({ input, meta }) => (
-          <div className="part2">
+          <div className="FormElement">
             <label htmlFor="name">Title</label>
             <br />
             <input {...input} type="text" id="name" cols="30" placeholder="Title of my offer" />
@@ -31,7 +31,7 @@ export function OfferForm(props) {
 
       <Field name="description">
         {({ input, meta }) => (
-          <div>
+          <div className="FormElement">
             <label htmlFor="description">Please give here a description of your offer: </label>
             <br />
             <input
@@ -50,7 +50,7 @@ export function OfferForm(props) {
 
       <Field name="openingTimes">
         {({ input, meta }) => (
-          <div>
+          <div className="FormElement">
             <label htmlFor="openingTimes">Opening Times </label>
             <br />
             <input
@@ -67,7 +67,7 @@ export function OfferForm(props) {
 
       <Field name="date">
         {({ input, meta }) => (
-          <div>
+          <div className="FormElement">
             <label htmlFor="date">Date </label>
             <br />
             <input {...input} name="date" type="date" id="date" />
@@ -78,7 +78,7 @@ export function OfferForm(props) {
 
       <Field name="link">
         {({ input, meta }) => (
-          <div>
+          <div className="FormElement">
             <label htmlFor="link">Your Website</label>
             <br />
             <input {...input} id="link" component="input" placeholder="https://" />
@@ -86,12 +86,12 @@ export function OfferForm(props) {
           </div>
         )}
       </Field>
-      <div>
+      <div className="FormElement">
         <label htmlFor="logo">Upload your image or logo</label>
         <FileField type="file" id="file" name="logo" />
       </div>
       <br />
-      <div>
+      <div className="FormElement">
         <label htmlFor="submit"></label>
         <input type="submit" name="submit" id="submit" value="Let's go!" />
       </div>

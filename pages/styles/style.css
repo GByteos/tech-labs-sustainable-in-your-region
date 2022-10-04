@@ -342,8 +342,8 @@ aside {
   padding: 20px 0px;
   font-size: medium;
 }
-.footform div {
-  /* align-self: center; */
+.FormElement {
+ 
   text-align: left;
   margin: 30px;
 }
@@ -357,7 +357,8 @@ select {
   width: 300px;
 }
 .descriptionInput{
-  height: 150px;
+  height: 300px;
+  width: 500px;
 }
 .openingTimesInput{
   height: 100px;
