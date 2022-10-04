@@ -11,9 +11,10 @@ const NewOfferPage = () => {
   const router = useRouter()
   return (
     <Layout title={"Create New Offer"}>
+      <container>
       <h1 className="newoffer">Create New Offer</h1>
 
-      <OfferForm
+      <OfferForm className="OfferForm"
         schema={CreateOffer}
         onSubmit={async (values) => {
           try {
@@ -66,6 +67,7 @@ const NewOfferPage = () => {
           <a>Offers</a>
         </Link>
       </p>
+      </container>
     </Layout>
   )
 }

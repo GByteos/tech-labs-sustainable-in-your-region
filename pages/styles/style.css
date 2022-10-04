@@ -28,6 +28,14 @@ body {
   width: 90%;
   margin: auto;
 }
+
+main {
+  display: flex;
+  /* justify-content: space-between; */
+  /* flex-direction: column; */
+  margin: auto;
+}
+
 /* erste Leiste - Kontakt - Suchen */
 .up {
   height: 60px;
@@ -59,23 +67,17 @@ form {
   font-size: small;
   align-items: center;
 }
-form input {
+/* form input {
   border-top: var(--dark) 1px solid;
-}
-main {
-  display: flex;
-  justify-content: center;
-  /* flex-direction: column; */
-  margin: 50px;
-}
+} */
 /* =========== Ende Erste Leiste ================== */
 
 /* ======= Hauptüberschriften Block mit logo ========== */
 
 .mainHeader {
-  /* display: flex;
-  flex-direction: column; */
-  
+  display: flex;
+  flex-direction: column;
+
   width: 90%;
 }
 .logo {
@@ -96,7 +98,7 @@ h1 {
   align-self: flex-end;
   padding: 20px 0px 0px 0px;
 }
-.main img {
+.mainHeader img {
   width: 200px;
   height: auto;
 }
@@ -215,13 +217,7 @@ nav ul {
 ============= ENDE Navigationsleiste ====================== */
 
 /* ======================  INHALT DER SEITE .main ====================== */
-main {
-  justify-content: flex-end;
-  display: flex;
-  
-  /* margin: 0px 50px; */
-  /* color:white; */
-}
+
 main a img {
   box-shadow: 0 4px 8px 8px rgba(34, 60, 80, 0.16);
   border: transparent 4px solid;
@@ -237,19 +233,24 @@ main a img:hover {
   padding: 5px;
 }
 
-/* ======================  Seitenteil Rechts .inhalt aside ====================== */
+/* ======================  Hauptauftilung der  contentseite ====================== */
+.content {
+  flex: 8;
+}
 aside {
+  flex: 2 10px;
   /* justify-content: flex-end; */
   width: 20%;
+  /* direction: block; */
   order: 2;
   padding: 10px 0px 10px 10px;
   margin-top: 15px;
   margin-bottom: 10px;
-  /* margin-left: 10px; */
+  margin-left: 10px;
   border-left: #333d29 1px solid;
   /* gap: 20px; */
 }
-
+/* ======================  Seitenteil Rechts .inhalt aside ====================== */
 .image-wrapper {
   justify-self: center;
   padding: 4%;
@@ -260,7 +261,7 @@ aside {
 }
 
 .image_wrapper > p {
-  position: relative;
+  position: absolute;
 
   color: var(--dark);
   visibility: hidden;
@@ -283,7 +284,7 @@ aside {
 /*  ====================== NACHHALTIGKEIT =============== */
 .nachh,
 .eintraege {
-  /* margin: 50px; */
+  margin: 50px;
 }
 .nachh article {
   display: flex;
@@ -334,18 +335,17 @@ aside {
   color: var(--red);
 }
 /* ================= FOOTER ================ */
-.impr {
-  /* border-top: none; */
-}
+
 .footform {
-  display:block;
+  display: block;
   justify-content: center;
   padding: 20px 0px;
-  /* box-shadow: 0 4px 8px 8px rgba(34, 60, 80, 0.16); */
+  font-size: medium;
 }
-.footform div {
-  align-self: center;
+.FormElement {
+ 
   text-align: left;
+  margin: 30px;
 }
 input,
 textarea,
@@ -354,28 +354,23 @@ select {
   padding: 5px;
   border-radius: 5px;
   box-shadow: 0 4px 8px 8px rgba(34, 60, 80, 0.16);
+  width: 300px;
 }
-
-select {
-  margin-bottom: 10px;
+.descriptionInput{
+  height: 300px;
+  width: 500px;
+}
+.openingTimesInput{
+  height: 100px;
 }
 .footform label {
   font-weight: bold;
 }
-.footform ul label {
-  font-weight: normal;
-}
-.footform li {
-  list-style: none;
-}
-.part2 {
-  width: 300px;
-}
 
-.part3 input,
-select {
-  width: 240px;
-}
+/* .footform li {
+  list-style: none;
+} */
+
 #submit {
   color: white;
   background-color: var(--red);
@@ -387,14 +382,14 @@ select {
 .eintrag {
   padding: 10px 0px;
   display: flex;
-  justify-content: flex-start;
+  /* justify-content: flex-end; */
   gap: 10px;
-  
 
   /* margin-left: 50px; */
 }
 .eintrag .displaylogo {
-  width: 20%;
+  /* width: 20%; */
+  flex: 1;
   height: 150px;
   object-fit: contain;
   box-shadow: none;
@@ -405,12 +400,6 @@ select {
   box-shadow: none;
   border: none;
 }
-.eintrag ul {
-  list-style-type: none;
-}
-.eintrag ul li {
-  font-size: small;
-}
 
 .eintrag .para_main {
   height: 150px;
@@ -418,14 +407,16 @@ select {
   margin: 5px;
 }
 .offertext {
-  width: 50%;
+  flex: 4;
+  width: 60%;
 }
 .eintrag .para_main p,
 h3 {
   padding: 5px;
 }
 .info {
-  width: 30%;
+  flex: 2;
+  width: 20%;
   padding: 5px;
 }
 
@@ -463,12 +454,16 @@ h3 {
   padding: 5px;
 }
 
+/* +++++++++++******************+++++++++++++ */
 .DisplayList {
- 
   list-style-type: none;
- 
 }
 
-/* .DisplayOffer {
-  margin-left: -200px;
+.DisplayOffer {
+  display: flex;
+  flex-direction: column;
+}
+
+/* .OfferForm{
+  display:inline ;
 } */

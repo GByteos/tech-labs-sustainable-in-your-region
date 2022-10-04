@@ -16,17 +16,7 @@ export const Offer = () => {
   const [offer] = useQuery(getOffer, {
     id: offerId,
   })
-  //  function LOGO (){
-
-  //   if (![offer.logo]) {
-  //     return  <Image src={[offer.logo]} alt="Offer Logo" width="150px" height="150px"/>
-  //     console.log(![offer.logo])
-  //   }
-  //   else  {
-  //     return  <Image src={YL}  alt="Offer Logo" width="150px" height="150px"/>
-  //   }
-  // }
-
+  console.log([offer])
   return (
     <div>
       <div>
@@ -65,16 +55,15 @@ export const Offer = () => {
   )
 }
 
-const ShowOfferPage = ({offer}) => {
-  console.log({offer})
+const ShowOfferPage = () => {
   return (
     // in the title should appear the offer id, no idea how to do that
     // <Layout title={offer.id}>
     <Layout>
       <main>
         <p>
-          <Link href={Routes.OffersPage()}>
-            <a>Offers</a>
+          <Link href={Routes.MyOffersPage()}>
+            <a>My Offers</a>
           </Link>
         </p>
 

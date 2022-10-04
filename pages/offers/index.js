@@ -40,13 +40,6 @@ export const OffersList = () => {
       <ul className="DisplayList">
         {offers.map((offer) => (
           <li key={offer.id}>
-            {/* <Link
-              href={Routes.ShowOfferPage({
-                offerId: offer.id,
-              })}
-            > */}
-
-            {/* </Link> */}
             <DisplayOffer offer={offer} />
           </li>
         ))}
@@ -68,7 +61,7 @@ const OffersPage = () => {
       <Head>
         <title>Offers</title>
       </Head>
-      <div className="DisplayOffer">
+      
         <Link href={Routes.NewOfferPage()}>
           <a>Create Offer</a>
         </Link>
@@ -76,7 +69,7 @@ const OffersPage = () => {
         <Suspense fallback={<div>Loading...</div>}>
           <OffersList />
         </Suspense>
-      </div>
+     
     </Layout>
   )
 }
