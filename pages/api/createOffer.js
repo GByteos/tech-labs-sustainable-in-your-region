@@ -84,7 +84,7 @@ createOffer
     if (values.success === true) {
       // add server side values to the dataset
       values = {
-        ...req.body,
+        ...values.data,
         logo: req.file ? req.file.filename : undefined,
         author: {
           connect: {
