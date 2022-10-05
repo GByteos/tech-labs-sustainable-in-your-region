@@ -3,13 +3,29 @@ import { Field } from "react-final-form"
 import { FileField } from "app/core/components/FileField"
 //import styles from "pages/styles/OfferForm.module.css"
 export { FORM_ERROR } from "app/core/components/Form"
+
+const Error = ({ name }) => (
+  <Field name={name} subscription={{ error: true, touched: true }}>
+    {({ meta: { error, touched } }) => (error && touched ? <span>{error}</span> : null)}
+  </Field>
+)
+
+const Condition = ({ when, is, children }) => (
+  <Field name={when} subscription={{ value: true }}>
+    {({ input: { value } }) => (value === is ? children : null)}
+  </Field>
+)
+
 export function OfferForm(props) {
+  const isLoggedIn = props.isLoggedIn
+  console.log(isLoggedIn)
   return (
     <Form {...props} className="footform">
       <div className="FormElement">
         <label htmlFor="offerType">What type of offer do you have?</label>
         <br />
-        <Field id="offerType" name="offerType" component="select" defaultValue="SHOP">
+        <Field id="offerType" name="offerType" component="select" defaultValue="">
+          <option value=""></option>
           <option value="SHOP">Shop</option>
           <option value="EVENT">Event</option>
           {/* <option value="Bildung">Bildungsangebot</option>
@@ -48,34 +64,37 @@ export function OfferForm(props) {
         )}
       </Field>
 
-      <Field name="openingTimes">
-        {({ input, meta }) => (
-          <div className="FormElement">
-            <label htmlFor="openingTimes">Opening Times </label>
-            <br />
-            <input
-              className="openingTimesInput"
-              {...input}
-              type="textarea"
-              id="openingTimes"
-              placeholder="Mo-Fr: 8-12:30, 15-19:30"
-            />
-            {meta.error && meta.touched && <span>{meta.error}</span>}
-          </div>
-        )}
-      </Field>
+      <Condition when="offerType" is="SHOP">
+        <Field name="openingTimes">
+          {({ input, meta }) => (
+            <div className="FormElement">
+              <label htmlFor="openingTimes">Opening Times </label>
+              <br />
+              <input
+                className="openingTimesInput"
+                {...input}
+                type="textarea"
+                id="openingTimes"
+                placeholder="Mo-Fr: 8-12:30, 15-19:30"
+              />
+              {meta.error && meta.touched && <span>{meta.error}</span>}
+            </div>
+          )}
+        </Field>
+      </Condition>
 
-      <Field name="date">
-        {({ input, meta }) => (
-          <div className="FormElement">
-            <label htmlFor="date">Date </label>
-            <br />
-            <input {...input} name="date" type="date" id="date" />
-            {meta.error && meta.touched && <span>{meta.error}</span>}
-          </div>
-        )}
-      </Field>
-
+      <Condition when="offerType" is="EVENT">
+        <Field name="date">
+          {({ input, meta }) => (
+            <div className="FormElement">
+              <label htmlFor="date">Date </label>
+              <br />
+              <input {...input} name="date" type="date" id="date" />
+              {meta.error && meta.touched && <span>{meta.error}</span>}
+            </div>
+          )}
+        </Field>
+      </Condition>
       <Field name="link">
         {({ input, meta }) => (
           <div className="FormElement">
