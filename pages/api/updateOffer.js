@@ -4,7 +4,7 @@ import { nanoid } from "nanoid"
 import { getSession } from "@blitzjs/auth"
 import db from "db"
 import { unlink } from "node:fs/promises"
-import { CreateOffer } from "app/offers/validation"
+import { UpdateOffer } from "app/offers/validation"
 
 const upload = multer({
   storage: multer.diskStorage({
@@ -51,7 +51,7 @@ function nameGenerator(req, file, cb) {
   cb(null, nanoid() + "." + nameAndExtension[nameAndExtension.length - 1])
 }
 
-const createOffer = nextConnect({
+const updateOffer = nextConnect({
   async onError(error, req, res) {
     if (req.file) {
       await unlink(req.file.path)
@@ -64,7 +64,7 @@ const createOffer = nextConnect({
   },
 })
 
-createOffer
+updateOffer
   .use(async (req, res, next) => {
     const session = await getSession(req, res)
     if (session.userId === null) {
@@ -78,22 +78,22 @@ createOffer
     // req.file.path => contains the full image path and extension
     const session = await getSession(req, res)
 
+    console.log(req.body)
     // mak an object and validate the content
-    let values = CreateOffer.safeParse(JSON.parse(JSON.stringify(req.body)))
+    let values = UpdateOffer.safeParse(JSON.parse(JSON.stringify(req.body)))
 
     if (values.success === true) {
       // add server side values to the dataset
-      values = {
-        ...req.body,
+      values.data = {
+        ...values.data,
         logo: req.file ? req.file.filename : undefined,
-        author: {
-          connect: {
-            id: session.userId,
-          },
-        },
       }
-      const offer = await db.offer.create({
-        data: values,
+
+      const offer = await db.offer.update({
+        where: {
+          id: values.data.id,
+        },
+        data: values.data,
       })
       console.log(offer)
       res.status(200).json({ data: "sucess", offer: offer })
@@ -106,7 +106,7 @@ createOffer
     }
   })
 
-export default createOffer
+export default updateOffer
 
 export const config = {
   api: {

@@ -100,14 +100,19 @@ export function OfferForm(props) {
           <div className="FormElement">
             <label htmlFor="link">Your Website</label>
             <br />
-            <input {...input} id="link" component="input" placeholder="https://" />
+            <input {...input} id="link" type="url" placeholder="https://" />
             {meta.error && meta.touched && <span>{meta.error}</span>}
           </div>
         )}
       </Field>
       <div className="FormElement">
         <label htmlFor="logo">Upload your image or logo</label>
-        <FileField type="file" id="file" name="logo" />
+        <FileField
+          type="file"
+          id="file"
+          name="logo"
+          accept="image/png, image/jpg, image/jpeg, image/png, image/tiff, image/svg+xml"
+        />
       </div>
       <br />
       <div className="FormElement">

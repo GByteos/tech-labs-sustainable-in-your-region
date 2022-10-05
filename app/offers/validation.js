@@ -1,6 +1,6 @@
-import { z } from "zod"
+import { number, z } from "zod"
 
-export const CreateOffer = z.object({
+const offerContent = z.object({
   name: z.string(),
   description: z.string(),
   link: z.string().url(),
@@ -10,4 +10,20 @@ export const CreateOffer = z.object({
   date: z.preprocess((arg) => {
     if (typeof arg == "string" || arg instanceof Date) return new Date(arg)
   }, z.date().optional()),
+})
+
+export const CreateOffer = offerContent
+
+export const UpdateOffer = offerContent.extend({
+  id: z.string().transform((val, ctx) => {
+    const parsedInt = parseInt(val)
+    if (isNaN(parsedInt)) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        message: "Nat a number",
+      })
+      return z.NEVER
+    }
+    return parsedInt
+  }),
 })
