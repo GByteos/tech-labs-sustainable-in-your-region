@@ -36,7 +36,7 @@ export const OffersList = () => {
     })
 
   return (
-    <div c>
+    <div>
       <ul className="DisplayList">
         {offers.map((offer) => (
           <li key={offer.id}>
@@ -61,15 +61,14 @@ const OffersPage = () => {
       <Head>
         <title>Offers</title>
       </Head>
-      
-        <Link href={Routes.NewOfferPage()}>
-          <a>Create Offer</a>
-        </Link>
 
-        <Suspense fallback={<div>Loading...</div>}>
-          <OffersList />
-        </Suspense>
-     
+      <Link href={Routes.NewOfferPage()}>
+        <a>Create Offer</a>
+      </Link>
+
+      <Suspense fallback={<div>Loading...</div>}>
+        <OffersList />
+      </Suspense>
     </Layout>
   )
 }
