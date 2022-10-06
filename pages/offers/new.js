@@ -11,63 +11,64 @@ const NewOfferPage = () => {
   const router = useRouter()
   return (
     <Layout title={"Create New Offer"}>
-      <container>
-      <h1 className="newoffer">Create New Offer</h1>
+      <section>
+        <h1 className="newoffer">Create New Offer</h1>
 
-      <OfferForm className="OfferForm"
-        schema={CreateOffer}
-        onSubmit={async (values) => {
-          try {
-            const formData = new FormData()
+        <OfferForm
+          className="OfferForm"
+          schema={CreateOffer}
+          onSubmit={async (values) => {
+            try {
+              const formData = new FormData()
 
-            // put all fields onto the formData for multer
-            if (values.logo) formData.append("logo", values.logo[0])
-            if (values.name) formData.append("name", values.name)
-            if (values.offerType) formData.append("offerType", values.offerType)
-            if (values.description) formData.append("description", values.description)
-            if (values.openingTimes) formData.append("openingTimes", values.openingTimes)
-            if (values.date) formData.append("date", values.date)
-            if (values.link) formData.append("link", values.link)
+              // put all fields onto the formData for multer
+              if (values.logo) formData.append("logo", values.logo[0])
+              if (values.name) formData.append("name", values.name)
+              if (values.offerType) formData.append("offerType", values.offerType)
+              if (values.description) formData.append("description", values.description)
+              if (values.openingTimes) formData.append("openingTimes", values.openingTimes)
+              if (values.date) formData.append("date", values.date)
+              if (values.link) formData.append("link", values.link)
 
-            // is needed, to identify and verify the user on server side
-            const antiCSRFToken = getAntiCSRFToken()
+              // is needed, to identify and verify the user on server side
+              const antiCSRFToken = getAntiCSRFToken()
 
-            const config = {
-              credentials: "include",
-              headers: { "content-type": "multipart/form-data", "anti-csrf": antiCSRFToken },
-              onUploadProgress: (event) => {
-                // TODO: add a progres bar or similar here
-                console.log(`Current progress:`, Math.round((event.loaded * 100) / event.total))
-              },
+              const config = {
+                credentials: "include",
+                headers: { "content-type": "multipart/form-data", "anti-csrf": antiCSRFToken },
+                onUploadProgress: (event) => {
+                  // TODO: add a progres bar or similar here
+                  console.log(`Current progress:`, Math.round((event.loaded * 100) / event.total))
+                },
+              }
+
+              const response = await axios.post("/api/createOffer", formData, config)
+              if (response.data.data === "sucess") {
+                const offer = response.data.offer
+
+                router.push(
+                  Routes.ShowOfferPage({
+                    offerId: offer.id,
+                  })
+                )
+              } else {
+                // TODO: add some information, why the data was not accepted
+              }
+            } catch (error) {
+              console.error(error)
+              return {
+                [FORM_ERROR]: error.toString(),
+              }
             }
+          }}
+        />
 
-            const response = await axios.post("/api/createOffer", formData, config)
-            if (response.data.data === "sucess") {
-              const offer = response.data.offer
-
-              router.push(
-                Routes.ShowOfferPage({
-                  offerId: offer.id,
-                })
-              )
-            } else {
-              // TODO: add some information, why the data was not accepted
-            }
-          } catch (error) {
-            console.error(error)
-            return {
-              [FORM_ERROR]: error.toString(),
-            }
-          }
-        }}
-      />
-
-      <p>
-        <Link href={Routes.OffersPage()}>
-          <a>Offers</a>
-        </Link>
-      </p>
-      </container>
+        <p>
+          <Link href={Routes.OffersPage()}>
+            <a>Offers</a>
+          </Link>
+        </p>
+      </section>
     </Layout>
   )
 }
