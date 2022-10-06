@@ -20,12 +20,7 @@ const Condition = ({ when, is, children }) => (
 )
 
 export function OfferForm(props) {
-  const isLoggedIn = props.isLoggedIn
-
   const [tags] = useQuery(getPublicTags)
-
-  // tags.offerTags contains a object list of the tags
-  console.log(tags)
 
   return (
     <Form {...props} className="footform">
@@ -96,7 +91,7 @@ export function OfferForm(props) {
         <label>
           Which tags fit your offer?
           <Multiselect
-            options={tags.offerTags}
+            options={tags}
             displayValue="name"
             // groupBy="category"
           />
