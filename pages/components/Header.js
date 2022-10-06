@@ -113,7 +113,9 @@ function HEADER() {
               <ul>
                 {tags.consume.map((tag) => (
                   <li key={tag.id}>
-                    <a href="search">{tag.name}</a>
+                    <Link href={Routes.SearchPage({ tags: JSON.stringify([tag.name]) })}>
+                      {tag.name}
+                    </Link>
                   </li>
                 ))}
               </ul>
