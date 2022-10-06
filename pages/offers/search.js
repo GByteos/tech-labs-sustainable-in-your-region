@@ -6,23 +6,31 @@ import { usePaginatedQuery } from "@blitzjs/rpc"
 import { useRouter } from "next/router"
 import Layout from "app/core/layouts/Layout"
 import getUserOffers from "app/offers/queries/getUserOffers"
-import { btoa } from "buffer"
+import DisplayOffer from "app/offers/components/DisplayOffer"
 
-const ITEMS_PER_PAGE = 100
+const ITEMS_PER_PAGE = 20
 export const OffersList = () => {
   const query = useRouterQuery()
-  console.log(query)
 
-  const tags = query.tags ? JSON.parse(decodeURIComponent(query.tags)) : {}
-  console.log(tags)
+  const tags = query.tags ? JSON.parse(decodeURIComponent(query.tags)) : null
+
+  let offerTags = []
+
+  if (tags && tags.length !== 0) {
+    for (const tag of tags) {
+      offerTags.push({ name: tag })
+    }
+  }
+
+  console.log(offerTags)
 
   const router = useRouter()
   const page = Number(router.query.page) || 0
   const [{ offers, hasMore }] = usePaginatedQuery(getUserOffers, {
     where: {
       offerTags: {
-        every: {
-          name: "tags",
+        some: {
+          OR: [...offerTags],
         },
       },
     },
@@ -49,16 +57,10 @@ export const OffersList = () => {
 
   return (
     <div>
-      <ul>
+      <ul className="DisplayList">
         {offers.map((offer) => (
           <li key={offer.id}>
-            <Link
-              href={Routes.ShowOfferPage({
-                offerId: offer.id,
-              })}
-            >
-              <a>{offer.name}</a>
-            </Link>
+            <DisplayOffer offer={offer} />
           </li>
         ))}
       </ul>
