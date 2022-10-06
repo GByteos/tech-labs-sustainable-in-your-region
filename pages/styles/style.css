@@ -365,24 +365,22 @@ aside {
   padding: 5px;
 }
 .FormElement label {
-  
   color: #333;
   /* width: 110px; */
   font-size: 1em;
   line-height: 32px;
 }
 .FormElement div {
- 
   margin-left: 16px;
-
 }
 .FormElement div label {
   display: block;
-   flex-wrap: wrap;
+  flex-wrap: wrap;
 }
 
 .FormElement div label input {
   margin: 5px;
+  font-size: 1.3em;
 }
 input,
 textarea,
@@ -400,7 +398,9 @@ select {
   box-shadow: 0 4px 8px 8px rgba(34, 60, 80, 0.16);
   width: 300px; */
 }
-
+input[type="submit"] {
+  background-color: white;
+}
 /* .descriptionInput{
   height: 300px;
   width: 500px;
