@@ -477,8 +477,11 @@ searchBox {
 .offertext {
   flex: 4;
   width: 60%;
+
+  
 }
-.eintrag .para_main p,
+
+.eintrag .para_main 
 h3 {
   padding: 5px;
 }
@@ -535,3 +538,19 @@ h3 {
 /* .OfferForm{
   display:inline ;
 } */
+
+.offerTitle,
+.offerInfo {
+  display: flex;
+  justify-content: space-evenly;
+}
+.offerTitle div {
+  align-self: center;
+  align-content: center;
+}
+a {
+  color: var(--dark);
+}
+a:hover {
+  color: var(--red);
+}

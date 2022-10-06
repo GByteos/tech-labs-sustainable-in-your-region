@@ -7,23 +7,40 @@ import { useParam } from "@blitzjs/next"
 import Layout from "app/core/layouts/Layout"
 import getOffer from "app/offers/queries/getOffer"
 import deleteOffer from "app/offers/mutations/deleteOffer"
-import DisplayOffer from "app/offers/components/DisplayOffer"
+import { useCurrentUser } from "app/core/hooks/useCurrentUser"
+import YL from "public/yourlogo.png"
+import Image from "next/image"
 
-export const Offer = () => {
-  const router = useRouter()
-  const offerId = useParam("offerId", "number")
+function Logo({ offer }) {
+  console.log({ offer })
+  if (!offer.logo) {
+    return (
+      <>
+        <Image className="displaylogo" src={YL} alt="Offer Logo" width="150px" height="150px" />
+      </>
+    )
+  } else
+    return (
+      <>
+        <Image
+          className="displaylogo"
+          src={"/api/getImage?imageId=" + offer.logo}
+          alt="Offer Logo"
+          width="150px"
+          height="150px"
+        />
+      </>
+    )
+}
+function EditDelete({ offer }) {
   const [deleteOfferMutation] = useMutation(deleteOffer)
-  const [offer] = useQuery(getOffer, {
-    id: offerId,
-  })
-  console.log([offer])
-  return (
-    <div>
+  const currentUser = useCurrentUser()
+  const currentUserID = currentUser.id
+  console.log(currentUser.id)
+
+  if (currentUser && offer.authorId == currentUserID)
+    return (
       <div>
-        <br />
-        <br />
-        <h3> Your offer: {offer.name}</h3>
-        <pre>{JSON.stringify(offer, "", 2)}</pre>
         <Link
           href={Routes.EditOfferPage({
             offerId: offer.id,
@@ -47,25 +64,68 @@ export const Offer = () => {
         >
           Delete
         </button>
-        <br /> <br />
-        <h3>It will look like this:</h3>
-        <DisplayOffer offer={offer} />
       </div>
+    )
+}
+
+export const Offer = () => {
+  const router = useRouter()
+  const offerId = useParam("offerId", "number")
+
+  const [offer] = useQuery(getOffer, {
+    id: offerId,
+  })
+
+  return (
+    <div>
+      <div>
+        <br />
+        <div className="offerTitle">
+          <Logo offer={offer} />
+          <div>
+            <h5>{offer.offerType}</h5>
+            <Link href={offer.link}>
+              <a>
+                <h2> {offer.name}</h2>
+              </a>
+            </Link>
+          </div>
+        </div>
+        <br />
+        <section className="offerDescription">{offer.description}</section>
+        <br />
+        <section className="offerInfo">
+          <div>
+            <h3>Opening Times</h3>
+            {offer.openingTime}
+          </div>
+          <div>
+            <h3>Location</h3>
+            {offer.Address}
+          </div>
+          <div>
+            <h3>Contact</h3>
+            {offer.email}
+            {offer.phone}
+          </div>
+        </section>
+      </div>
+      <br />
+      <br />
+      <EditDelete offer={offer} />
     </div>
   )
 }
 
 const ShowOfferPage = () => {
   return (
-    // in the title should appear the offer id, no idea how to do that
-    // <Layout title={offer.id}>
     <Layout>
       <main>
-        <p>
+        {/* <p>
           <Link href={Routes.MyOffersPage()}>
             <a>My Offers</a>
           </Link>
-        </p>
+        </p> */}
 
         <Suspense fallback={<div>Loading...</div>}>
           <Offer />

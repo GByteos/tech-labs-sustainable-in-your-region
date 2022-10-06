@@ -2,6 +2,7 @@ import Image from "next/image"
 import Link from "next/link"
 import YL from "public/yourlogo.png"
 import { Routes } from "@blitzjs/next"
+import Truncate from "react-truncate"
 
 function Logo({ offer }) {
   console.log({ offer })
@@ -42,11 +43,15 @@ function DisplayOffer({ offer }) {
             <h3>{offer.name}</h3>
           </a>
         </Link>
-        <p>{offer.description}</p>
+        <Truncate
+          lines={4}
+          // width={1000} // width being how much you want to truncate your copy
+          ellipsis="&hellip;"
+        >
+          <p>{offer.description}</p>
+        </Truncate>
       </div>
-      <div className="para_main info">
-        {offer.openingTimes}
-      </div>
+      <div className="para_main info">{offer.openingTimes}</div>
     </article>
   )
 }

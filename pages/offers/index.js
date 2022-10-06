@@ -19,7 +19,6 @@ export const OffersList = () => {
     skip: ITEMS_PER_PAGE * page,
     take: ITEMS_PER_PAGE,
   })
-  // console.log(offers)
 
   const goToPreviousPage = () =>
     router.push({
