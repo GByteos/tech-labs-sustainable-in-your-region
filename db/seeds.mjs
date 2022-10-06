@@ -1,5 +1,6 @@
 //import db from "db"
 import db from "./index.mjs"
+import { SecurePassword } from "@blitzjs/auth"
 
 const seed = async () => {
   // for (let i = 0; i < 5; i++) {
@@ -34,6 +35,40 @@ const seed = async () => {
       { name: "Excursion", category: ["INCLUSIVITY", "EDUCATION"] },
     ],
   })
+  console.log(seededData)
+
+  const hashedPassword = await SecurePassword.hash("sustainability")
+
+  seededData = await db.user.create({
+    data: {
+      email: "admin@admin.com",
+      hashedPassword,
+      role: "ADMIN",
+    },
+    select: {
+      id: true,
+      name: true,
+      email: true,
+      role: true,
+    },
+  })
+
+  console.log(seededData)
+
+  seededData = await db.user.create({
+    data: {
+      email: "user@user.com",
+      hashedPassword,
+      role: "USER",
+    },
+    select: {
+      id: true,
+      name: true,
+      email: true,
+      role: true,
+    },
+  })
+
   console.log(seededData)
 }
 
