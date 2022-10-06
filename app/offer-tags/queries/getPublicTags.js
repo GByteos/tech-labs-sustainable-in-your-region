@@ -15,6 +15,7 @@ export default resolver.pipe(async (category) => {
     select: {
       name: true,
       category: true,
+      id: true,
     },
   })
   if (!offerTags) throw new NotFoundError()

@@ -5,18 +5,18 @@ import Image from "next/image"
 import Link from "next/link"
 import { useCurrentUser } from "app/core/hooks/useCurrentUser"
 import logout from "app/auth/mutations/logout"
-import { useMutation } from "@blitzjs/rpc"
+import { useQuery, useMutation } from "@blitzjs/rpc"
 import { Routes } from "@blitzjs/next"
-import { useEffect, useState } from 'react'
+import { useEffect, useState } from "react"
+import getPublicTags from "app/offer-tags/queries/getPublicTags"
 import OffersPage from "pages/offers/index"
 
 const UserInfo = () => {
   const currentUser = useCurrentUser()
   const [logoutMutation] = useMutation(logout)
-  
 
   if (currentUser) {
-    const currenUserId = currentUser.id 
+    const currenUserId = currentUser.id
     return (
       <>
         <button
@@ -32,9 +32,12 @@ const UserInfo = () => {
           <br />
           User role: <code>{currentUser.role}</code>
         </div>
-        <div>  <Link href={Routes.MyOffersPage()}>
-                <a>My Offers</a>
-              </Link></div>
+        <div>
+          {" "}
+          <Link href={Routes.MyOffersPage()}>
+            <a>My Offers</a>
+          </Link>
+        </div>
       </>
     )
   } else {
@@ -56,9 +59,18 @@ const UserInfo = () => {
 }
 
 function HEADER() {
-    const [currenturl, setUrl] = useState("")
-    useEffect(() => setUrl(window.location.href), [])
-console.log()
+  const [currenturl, setUrl] = useState("")
+  useEffect(() => setUrl(window.location.href), [])
+
+  // get the tags from the db
+  const tags = {
+    consume: useQuery(getPublicTags, "CONSUME")[0],
+    energy: useQuery(getPublicTags, "ENERGY")[0],
+    education: useQuery(getPublicTags, "EDUCATION")[0],
+    health: useQuery(getPublicTags, "HEALTH")[0],
+    inclusivity: useQuery(getPublicTags, "INCLUSIVITY")[0],
+  }
+
   return (
     <div>
       <div className="up">
@@ -75,7 +87,7 @@ console.log()
       </div>
       <section className="mainHeader">
         <article className="logo">
-          <Image src={logo} alt="Logo mit dem Handabdruck und Haken" width="180" height="200"/>
+          <Image src={logo} alt="Logo mit dem Handabdruck und Haken" width="180" height="200" />
           <div>
             <h1>Nachhaltig in Markt&nbsp;Schwaben</h1>
             <h2>{`${currenturl}`}</h2>
@@ -88,7 +100,7 @@ console.log()
       <header>
         <nav id="menu">
           <ul id="minilogo">
-            <li >
+            <li>
               <Link href={Routes.Home()}>
                 <Image src={logo} width="50px" height="50px" alt="Logo - back home Link" />
               </Link>
@@ -96,98 +108,78 @@ console.log()
           </ul>
           <ul>
             <li>
-              <h3>Konsum</h3>
+              <h3>Consume</h3>
 
               <ul>
-                <li>
-                  <a href="lm.html">Lebensmittel</a>
-                </li>
-
-                <li>
-                  <a href="markt.html">Märkte </a>
-                </li>
-
-                <li>
-                  <a href="#">Hofläden/Automaten</a>
-                </li>
-                <li>
-                  <a href="#">Second Hand</a>
-                </li>
-                <li>
-                  <a href="#">Fahhrad</a>
-                </li>
-                <li>
-                  <a href="#">Haus & Garten</a>
-                </li>
-                <li>
-                  <a href="#">Mode</a>
-                </li>
+                {tags.consume.map((tag) => (
+                  <li key={tag.id}>
+                    <a href="search">{tag.name}</a>
+                  </li>
+                ))}
               </ul>
             </li>
           </ul>
           <ul>
             <li>
-              <h3>Energie</h3>
+              <h3>Energy</h3>
 
               <ul>
-                <li>
-                  <a href="#">Heizen</a>
-                </li>
-
-                <li>
-                  <a href="#">Alternative Energien</a>
-                </li>
-
-                <li>
-                  <a href="#">Strom sparen</a>
-                </li>
+                {tags.energy.map((tag) => (
+                  <li key={tag.id}>
+                    <a href="search">{tag.name}</a>
+                  </li>
+                ))}
               </ul>
             </li>
           </ul>
           <ul>
             <li>
               <a href="#">
-                <h3>Bildung</h3>
+                <h3>Education</h3>
               </a>
+              <ul>
+                {tags.education.map((tag) => (
+                  <li key={tag.id}>
+                    <a href="search">{tag.name}</a>
+                  </li>
+                ))}
+              </ul>
             </li>
           </ul>
           <ul>
             <li>
-              <h3>Gesundheit</h3>
+              <h3>Health</h3>
 
               <ul>
-                <li>
-                  <a href="#">Ernährung</a>
-                </li>
-
-                <li>
-                  <a href="#">Bewegung</a>
-                </li>
-
-                <li>
-                  <a href="#">Für den Geist</a>
-                </li>
+                {tags.health.map((tag) => (
+                  <li key={tag.id}>
+                    <a href="search">{tag.name}</a>
+                  </li>
+                ))}
               </ul>
             </li>
           </ul>
           <ul>
             <li>
               <a href="#">
-                <h3>Inklusion</h3>
+                <h3>Inclusivity</h3>
               </a>
+              <ul>
+                {tags.inclusivity.map((tag) => (
+                  <li key={tag.id}>
+                    <a href="search">{tag.name}</a>
+                  </li>
+                ))}
+              </ul>
             </li>
           </ul>
           <ul>
             <li>
-            
-              
               <div>
-              
                 <Link href={Routes.OffersPage()}>
-                  <a>Offers</a>
+                  <h3>All Offers</h3>
                 </Link>
               </div>
-            
             </li>
           </ul>
         </nav>
