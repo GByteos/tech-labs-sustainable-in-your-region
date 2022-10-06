@@ -33,27 +33,171 @@ export function OfferForm(props) {
           <option value="Tausch">Tausch-Angebot</option> */}
         </Field>
       </div>
+      {/* TAG CATEGORY */}
+      <div className="FormElement">
+        <label> Of which category is your offer?</label>
+        <div>
+          <label htmlFor="FOOD">
+            <Field type="checkbox" component="input" name="FOOD" id="FOOD" value="freg" />
+            Food
+          </label>
+          <Field name="name">
+            {({ input, meta }) => (
+              <div className="FormElement">
+                <label htmlFor="name">Title</label>
+                <br />
+                <input
+                  {...input}
+                  type="text"
+                  id="name"
+                  cols="30"
+                  placeholder="Title of your offer"
+                />
+                {meta.error && meta.touched && <span>{meta.error}</span>}
+              </div>
+            )}
+          </Field>
+          <label htmlFor="INCLUSIVITY">
+            <Field
+              type="checkbox"
+              component="input"
+              name="INCLUSIVITY"
+              id="INCLUSIVITY"
+              value="fbio"
+            />
+            Inclusivity
+          </label>
 
-      <Field name="name">
-        {({ input, meta }) => (
-          <div className="FormElement">
-            <label htmlFor="name">Title</label>
-            <br />
-            <input {...input} type="text" id="name" cols="30" placeholder="Title of my offer" />
-            {meta.error && meta.touched && <span>{meta.error}</span>}
-          </div>
-        )}
-      </Field>
+          <label htmlFor="EDUCATION">
+            <Field type="checkbox" component="input" name="EDUCATION" id="EDUCATION" value="fbio" />
+            Education
+          </label>
+
+          <label htmlFor="mob">
+            <Field type="checkbox" component="input" name="MOBILITY" id="mob" value="mob" />
+            Mobility
+          </label>
+
+          <label htmlFor="ges">
+            <Field type="checkbox" component="input" name="HEALTH" id="ges" value="ges" />
+            Health
+          </label>
+
+          <label htmlFor="ene">
+            <Field type="checkbox" component="input" name="ENERGY" id="ene" value="ene" />
+            Energy
+          </label>
+        </div>
+      </div>
+
+      {/* TAGS */}
+      <div className="FormElement">
+        <label> Which tags fit your offer?</label>
+        <div>
+          <label>
+            <Field type="checkbox" component="input" name="freg" value="freg" />
+            Food regional
+          </label>
+          <label>
+            <Field type="checkbox" component="input" name="fbio" value="fbio" />
+            Food organic
+          </label>
+          <label>
+            <Field type="checkbox" component="input" name="drug" value="drug" />
+            Drugstore product
+          </label>
+          <label>
+            <Field type="checkbox" component="input" name="kle" value="kle" />
+            Clothes
+          </label>
+          <label>
+            <Field type="checkbox" component="input" name="altene" value="mob" />
+            Alternative energy
+          </label>
+          <label>
+            <Field type="checkbox" component="input" name="nat" value="nat" />
+            Natur
+          </label>
+          <label>
+            <Field type="checkbox" component="input" name="ges" value="ges" />
+            Health
+          </label>
+          <label>
+            <Field type="checkbox" component="input" name="ene" value="ene" />
+            Energy
+          </label>{" "}
+          <label>
+            <Field type="checkbox" component="input" name="save" value="ene" />
+            Energy saving
+          </label>
+          <label>
+            <Field type="checkbox" component="input" name="heat" value="ene" />
+            Heating
+          </label>
+          <label>
+            <Field type="checkbox" component="input" name="hh" value="hh" />
+            Household product
+          </label>
+          <label>
+            <Field type="checkbox" component="input" name="sh" value="sh" />
+            Second Hand
+          </label>
+          <label>
+            <Field type="checkbox" component="input" name="freg" value="freg" />
+            Food regional
+          </label>
+          <label>
+            <Field type="checkbox" component="input" name="shar" value="fbio" />
+            Sharing
+          </label>
+          <label>
+            <Field type="checkbox" component="input" name="car" value="drug" />
+            Car
+          </label>
+          <label>
+            <Field type="checkbox" component="input" name="bike" value="kle" />
+            Bike
+          </label>
+          <label>
+            <Field type="checkbox" component="input" name="nutr" value="mob" />
+            Nutrition
+          </label>
+          <label>
+            <Field type="checkbox" component="input" name="mheal" value="nat" />
+            Mental Health
+          </label>
+          <label>
+            <Field type="checkbox" component="input" name="pheal" value="ges" />
+            Physical Health
+          </label>
+          <label>
+            <Field type="checkbox" component="input" name="natur" value="ene" />
+            Nature
+          </label>
+          <label>
+            <Field type="checkbox" component="input" name="workshop" value="hh" />
+            Workshop
+          </label>
+          <label>
+            <Field type="checkbox" component="input" name="talk" value="sh" />
+            Talk
+          </label>
+          <label>
+            <Field type="checkbox" component="input" name="excurs" value="mob" />
+            Excursion
+          </label>
+        </div>
+      </div>
 
       <Field name="description">
         {({ input, meta }) => (
           <div className="FormElement">
             <label htmlFor="description">Please give here a description of your offer: </label>
             <br />
-            <input
+            <textarea
               className="descriptionInput"
               {...input}
-              type="textarea"
+              // type="textarea"
               id="sonst"
               cols="30"
               rows="10"
@@ -100,19 +244,14 @@ export function OfferForm(props) {
           <div className="FormElement">
             <label htmlFor="link">Your Website</label>
             <br />
-            <input {...input} id="link" type="url" placeholder="https://" />
+            <input {...input} id="link" component="input" placeholder="https://" />
             {meta.error && meta.touched && <span>{meta.error}</span>}
           </div>
         )}
       </Field>
       <div className="FormElement">
         <label htmlFor="logo">Upload your image or logo</label>
-        <FileField
-          type="file"
-          id="file"
-          name="logo"
-          accept="image/png, image/jpg, image/jpeg, image/png, image/tiff, image/svg+xml"
-        />
+        <FileField type="file" id="file" name="logo" />
       </div>
       <br />
       <div className="FormElement">
@@ -123,48 +262,4 @@ export function OfferForm(props) {
   )
 }
 
-/* Unused parts of original code
-<label> In welchen Bereich passt dein Angebot?</label>
-            <ul>
-              <li>
-                <input type="checkbox" name="lmr" id="lmr" value="lmr" />
-                <label htmlFor="lmr">Lebensmittel regional</label>
-              </li>
-              <li>
-                <input type="checkbox" name="lmb" id="lmb" value="lmb" />
-                <label htmlFor="lmb">Lebensmittel bio</label>
-              </li>
-              <li>
-                <input type="checkbox" name="dro" id="dro" value="dro" />
-                <label htmlFor="dro">Drogerieartikel</label>
-              </li>
-              <li>
-                <input type="checkbox" name="kle" id="kle" value="kle" />
-                <label htmlFor="kle">Kleidung</label>
-              </li>
-              <li>
-                <input type="checkbox" name="mob" id="mob" value="mob" />
-                <label htmlFor="mob">Mobilität</label>
-              </li>
-              <li>
-                <input type="checkbox" name="nat" id="nat" value="nat" />
-                <label htmlFor="nat">Natur</label>
-              </li>
-              <li>
-                <input type="checkbox" name="ges" id="ges" value="ges" />
-                <label htmlFor="ges">Gesundheit</label>
-              </li>
-              <li>
-                <input type="checkbox" name="ene" id="ene" value="ene" />
-                <label htmlFor="ene">Energie</label>
-              </li>
-              <li>
-                <input type="checkbox" name="hh" id="hh" value="hh" />
-                <label htmlFor="hh">Haushalt</label>
-              </li>
-              <li>
-                <input type="checkbox" name="sh" id="sh" value="ink" />
-                <label htmlFor="sh">Second Hand</label>
-              </li>
-            </ul>
-*/
+// /* Unused parts of original code

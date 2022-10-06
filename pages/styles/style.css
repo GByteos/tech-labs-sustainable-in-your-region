@@ -337,26 +337,71 @@ aside {
 /* ================= FOOTER ================ */
 
 .footform {
+  background: var(--light);
   display: block;
+  max-width: 80%;
+  margin: 10px auto;
+  border: 1px solid #ccc;
+  padding: 20px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  border-radius: 3px;
+  font-size: medium;
+  color: var(--dark);
+  /* display: block;
   justify-content: center;
   padding: 20px 0px;
-  font-size: medium;
+  */
 }
 .FormElement {
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-flow: row nowrap;
+  line-height: 2em;
+  margin: 5px;
+  /* text-align: left;
+  margin: 30px; */
+}
+.FormElement {
+  padding: 5px;
+}
+.FormElement label {
+  
+  color: #333;
+  /* width: 110px; */
+  font-size: 1em;
+  line-height: 32px;
+}
+.FormElement div {
  
-  text-align: left;
-  margin: 30px;
+  margin-left: 16px;
+
+}
+.FormElement div label {
+  display: block;
+   flex-wrap: wrap;
+}
+
+.FormElement div label input {
+  margin: 5px;
 }
 input,
 textarea,
 select {
-  background: #f2f2f2;
+  flex: 2;
+  padding: 3px 5px;
+  font-size: 1em;
+  margin-left: 15px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  color: var(--dark);
+  /* background: #f2f2f2;
   padding: 5px;
   border-radius: 5px;
   box-shadow: 0 4px 8px 8px rgba(34, 60, 80, 0.16);
-  width: 300px;
+  width: 300px; */
 }
-.descriptionInput{
+
+/* .descriptionInput{
   height: 300px;
   width: 500px;
 }
@@ -365,7 +410,7 @@ select {
 }
 .footform label {
   font-weight: bold;
-}
+} */
 
 /* .footform li {
   list-style: none;
