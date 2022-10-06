@@ -347,6 +347,7 @@ aside {
   border-radius: 3px;
   font-size: medium;
   color: var(--dark);
+  border: none;
   /* display: block;
   justify-content: center;
   padding: 20px 0px;
@@ -358,12 +359,11 @@ aside {
   flex-flow: row nowrap;
   line-height: 2em;
   margin: 5px;
-  /* text-align: left;
-  margin: 30px; */
-}
-.FormElement {
   padding: 5px;
 }
+/* text-align: left;
+  margin: 30px; */
+
 .FormElement label {
   color: #333;
   /* width: 110px; */
@@ -420,7 +420,30 @@ input[type="submit"] {
   color: white;
   background-color: var(--red);
 }
+/* .multiSelectContainer {
+  background-color: white;
+} */
+.multiSelectContainer .option:hover {
+  background-color: var(--red);
+  color: #fff;
+}
+.highlightOption {
+  background: white;
+  color: var(--dark);
+}
+.chip {
+  background: var(--light);
+}
+/* 
 
+searchBox {
+  border: "none";
+  border-bottom: "1px solid blue";
+  border-radius: "0px";
+ */
+/* .multiselectContainer li {
+  background-color: red;
+} */
 /*  ============================ */
 /*  =======================   Seiten mit Einträgen ================== */
 

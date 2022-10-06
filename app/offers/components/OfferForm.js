@@ -3,7 +3,7 @@ import { Field } from "react-final-form"
 import { FileField } from "app/core/components/FileField"
 import { useQuery } from "@blitzjs/rpc"
 import getOfferTags from "app/offer-tags/queries/getOfferTags"
-//import styles from "pages/styles/OfferForm.module.css"
+import { Multiselect } from "multiselect-react-dropdown"
 export { FORM_ERROR } from "app/core/components/Form"
 
 const Error = ({ name }) => (
@@ -19,14 +19,11 @@ const Condition = ({ when, is, children }) => (
 )
 
 export function OfferForm(props) {
-  const isLoggedIn = props.isLoggedIn
-
   const [tags] = useQuery(getOfferTags, {})
 
   // tags.offerTags contains a object list of the tags
-  console.log(tags.offerTags)
+  console.log(tags.offerTags[1])
 
-  console.log(isLoggedIn)
   return (
     <Form {...props} className="footform">
       <div className="FormElement">
@@ -41,30 +38,25 @@ export function OfferForm(props) {
           <option value="Tausch">Tausch-Angebot</option> */}
         </Field>
       </div>
+      <Field name="name">
+        {({ input, meta }) => (
+          <div className="FormElement">
+            <label htmlFor="name">Title</label>
+            <br />
+            <input {...input} type="text" id="name" cols="30" placeholder="Title of your offer" />
+            {meta.error && meta.touched && <span>{meta.error}</span>}
+          </div>
+        )}
+      </Field>
       {/* TAG CATEGORY */}
       <div className="FormElement">
         <label> Of which category is your offer?</label>
         <div>
-          <label htmlFor="FOOD">
-            <Field type="checkbox" component="input" name="FOOD" id="FOOD" value="freg" />
-            Food
+          <label>
+            <Field type="checkbox" component="input" name="CONSUME" value="freg" />
+            Consume
           </label>
-          <Field name="name">
-            {({ input, meta }) => (
-              <div className="FormElement">
-                <label htmlFor="name">Title</label>
-                <br />
-                <input
-                  {...input}
-                  type="text"
-                  id="name"
-                  cols="30"
-                  placeholder="Title of your offer"
-                />
-                {meta.error && meta.touched && <span>{meta.error}</span>}
-              </div>
-            )}
-          </Field>
+
           <label htmlFor="INCLUSIVITY">
             <Field
               type="checkbox"
@@ -97,10 +89,19 @@ export function OfferForm(props) {
           </label>
         </div>
       </div>
-
-      {/* TAGS */}
       <div className="FormElement">
-        <label> Which tags fit your offer?</label>
+        <label>
+          Which tags fit your offer?
+          <Multiselect
+            options={tags.offerTags}
+            displayValue="name"
+            // groupBy="category"
+          />
+        </label>
+      </div>
+      {/* TAGS */}
+      {/* <div className="FormElement">
+        <label> </label>
         <div>
           <label>
             <Field type="checkbox" component="input" name="freg" value="freg" />
@@ -195,7 +196,7 @@ export function OfferForm(props) {
             Excursion
           </label>
         </div>
-      </div>
+      </div> */}
 
       <Field name="description">
         {({ input, meta }) => (

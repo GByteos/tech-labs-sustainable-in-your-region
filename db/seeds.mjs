@@ -16,7 +16,7 @@ const seed = async () => {
       { name: "Drugstore product", category: ["CONSUME", "HEALTH"] },
       { name: "Clothes", category: ["CONSUME", "HEALTH"] },
       { name: "Alternative energy", category: ["CONSUME", "ENERGY"] },
-      { name: "Natur", category: ["HEALTH", "EDUCATION"] },
+      { name: "Nature", category: ["HEALTH", "EDUCATION"] },
       { name: "Health", category: ["CONSUME", "HEALTH"] },
       { name: "Energy", category: ["CONSUME", "ENERGY"] },
       { name: "Energy saving", category: ["CONSUME", "ENERGY", "EDUCATION"] },
