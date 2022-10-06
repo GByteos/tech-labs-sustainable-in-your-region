@@ -78,7 +78,7 @@ createOffer
     // req.file.path => contains the full image path and extension
     const session = await getSession(req, res)
 
-    // mak an object and validate the content
+    // make an object and validate the content
     let values = CreateOffer.safeParse(JSON.parse(JSON.stringify(req.body)))
 
     if (values.success === true) {
@@ -98,7 +98,6 @@ createOffer
       console.log(offer)
       res.status(200).json({ data: "sucess", offer: offer })
     } else {
-      // TODO: remove uploaded fiel
       if (req.file) {
         await unlink(req.file.path)
       }
