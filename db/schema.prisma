@@ -80,9 +80,8 @@ model Offer {
   // offer type specific fields
   openingTimes String?
   date         DateTime?
-  offerType    OfferType @default(SHOP)
-  offerTag     OfferTag? @relation(fields: [offerTagId], references: [id])
-  offerTagId   Int?
+  offerType    OfferType  @default(SHOP)
+  offerTags    OfferTag[]
 }
 
 enum OfferType {

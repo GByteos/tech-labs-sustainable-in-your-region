@@ -7,11 +7,10 @@ import { useQuery, useMutation } from "@blitzjs/rpc"
 import { useParam } from "@blitzjs/next"
 import Layout from "app/core/layouts/Layout"
 import getOffer from "app/offers/queries/getOffer"
-import updateOffer from "app/offers/mutations/updateOffer"
 import { OfferForm, FORM_ERROR } from "app/offers/components/OfferForm"
 import axios from "axios"
 import { getAntiCSRFToken } from "@blitzjs/auth"
-import { CreateOffer } from "app/offers/validation"
+import { UpdateOffer } from "app/offers/validation"
 
 export const EditOffer = () => {
   const router = useRouter()
@@ -26,7 +25,6 @@ export const EditOffer = () => {
       staleTime: Infinity,
     }
   )
-  const [updateOfferMutation] = useMutation(updateOffer)
   return (
     <>
       <Head>
@@ -38,9 +36,7 @@ export const EditOffer = () => {
         <pre>{JSON.stringify(offer, null, 2)}</pre>
 
         <OfferForm
-          //submitText="Update Offer" // TODO use a zod schema for form validation
-          //  - Tip: extract mutation's schema into a shared `validations.ts` file and
-          //         then import and use it here
+          // TODO: activate schema
           // schema={UpdateOffer}
           initialValues={offer}
           onSubmit={async (values) => {
@@ -55,7 +51,7 @@ export const EditOffer = () => {
 
               // put all fields onto the formData for multer
               formData.append("id", offer.id)
-              if (values.logo[0]) formData.append("logo", values.logo[0])
+              if (values.logo) formData.append("logo", values.logo[0])
               if (values.name) formData.append("name", values.name)
               if (values.offerType) formData.append("offerType", values.offerType)
               if (values.description) formData.append("description", values.description)
