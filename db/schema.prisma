@@ -90,9 +90,18 @@ enum OfferType {
 }
 
 model OfferTag {
-  id        Int      @id @default(autoincrement())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id        Int                @id @default(autoincrement())
+  createdAt DateTime           @default(now())
+  updatedAt DateTime           @updatedAt
   name      String
+  category  OfferTagCategory[]
   offers    Offer[]
+}
+
+enum OfferTagCategory {
+  CONSUME
+  ENERGY
+  EDUCATION
+  HEALTH
+  INCLUSIVITY
 }
