@@ -1,6 +1,8 @@
 import { Form } from "app/core/components/Form"
 import { Field } from "react-final-form"
 import { FileField } from "app/core/components/FileField"
+import { useQuery } from "@blitzjs/rpc"
+import getOfferTags from "app/offer-tags/queries/getOfferTags"
 //import styles from "pages/styles/OfferForm.module.css"
 export { FORM_ERROR } from "app/core/components/Form"
 
@@ -18,6 +20,12 @@ const Condition = ({ when, is, children }) => (
 
 export function OfferForm(props) {
   const isLoggedIn = props.isLoggedIn
+
+  const [tags] = useQuery(getOfferTags, {})
+
+  // tags.offerTags contains a object list of the tags
+  console.log(tags.offerTags)
+
   console.log(isLoggedIn)
   return (
     <Form {...props} className="footform">
