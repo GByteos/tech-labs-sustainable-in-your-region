@@ -1,26 +1,40 @@
 //import db from "db"
-import db from "./index.js"
+import db from "./index.mjs"
 
-/*
- * This seed function is executed when you run `blitz db seed`.
- *
- * Probably you want to use a library like https://chancejs.com
- * to easily generate realistic data.
- */
 const seed = async () => {
   // for (let i = 0; i < 5; i++) {
   //   await db.project.create({ data: { name: "Project " + i } })
   // }
-  console.log("Hello")
-  await db.offerTag.create({ data: { name: "Food" } })
-  const test = await db.offer.create({
-    data: {
-      name: "Test",
-      description: "Description",
-      authorId: 1,
-    },
+  let seededData
+
+  // seeding basic tags
+  seededData = await db.offerTag.createMany({
+    data: [
+      { name: "Food regional", category: ["CONSUME", "HEALTH"] },
+      { name: "Food organic", category: ["CONSUME", "HEALTH"] },
+      { name: "Drugstore product", category: ["CONSUME", "HEALTH"] },
+      { name: "Clothes", category: ["CONSUME", "HEALTH"] },
+      { name: "Alternative energy", category: ["CONSUME", "ENERGY"] },
+      { name: "Natur", category: ["HEALTH", "EDUCATION"] },
+      { name: "Health", category: ["CONSUME", "HEALTH"] },
+      { name: "Energy", category: ["CONSUME", "ENERGY"] },
+      { name: "Energy saving", category: ["CONSUME", "ENERGY", "EDUCATION"] },
+      { name: "Heating", category: ["CONSUME", "ENERGY"] },
+      { name: "Household product", category: ["CONSUME"] },
+      { name: "Second Hand", category: ["CONSUME"] },
+      { name: "Sharing", category: ["CONSUME"] },
+      { name: "Car", category: ["CONSUME"] },
+      { name: "Bike", category: ["CONSUME"] },
+      { name: "Nutrition", category: ["CONSUME", "HEALTH", "EDUCATION"] },
+      { name: "Mental Health", category: ["HEALTH", "EDUCATION"] },
+      { name: "Physical Health", category: ["HEALTH", "EDUCATION"] },
+      { name: "Nature", category: ["CONSUME", "HEALTH"] },
+      { name: "Workshop", category: ["EDUCATION"] },
+      { name: "Talk", category: ["EDUCATION"] },
+      { name: "Excursion", category: ["INCLUSIVITY", "EDUCATION"] },
+    ],
   })
-  console.log(test)
+  console.log(seededData)
 }
 
-export default seed
+seed()

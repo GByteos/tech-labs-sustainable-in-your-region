@@ -93,7 +93,7 @@ model OfferTag {
   id        Int                @id @default(autoincrement())
   createdAt DateTime           @default(now())
   updatedAt DateTime           @updatedAt
-  name      String
+  name      String             @unique
   category  OfferTagCategory[]
   offers    Offer[]
 }
