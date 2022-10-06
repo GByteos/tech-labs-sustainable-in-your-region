@@ -1,55 +1,9 @@
 import nextConnect from "next-connect"
-import multer from "multer"
-import { nanoid } from "nanoid"
 import { getSession } from "@blitzjs/auth"
 import db from "db"
 import { unlink } from "node:fs/promises"
 import { CreateOffer } from "app/offers/validation"
-
-const upload = multer({
-  storage: multer.diskStorage({
-    destination: process.env.IMAGE_UPLOAD_URL,
-    filename: nameGenerator,
-  }),
-  limits: {
-    fileSize: 1e7,
-  },
-  fileFilter: uploadFilter,
-})
-
-/**
- * Filters the files to upload and rejects all other than images
- * @param {*} req
- * @param {*} file
- * @param {*} cb
- * @returns
- */
-function uploadFilter(req, file, cb) {
-  let nameAndExtension = file.originalname.split(".")
-
-  // make sure logo is in a allowed file format (at least it has the right extension)
-  if (
-    nameAndExtension.length > 1 &&
-    ["jpg", "png", "gif", "svg"].indexOf(nameAndExtension[nameAndExtension.length - 2] >= 0)
-  ) {
-    cb(null, true)
-    return
-  }
-
-  // reject all other files
-  cb(null, false)
-}
-
-/**
- * Generates a new random name for the file to upload
- * @param {*} req
- * @param {*} file
- * @param {*} cb
- */
-function nameGenerator(req, file, cb) {
-  let nameAndExtension = file.originalname.split(".")
-  cb(null, nanoid() + "." + nameAndExtension[nameAndExtension.length - 1])
-}
+import imageUpload from "app/offers/components/imageUpload"
 
 const createOffer = nextConnect({
   async onError(error, req, res) {
@@ -73,7 +27,7 @@ createOffer
       next()
     }
   })
-  .use(upload.single("logo"))
+  .use(imageUpload.single("logo"))
   .post(async (req, res) => {
     // req.file.path => contains the full image path and extension
     const session = await getSession(req, res)
