@@ -1,6 +1,7 @@
 //import db from "db"
 import db from "./index.mjs"
 import { SecurePassword } from "@blitzjs/auth"
+import { faker } from "@faker-js/faker"
 
 const seed = async () => {
   // for (let i = 0; i < 5; i++) {
@@ -29,7 +30,6 @@ const seed = async () => {
       { name: "Nutrition", category: ["CONSUME", "HEALTH", "EDUCATION"] },
       { name: "Mental Health", category: ["HEALTH", "EDUCATION"] },
       { name: "Physical Health", category: ["HEALTH", "EDUCATION"] },
-      { name: "Nature", category: ["CONSUME", "HEALTH"] },
       { name: "Workshop", category: ["EDUCATION"] },
       { name: "Talk", category: ["EDUCATION"] },
       { name: "Excursion", category: ["INCLUSIVITY", "EDUCATION"] },
@@ -37,6 +37,7 @@ const seed = async () => {
   })
   console.log(seededData)
 
+  // seed an admin and an normal user
   const hashedPassword = await SecurePassword.hash("sustainability")
 
   seededData = await db.user.create({
@@ -69,7 +70,78 @@ const seed = async () => {
     },
   })
 
+  // seed some offers
   console.log(seededData)
+
+  console.log(
+    faker.helpers.arrayElements(
+      [
+        { id: 1 },
+        { id: 2 },
+        { id: 3 },
+        { id: 4 },
+        { id: 5 },
+        { id: 6 },
+        { id: 7 },
+        { id: 8 },
+        { id: 9 },
+        { id: 10 },
+        { id: 11 },
+        { id: 12 },
+        { id: 13 },
+        { id: 14 },
+        { id: 15 },
+        { id: 16 },
+        { id: 17 },
+        { id: 18 },
+        { id: 19 },
+        { id: 20 },
+        { id: 21 },
+      ],
+      3
+    )
+  )
+
+  for (let i = 0; i < 500; i++) {
+    seededData = await db.offer.create({
+      data: {
+        name: faker.company.name(),
+        description: faker.lorem.paragraphs(),
+        link: "https://www." + faker.internet.domainName(),
+        authorId: faker.helpers.arrayElement([1, 2]),
+        offerType: faker.helpers.arrayElement(["SHOP", "EVENT"]),
+        offerTags: {
+          connect: faker.helpers.arrayElements(
+            [
+              { id: 1 },
+              { id: 2 },
+              { id: 3 },
+              { id: 4 },
+              { id: 5 },
+              { id: 6 },
+              { id: 7 },
+              { id: 8 },
+              { id: 9 },
+              { id: 10 },
+              { id: 11 },
+              { id: 12 },
+              { id: 13 },
+              { id: 14 },
+              { id: 15 },
+              { id: 16 },
+              { id: 17 },
+              { id: 18 },
+              { id: 19 },
+              { id: 20 },
+              { id: 21 },
+            ],
+            3
+          ),
+        },
+      },
+    })
+    console.log(seededData)
+  }
 }
 
 seed()
