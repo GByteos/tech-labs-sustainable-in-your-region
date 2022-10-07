@@ -9,7 +9,7 @@ import { useQuery, useMutation } from "@blitzjs/rpc"
 import { Routes } from "@blitzjs/next"
 import { useEffect, useState } from "react"
 import getPublicTags from "app/offer-tags/queries/getPublicTags"
-import OffersPage from "pages/offers/index"
+
 
 const UserInfo = () => {
   const currentUser = useCurrentUser()
@@ -70,7 +70,7 @@ function HEADER() {
     health: useQuery(getPublicTags, "HEALTH")[0],
     inclusivity: useQuery(getPublicTags, "INCLUSIVITY")[0],
   }
-
+console.log(tags)
   return (
     <div>
       <div className="up">

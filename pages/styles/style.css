@@ -448,13 +448,22 @@ searchBox {
 /*  =======================   Seiten mit Einträgen ================== */
 
 .eintrag {
-  padding: 10px 0px;
+  /* padding: 10px 0px; */
   display: flex;
   /* justify-content: flex-end; */
   gap: 10px;
 
   /* margin-left: 50px; */
 }
+
+.smallheader1 {
+  flex: 1;
+font-size:small;
+background-color: var(--light);
+color: white;
+}
+
+
 .eintrag .displaylogo {
   /* width: 20%; */
   flex: 1;
@@ -477,12 +486,9 @@ searchBox {
 .offertext {
   flex: 4;
   width: 60%;
-
-  
 }
 
-.eintrag .para_main 
-h3 {
+.eintrag .para_main h3 {
   padding: 5px;
 }
 .info {
@@ -529,7 +535,13 @@ h3 {
 .DisplayList {
   list-style-type: none;
 }
+.DisplayList li {
+  border: var(--dark) solid 0.5px;
+  margin-bottom: 1em;
+  /* padding-top: 1em; */
 
+  /* box-shadow: 0 4px 8px 8px rgba(34, 60, 80, 0.16); */
+}
 .DisplayOffer {
   display: flex;
   flex-direction: column;
@@ -553,4 +565,8 @@ a {
 }
 a:hover {
   color: var(--red);
+}
+.offertext span {
+  font-size: small;
+  padding: 0 3px;
 }

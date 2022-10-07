@@ -3,6 +3,7 @@ import Link from "next/link"
 import YL from "public/yourlogo.png"
 import { Routes } from "@blitzjs/next"
 import Truncate from "react-truncate"
+import getPublicTags from "app/offer-tags/queries/getPublicTags"
 
 function Logo({ offer }) {
   console.log({ offer })
@@ -27,32 +28,43 @@ function Logo({ offer }) {
 }
 
 function DisplayOffer({ offer }) {
-  return (
-    <article className="eintrag">
-      <a className="LOGO" href={offer.link}>
-        <Logo offer={offer} />
-      </a>
+  // const tags = {
+  //   offer.id: useQuery(getPublicTags, "")[0]}
 
-      <div className="para_main offertext">
-        <Link
-          href={Routes.ShowOfferPage({
-            offerId: offer.id,
-          })}
-        >
-          <a>
-            <h3>{offer.name}</h3>
+  return (
+    <>
+      <p className="smallheader1">{offer.offerType} - tags</p>
+
+      <article className="eintrag">
+        <div>
+          <a className="LOGO" href={offer.link}>
+            <Logo offer={offer} />
           </a>
-        </Link>
-        <Truncate
-          lines={4}
-          // width={1000} // width being how much you want to truncate your copy
-          ellipsis="&hellip;"
-        >
-          <p>{offer.description}</p>
-        </Truncate>
-      </div>
-      <div className="para_main info">{offer.openingTimes}</div>
-    </article>
+        </div>
+
+        {/*  */}
+        <div className="para_main offertext">
+          <Link
+            href={Routes.ShowOfferPage({
+              offerId: offer.id,
+            })}
+          >
+            <a>
+              <h4>{offer.name}</h4>
+            </a>
+          </Link>
+
+          <Truncate
+            lines={1}
+            width={1200} // width being how much you want to truncate your copy
+            ellipsis="&hellip;"
+          >
+            <p>{offer.description}</p>
+          </Truncate>
+        </div>
+        <div className="para_main info">{offer.openingTimes}</div>
+      </article>
+    </>
   )
 }
 
