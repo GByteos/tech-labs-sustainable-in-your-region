@@ -384,7 +384,7 @@ aside {
 }
 input,
 textarea,
-select {
+select{
   flex: 2;
   padding: 3px 5px;
   font-size: 1em;
@@ -574,4 +574,7 @@ a:hover {
 .offertext span {
   font-size: small;
   padding: 0 3px;
+}
+.signupfield {
+  font-size: 1em;
 }

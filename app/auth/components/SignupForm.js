@@ -13,6 +13,7 @@ export const SignupForm = (props) => {
         submitText="Create Account"
         schema={Signup}
         initialValues={{
+          name: "",
           email: "",
           password: "",
         }}
@@ -34,8 +35,25 @@ export const SignupForm = (props) => {
           }
         }}
       >
-        <LabeledTextField name="email" label="Email" placeholder="Email" />
-        <LabeledTextField name="password" label="Password" placeholder="Password" type="password" />
+        {" "}
+        <div className="FormElement">
+          <LabeledTextField className="signupfield" name="name" label="Name" placeholder="Name" />
+          <br />
+          <LabeledTextField
+            className="signupfield"
+            name="email"
+            label="Email"
+            placeholder="Email"
+          />
+          <br />
+          <LabeledTextField
+            className="signupfield"
+            name="password"
+            label="Password"
+            placeholder="Password"
+            type="password"
+          />
+        </div>
       </Form>
     </div>
   )
