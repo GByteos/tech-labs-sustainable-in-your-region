@@ -12,7 +12,7 @@ import YL from "public/yourlogo.png"
 import Image from "next/image"
 
 function Logo({ offer }) {
-  console.log({ offer })
+  // console.log({ offer })
   if (!offer.logo) {
     return (
       <>

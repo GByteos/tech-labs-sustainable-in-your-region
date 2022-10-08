@@ -35,7 +35,11 @@ const UserInfo = () => {
         <div>
           {" "}
           <Link href={Routes.MyOffersPage()}>
-            <a>My Offers</a>
+            <a>My Offers </a>
+          </Link>
+          <p></p>
+          <Link href={Routes.userPage()}>
+            <a> User</a>
           </Link>
         </div>
       </>
