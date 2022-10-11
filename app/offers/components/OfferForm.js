@@ -24,6 +24,7 @@ export function OfferForm(props) {
 
   return (
     <Form {...props} className="footform">
+      <h3>Your offer</h3>
       <div className="FormElement">
         <label htmlFor="offerType">What type of offer do you have?</label>
         <br />
@@ -97,104 +98,6 @@ export function OfferForm(props) {
           />
         </label>
       </div>
-      {/* TAGS */}
-      {/* <div className="FormElement">
-        <label> </label>
-        <div>
-          <label>
-            <Field type="checkbox" component="input" name="freg" value="freg" />
-            Food regional
-          </label>
-          <label>
-            <Field type="checkbox" component="input" name="fbio" value="fbio" />
-            Food organic
-          </label>
-          <label>
-            <Field type="checkbox" component="input" name="drug" value="drug" />
-            Drugstore product
-          </label>
-          <label>
-            <Field type="checkbox" component="input" name="kle" value="kle" />
-            Clothes
-          </label>
-          <label>
-            <Field type="checkbox" component="input" name="altene" value="mob" />
-            Alternative energy
-          </label>
-          <label>
-            <Field type="checkbox" component="input" name="nat" value="nat" />
-            Natur
-          </label>
-          <label>
-            <Field type="checkbox" component="input" name="ges" value="ges" />
-            Health
-          </label>
-          <label>
-            <Field type="checkbox" component="input" name="ene" value="ene" />
-            Energy
-          </label>{" "}
-          <label>
-            <Field type="checkbox" component="input" name="save" value="ene" />
-            Energy saving
-          </label>
-          <label>
-            <Field type="checkbox" component="input" name="heat" value="ene" />
-            Heating
-          </label>
-          <label>
-            <Field type="checkbox" component="input" name="hh" value="hh" />
-            Household product
-          </label>
-          <label>
-            <Field type="checkbox" component="input" name="sh" value="sh" />
-            Second Hand
-          </label>
-          <label>
-            <Field type="checkbox" component="input" name="freg" value="freg" />
-            Food regional
-          </label>
-          <label>
-            <Field type="checkbox" component="input" name="shar" value="fbio" />
-            Sharing
-          </label>
-          <label>
-            <Field type="checkbox" component="input" name="car" value="drug" />
-            Car
-          </label>
-          <label>
-            <Field type="checkbox" component="input" name="bike" value="kle" />
-            Bike
-          </label>
-          <label>
-            <Field type="checkbox" component="input" name="nutr" value="mob" />
-            Nutrition
-          </label>
-          <label>
-            <Field type="checkbox" component="input" name="mheal" value="nat" />
-            Mental Health
-          </label>
-          <label>
-            <Field type="checkbox" component="input" name="pheal" value="ges" />
-            Physical Health
-          </label>
-          <label>
-            <Field type="checkbox" component="input" name="natur" value="ene" />
-            Nature
-          </label>
-          <label>
-            <Field type="checkbox" component="input" name="workshop" value="hh" />
-            Workshop
-          </label>
-          <label>
-            <Field type="checkbox" component="input" name="talk" value="sh" />
-            Talk
-          </label>
-          <label>
-            <Field type="checkbox" component="input" name="excurs" value="mob" />
-            Excursion
-          </label>
-        </div>
-      </div> */}
 
       <Field name="description">
         {({ input, meta }) => (
@@ -246,16 +149,74 @@ export function OfferForm(props) {
           )}
         </Field>
       </Condition>
-      <Field name="link">
-        {({ input, meta }) => (
-          <div className="FormElement">
-            <label htmlFor="link">Your Website</label>
-            <br />
-            <input {...input} id="link" component="input" placeholder="https://" />
-            {meta.error && meta.touched && <span>{meta.error}</span>}
-          </div>
-        )}
-      </Field>
+      <br />
+              <h3>Contact Information</h3>
+        <Field name="link">
+          {({ input, meta }) => (
+            <div className="FormElement">
+              <label htmlFor="link">Your Website</label>
+              <br />
+              <input {...input} id="link" placeholder="https://" type="url" />
+              {meta.error && meta.touched && <span>{meta.error}</span>}
+            </div>
+          )}
+        </Field>
+
+        <Field name="email">
+          {({ input, meta }) => (
+            <div className="FormElement">
+              <label htmlFor="email">Your email</label>
+              <br />
+              <input {...input} id="email" placeholder="sustainable@offer.com" type="mail" />
+              {meta.error && meta.touched && <span>{meta.error}</span>}
+            </div>
+          )}
+        </Field>
+
+        <Field name="street">
+          {({ input, meta }) => (
+            <div className="FormElement">
+              <label htmlFor="street">Street and number</label>
+              <br />
+              <input {...input} id="street" placeholder="Yourstreet 123" />
+              {meta.error && meta.touched && <span>{meta.error}</span>}
+            </div>
+          )}
+        </Field>
+
+        <Field name="zip">
+          {({ input, meta }) => (
+            <div className="FormElement">
+              <label htmlFor="zip">Zip code</label>
+              <br />
+              <input {...input} id="zip" placeholder="98765" />
+              {meta.error && meta.touched && <span>{meta.error}</span>}
+            </div>
+          )}
+        </Field>
+
+        <Field name="city">
+          {({ input, meta }) => (
+            <div className="FormElement">
+              <label htmlFor="city">Your city</label>
+              <br />
+              <input {...input} id="city" placeholder="Your city" />
+              {meta.error && meta.touched && <span>{meta.error}</span>}
+            </div>
+          )}
+        </Field>
+
+        <Field name="tel">
+          {({ input, meta }) => (
+            <div className="FormElement">
+              <label htmlFor="tel">Your phone number</label>
+              <br />
+              <input {...input} id="tel" placeholder="0123 456 78 90" />
+              {meta.error && meta.touched && <span>{meta.error}</span>}
+            </div>
+          )}
+        </Field>
+   
       <div className="FormElement">
         <label htmlFor="logo">Upload your image or logo</label>
         <FileField type="file" id="file" name="logo" />

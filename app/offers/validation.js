@@ -6,6 +6,11 @@ const offerContent = z.object({
   link: z.string().url(),
   offerType: z.string(),
   openingTimes: z.string().optional(),
+  email: z.string().optional(),
+  street: z.string().optional(),
+  zip: z.string().optional(),
+  city: z.string().optional(),
+  tel: z.string().optional(),
   logo: z.any().optional(),
   date: z.preprocess((arg) => {
     if (typeof arg == "string" || arg instanceof Date) return new Date(arg)

@@ -58,6 +58,11 @@ export const EditOffer = () => {
               if (values.openingTimes) formData.append("openingTimes", values.openingTimes)
               if (values.date) formData.append("date", values.date)
               if (values.link) formData.append("link", values.link)
+              if (values.email) formData.append("email", values.email) 
+              if (values.street) formData.append("street", values.street)
+              if (values.zip) formData.append("zip", values.zip)
+              if (values.city) formData.append("city", values.city)
+              if (values.tel) formData.append("tel", values.tel)
 
               // is needed, to identify and verify the user on server side
               const antiCSRFToken = getAntiCSRFToken()

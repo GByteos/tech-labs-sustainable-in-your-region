@@ -78,6 +78,7 @@ export const Offer = () => {
 
   return (
     <div>
+      {/* <pre>{JSON.stringify(offer, "", 2)}</pre> */}
       <div>
         <br />
         <div className="offerTitle">
@@ -97,16 +98,25 @@ export const Offer = () => {
         <section className="offerInfo">
           <div>
             <h3>Opening Times</h3>
-            {offer.openingTime}
+            {offer.openingTimes}
           </div>
           <div>
             <h3>Location</h3>
-            {offer.Address}
+            <div>
+              {offer.street} <br />
+              {offer.zip} {offer.city}
+            </div>
           </div>
           <div>
             <h3>Contact</h3>
-            {offer.email}
-            {offer.phone}
+            <div>
+              Email:{" "}
+              <a href={`mailto: ${offer.email}`}>
+                {offer.email}
+                <br />
+              </a>
+              Phone: {offer.tel}
+            </div>
           </div>
         </section>
       </div>
