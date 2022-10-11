@@ -312,7 +312,8 @@ aside {
 
 .nachh p {
   height: 100%;
-  align-items: center;
+  align-self: center;
+
 }
 .NZUN {
   display: flex;
@@ -320,10 +321,10 @@ aside {
   margin-top: 50px;
   justify-content: center;
 }
-.NZUN:hover {
+/* .NZUN:hover {
   transform: scale(1.7);
   filter: none;
-}
+} */
 .nachh .para_main a:link {
   color: var(--dark);
 }
@@ -576,5 +577,5 @@ a:hover {
   padding: 0 3px;
 }
 .signupfield {
-  font-size: 1em;
+  font-size: 0.8em;
 }
