@@ -103,8 +103,10 @@ export const Offer = () => {
           <div>
             <h3>Location</h3>
             <div>
-              {offer.street} <br />
-              {offer.zip} {offer.city}
+              <a href={`http://maps.google.com/?q=${offer.street} ${offer.zip} ${offer.city}`}>
+                {offer.street} <br />
+                {offer.zip} {offer.city}
+              </a>
             </div>
           </div>
           <div>

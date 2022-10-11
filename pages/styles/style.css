@@ -313,7 +313,6 @@ aside {
 .nachh p {
   height: 100%;
   align-self: center;
-
 }
 .NZUN {
   display: flex;
@@ -385,7 +384,7 @@ aside {
 }
 input,
 textarea,
-select{
+select {
   flex: 2;
   padding: 3px 5px;
   font-size: 1em;
@@ -548,30 +547,31 @@ searchBox {
 
   /* box-shadow: 0 4px 8px 8px rgba(34, 60, 80, 0.16); */
 }
-.DisplayOffer {
+/* .DisplayOffer {
   display: flex;
   flex-direction: column;
-}
+} */
 
 /* .OfferForm{
   display:inline ;
 } */
 
-.offerTitle
- {
+.offerTitle {
   display: flex;
-  justify-content: left;
-  gap: 10px
+  justify-content: space-evenly;
+  gap: 20px;
 }
 .offerTitle div {
+  flex: 1;
   align-self: center;
-  align-content: center;
+  /* align-content: center; */
 }
-.offerInfo{
+.offerInfo {
   display: flex;
-  justify-content: space-between;
-  gap: 10px
+  justify-content: space-evenly;
+  gap: 20px;
 }
+
 a {
   color: var(--dark);
 }
