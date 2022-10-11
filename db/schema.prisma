@@ -74,12 +74,19 @@ model Offer {
   link        String?
   logo        String?
 
+
   author   User @relation(fields: [authorId], references: [id])
   authorId Int
 
   // offer type specific fields
   openingTimes String?
   date         DateTime?
+  //contact
+  email        String?
+  street       String?
+  zip          String?
+  city         String?
+  tel          String?
   offerType    OfferType  @default(SHOP)
   offerTags    OfferTag[]
 }

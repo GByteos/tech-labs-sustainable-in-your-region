@@ -557,14 +557,20 @@ searchBox {
   display:inline ;
 } */
 
-.offerTitle,
-.offerInfo {
+.offerTitle
+ {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: left;
+  gap: 10px
 }
 .offerTitle div {
   align-self: center;
   align-content: center;
+}
+.offerInfo{
+  display: flex;
+  justify-content: space-between;
+  gap: 10px
 }
 a {
   color: var(--dark);
