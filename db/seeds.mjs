@@ -3,11 +3,14 @@ import db from "./index.mjs"
 import { SecurePassword } from "@blitzjs/auth"
 import { faker } from "@faker-js/faker"
 
+const OFFERS_TO_SEED = 50
+
 const seed = async () => {
-  // for (let i = 0; i < 5; i++) {
-  //   await db.project.create({ data: { name: "Project " + i } })
-  // }
+  // general variable, used for output
   let seededData
+
+  // set localisation
+  faker.setLocale("de")
 
   // seeding basic tags
   seededData = await db.offerTag.createMany({
@@ -70,15 +73,62 @@ const seed = async () => {
     },
   })
 
+  seededData = await db.user.create({
+    data: {
+      email: "user2@user.com",
+      hashedPassword,
+      role: "USER",
+    },
+    select: {
+      id: true,
+      name: true,
+      email: true,
+      role: true,
+    },
+  })
+
+  seededData = await db.user.create({
+    data: {
+      email: "user3@user.com",
+      hashedPassword,
+      role: "USER",
+    },
+    select: {
+      id: true,
+      name: true,
+      email: true,
+      role: true,
+    },
+  })
+
+  seededData = await db.user.create({
+    data: {
+      email: "moderator@moderator.com",
+      hashedPassword,
+      role: "MODERATOR",
+    },
+    select: {
+      id: true,
+      name: true,
+      email: true,
+      role: true,
+    },
+  })
+
   // seed some offers
   console.log(seededData)
-  for (let i = 0; i < 500; i++) {
+  for (let i = 0; i < OFFERS_TO_SEED; i++) {
     seededData = await db.offer.create({
       data: {
         name: faker.company.name(),
         description: faker.lorem.paragraphs(),
         link: "https://www." + faker.internet.domainName(),
-        authorId: faker.helpers.arrayElement([1, 2]),
+        authorId: faker.helpers.arrayElement([1, 2, 3, 4, 5]),
+        email: faker.internet.email(),
+        street: faker.address.streetAddress(),
+        zip: faker.address.zipCode(),
+        city: faker.address.city(),
+        tel: faker.phone.number(),
         offerType: faker.helpers.arrayElement(["SHOP", "EVENT"]),
         offerTags: {
           connect: faker.helpers.arrayElements(
