@@ -5,11 +5,11 @@ import Link from "next/link"
 import { usePaginatedQuery } from "@blitzjs/rpc"
 import { useRouter } from "next/router"
 import Layout from "app/core/layouts/Layout"
-import getUserOffers from "app/offers/queries/getUserOffers"
+import getPublicOffers from "app/offers/queries/getPublicOffers"
 import DisplayOffer from "app/offers/components/DisplayOffer"
 
 const ITEMS_PER_PAGE = 20
-export const OffersList = () => {
+export const SearchList = () => {
   const query = useRouterQuery()
 
   const tags = query.tags ? JSON.parse(decodeURIComponent(query.tags)) : null
@@ -23,10 +23,10 @@ export const OffersList = () => {
   }
 
   console.log(offerTags)
-
+  console.log(tags)
   const router = useRouter()
   const page = Number(router.query.page) || 0
-  const [{ offers, hasMore }] = usePaginatedQuery(getUserOffers, {
+  const [{ offers, hasMore }] = usePaginatedQuery(getPublicOffers, {
     where: {
       offerTags: {
         some: {
@@ -90,7 +90,7 @@ const SearchPage = () => {
         </p>
 
         <Suspense fallback={<div>Loading...</div>}>
-          <OffersList />
+          <SearchList />
         </Suspense>
       </div>
     </Layout>
