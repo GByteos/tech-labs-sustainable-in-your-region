@@ -21,6 +21,8 @@ const NewOfferPage = () => {
             try {
               const formData = new FormData()
 
+              console.log(values)
+
               // put all fields onto the formData for multer
               if (values.logo) formData.append("logo", values.logo[0])
               if (values.name) formData.append("name", values.name)
@@ -34,6 +36,7 @@ const NewOfferPage = () => {
               if (values.zip) formData.append("zip", values.zip)
               if (values.city) formData.append("city", values.city)
               if (values.tel) formData.append("tel", values.tel)
+              //if (values.tags) formData.append("tags", values.tags)
 
               // is needed, to identify and verify the user on server side
               const antiCSRFToken = getAntiCSRFToken()

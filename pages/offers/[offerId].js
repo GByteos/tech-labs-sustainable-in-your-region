@@ -10,6 +10,7 @@ import deleteOffer from "app/offers/mutations/deleteOffer"
 import { useCurrentUser } from "app/core/hooks/useCurrentUser"
 import YL from "public/yourlogo.png"
 import Image from "next/image"
+import MyOffersPage from "./myOffers"
 
 function Logo({ offer }) {
   // console.log({ offer })
@@ -55,7 +56,7 @@ function EditDelete({ offer }) {
               await deleteOfferMutation({
                 id: offer.id,
               })
-              router.push(Routes.OffersPage())
+              router.push(Routes.MyOffersPage())
             }
           }}
           style={{

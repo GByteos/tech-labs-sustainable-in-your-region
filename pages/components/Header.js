@@ -73,7 +73,6 @@ function HEADER() {
     health: useQuery(getPublicTags, "HEALTH")[0],
     inclusivity: useQuery(getPublicTags, "INCLUSIVITY")[0],
   }
-  console.log(tags)
   return (
     <div>
       <div className="up">

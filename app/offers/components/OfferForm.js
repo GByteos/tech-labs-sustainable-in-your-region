@@ -20,7 +20,7 @@ const Condition = ({ when, is, children }) => (
 )
 
 export function OfferForm(props) {
-  const [tags] = useQuery(getPublicTags)
+  const [availableTags] = useQuery(getPublicTags)
 
   return (
     <Form {...props} className="footform">
@@ -88,16 +88,25 @@ export function OfferForm(props) {
           </label>
         </div>
       </div>
-      <div className="FormElement">
-        <label>
-          Which tags fit your offer?
-          <Multiselect
-            options={tags}
-            displayValue="name"
-            // groupBy="category"
-          />
-        </label>
-      </div>
+      <Field name="tags">
+        {({ input, meta }) => (
+          <div className="FormElement">
+            <label>
+              Which tags fit your offer?
+              <Multiselect
+                name={input.name}
+                value={[input.value]}
+                options={availableTags}
+                displayValue="name"
+                onRemove={input.onChange}
+                onSelect={input.onChange}
+                // groupBy="category"
+              />
+              {meta.error && meta.touched && <span>{meta.error}</span>}
+            </label>
+          </div>
+        )}
+      </Field>
 
       <Field name="description">
         {({ input, meta }) => (
@@ -150,73 +159,73 @@ export function OfferForm(props) {
         </Field>
       </Condition>
       <br />
-              <h3>Contact Information</h3>
-        <Field name="link">
-          {({ input, meta }) => (
-            <div className="FormElement">
-              <label htmlFor="link">Your Website</label>
-              <br />
-              <input {...input} id="link" placeholder="https://" type="url" />
-              {meta.error && meta.touched && <span>{meta.error}</span>}
-            </div>
-          )}
-        </Field>
+      <h3>Contact Information</h3>
+      <Field name="link">
+        {({ input, meta }) => (
+          <div className="FormElement">
+            <label htmlFor="link">Your Website</label>
+            <br />
+            <input {...input} id="link" placeholder="https://" type="url" />
+            {meta.error && meta.touched && <span>{meta.error}</span>}
+          </div>
+        )}
+      </Field>
 
-        <Field name="email">
-          {({ input, meta }) => (
-            <div className="FormElement">
-              <label htmlFor="email">Your email</label>
-              <br />
-              <input {...input} id="email" placeholder="sustainable@offer.com" type="mail" />
-              {meta.error && meta.touched && <span>{meta.error}</span>}
-            </div>
-          )}
-        </Field>
+      <Field name="email">
+        {({ input, meta }) => (
+          <div className="FormElement">
+            <label htmlFor="email">Your email</label>
+            <br />
+            <input {...input} id="email" placeholder="sustainable@offer.com" type="mail" />
+            {meta.error && meta.touched && <span>{meta.error}</span>}
+          </div>
+        )}
+      </Field>
 
-        <Field name="street">
-          {({ input, meta }) => (
-            <div className="FormElement">
-              <label htmlFor="street">Street and number</label>
-              <br />
-              <input {...input} id="street" placeholder="Yourstreet 123" />
-              {meta.error && meta.touched && <span>{meta.error}</span>}
-            </div>
-          )}
-        </Field>
+      <Field name="street">
+        {({ input, meta }) => (
+          <div className="FormElement">
+            <label htmlFor="street">Street and number</label>
+            <br />
+            <input {...input} id="street" placeholder="Yourstreet 123" />
+            {meta.error && meta.touched && <span>{meta.error}</span>}
+          </div>
+        )}
+      </Field>
 
-        <Field name="zip">
-          {({ input, meta }) => (
-            <div className="FormElement">
-              <label htmlFor="zip">Zip code</label>
-              <br />
-              <input {...input} id="zip" placeholder="98765" />
-              {meta.error && meta.touched && <span>{meta.error}</span>}
-            </div>
-          )}
-        </Field>
+      <Field name="zip">
+        {({ input, meta }) => (
+          <div className="FormElement">
+            <label htmlFor="zip">Zip code</label>
+            <br />
+            <input {...input} id="zip" placeholder="98765" />
+            {meta.error && meta.touched && <span>{meta.error}</span>}
+          </div>
+        )}
+      </Field>
 
-        <Field name="city">
-          {({ input, meta }) => (
-            <div className="FormElement">
-              <label htmlFor="city">Your city</label>
-              <br />
-              <input {...input} id="city" placeholder="Your city" />
-              {meta.error && meta.touched && <span>{meta.error}</span>}
-            </div>
-          )}
-        </Field>
+      <Field name="city">
+        {({ input, meta }) => (
+          <div className="FormElement">
+            <label htmlFor="city">Your city</label>
+            <br />
+            <input {...input} id="city" placeholder="Your city" />
+            {meta.error && meta.touched && <span>{meta.error}</span>}
+          </div>
+        )}
+      </Field>
 
-        <Field name="tel">
-          {({ input, meta }) => (
-            <div className="FormElement">
-              <label htmlFor="tel">Your phone number</label>
-              <br />
-              <input {...input} id="tel" placeholder="0123 456 78 90" />
-              {meta.error && meta.touched && <span>{meta.error}</span>}
-            </div>
-          )}
-        </Field>
-   
+      <Field name="tel">
+        {({ input, meta }) => (
+          <div className="FormElement">
+            <label htmlFor="tel">Your phone number</label>
+            <br />
+            <input {...input} id="tel" placeholder="0123 456 78 90" />
+            {meta.error && meta.touched && <span>{meta.error}</span>}
+          </div>
+        )}
+      </Field>
+
       <div className="FormElement">
         <label htmlFor="logo">Upload your image or logo</label>
         <FileField type="file" id="file" name="logo" />
@@ -229,5 +238,3 @@ export function OfferForm(props) {
     </Form>
   )
 }
-
-// /* Unused parts of original code
