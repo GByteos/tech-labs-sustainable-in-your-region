@@ -88,7 +88,7 @@ export function OfferForm(props) {
           </label>
         </div>
       </div>
-      <Field name="tags">
+      <Field name="offerTags">
         {({ input, meta }) => (
           <div className="FormElement">
             <label>

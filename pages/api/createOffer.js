@@ -33,13 +33,26 @@ createOffer
     // req.file.path => contains the full image path and extension
     const session = await getSession(req, res)
 
-    // make an object and validate the content
+    // make an object
     const rawValues = JSON.parse(JSON.stringify(req.body))
-    rawValues.tags = JSON.parse(rawValues.tags)
 
+    // parse array of objects back
+    if (rawValues.offerTags) rawValues.offerTags = JSON.parse(rawValues.offerTags)
+
+    // validate
     let values = CreateOffer.safeParse(rawValues)
 
     if (values.success === true) {
+      // modify tags to be in connection prop
+      if (values.data.offerTags) {
+        values.data.offerTags = {
+          connect: values.data.offerTags.map((tag) => {
+            return { id: tag.id }
+          }),
+        }
+      }
+      console.log(values)
+
       // add server side values to the dataset
       values = {
         ...values.data,
@@ -59,6 +72,7 @@ createOffer
       if (req.file) {
         await unlink(req.file.path)
       }
+      console.log(values)
       res.status(400).json({ data: "failed", error: values.error })
     }
   })

@@ -36,7 +36,7 @@ const NewOfferPage = () => {
               if (values.zip) formData.append("zip", values.zip)
               if (values.city) formData.append("city", values.city)
               if (values.tel) formData.append("tel", values.tel)
-              if (values.tags) formData.append("tags", JSON.stringify(values.tags))
+              if (values.offerTags) formData.append("offerTags", JSON.stringify(values.offerTags))
 
               // is needed, to identify and verify the user on server side
               const antiCSRFToken = getAntiCSRFToken()
