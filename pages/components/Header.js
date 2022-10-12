@@ -10,7 +10,6 @@ import { Routes } from "@blitzjs/next"
 import { useEffect, useState } from "react"
 import getPublicTags from "app/offer-tags/queries/getPublicTags"
 
-
 const UserInfo = () => {
   const currentUser = useCurrentUser()
   const [logoutMutation] = useMutation(logout)
@@ -74,7 +73,7 @@ function HEADER() {
     health: useQuery(getPublicTags, "HEALTH")[0],
     inclusivity: useQuery(getPublicTags, "INCLUSIVITY")[0],
   }
-console.log(tags)
+  console.log(tags)
   return (
     <div>
       <div className="up">
@@ -132,7 +131,9 @@ console.log(tags)
               <ul>
                 {tags.energy.map((tag) => (
                   <li key={tag.id}>
-                    <a href="search">{tag.name}</a>
+                    <Link href={Routes.SearchPage({ tags: JSON.stringify([tag.name]) })}>
+                      {tag.name}
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -146,7 +147,9 @@ console.log(tags)
               <ul>
                 {tags.education.map((tag) => (
                   <li key={tag.id}>
-                    <a href="search">{tag.name}</a>
+                    <Link href={Routes.SearchPage({ tags: JSON.stringify([tag.name]) })}>
+                      {tag.name}
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -159,7 +162,9 @@ console.log(tags)
               <ul>
                 {tags.health.map((tag) => (
                   <li key={tag.id}>
-                    <a href="search">{tag.name}</a>
+                    <Link href={Routes.SearchPage({ tags: JSON.stringify([tag.name]) })}>
+                      {tag.name}
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -173,7 +178,9 @@ console.log(tags)
               <ul>
                 {tags.inclusivity.map((tag) => (
                   <li key={tag.id}>
-                    <a href="search">{tag.name}</a>
+                    <Link href={Routes.SearchPage({ tags: JSON.stringify([tag.name]) })}>
+                      {tag.name}
+                    </Link>
                   </li>
                 ))}
               </ul>
