@@ -5,6 +5,12 @@ const offerContent = z.object({
   description: z.string(),
   link: z.string().url(),
   offerType: z.string(),
+  tags: z.array(
+    z.object({
+      name: z.string(),
+      id: z.number(),
+    })
+  ),
   openingTimes: z.string().optional(),
   email: z.string().optional(),
   street: z.string().optional(),
