@@ -27,7 +27,7 @@ const Home = () => {
                     textAlign: "center",
                   }}
                 >
-                  We don't need a handful of people living perfectly sustainable, we need
+                  We don&apos;t need a handful of people living perfectly sustainable, we need
                   <em> millions of people doing it imperfectly!</em>
                 </h2>
                 <br />

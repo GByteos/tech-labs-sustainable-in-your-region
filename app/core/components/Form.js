@@ -29,12 +29,6 @@ export function Form({ children, submitText, schema, initialValues, onSubmit, ..
               {submitText}
             </button>
           )}
-
-          <style global jsx>{`
-            .form > * + * {
-              margin-top: 1rem;
-            }
-          `}</style>
         </form>
       )}
     />
