@@ -10,6 +10,7 @@ const createOffer = nextConnect({
     if (req.file) {
       await unlink(req.file.path)
     }
+    console.log(error)
     res.status(501).json({ error: `Sorry something Happened! ${error.message}` })
   },
   onNoMatch(req, res) {
@@ -33,7 +34,10 @@ createOffer
     const session = await getSession(req, res)
 
     // make an object and validate the content
-    let values = CreateOffer.safeParse(JSON.parse(JSON.stringify(req.body)))
+    const rawValues = JSON.parse(JSON.stringify(req.body))
+    rawValues.tags = JSON.parse(rawValues.tags)
+
+    let values = CreateOffer.safeParse(rawValues)
 
     if (values.success === true) {
       // add server side values to the dataset
