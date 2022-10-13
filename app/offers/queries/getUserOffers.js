@@ -4,10 +4,10 @@ import db from "db"
 
 export default resolver.pipe(
   resolver.authorize(),
-  async ({ where, orderBy, skip = 0, take = 100 }, { session }) => {
+  async ({ where, orderBy, skip = 0, take = 100 }) => {
    
     // In theory, this could also be done on client side
-    where = { ...where, authorId: session.userId }
+    // where = { ...where, authorId: session.userId }
     const {
       items: offers,
       hasMore,

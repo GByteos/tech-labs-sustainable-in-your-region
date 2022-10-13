@@ -52,7 +52,7 @@ export function OfferForm(props) {
         <label> Of which category is your offer?</label>
         <div>
           <label>
-            <Field type="checkbox" component="input" name="CONSUME" value="freg" />
+            <Field type="checkbox" component="input" name="CONSUME" value="cons" />
             Consume
           </label>
 
@@ -62,13 +62,13 @@ export function OfferForm(props) {
               component="input"
               name="INCLUSIVITY"
               id="INCLUSIVITY"
-              value="fbio"
+              value="incl"
             />
             Inclusivity
           </label>
 
           <label htmlFor="EDUCATION">
-            <Field type="checkbox" component="input" name="EDUCATION" id="EDUCATION" value="fbio" />
+            <Field type="checkbox" component="input" name="EDUCATION" id="EDUCATION" value="edu" />
             Education
           </label>
 

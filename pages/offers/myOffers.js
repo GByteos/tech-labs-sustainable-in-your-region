@@ -1,5 +1,5 @@
 import { Suspense } from "react"
-import { Routes } from "@blitzjs/next"
+import { Routes, useRouterQuery } from "@blitzjs/next"
 import Head from "next/head"
 import Link from "next/link"
 import { usePaginatedQuery } from "@blitzjs/rpc"
@@ -8,10 +8,16 @@ import Layout from "app/core/layouts/Layout"
 import getUserOffers from "app/offers/queries/getUserOffers"
 
 const ITEMS_PER_PAGE = 100
+
 export const OffersList = () => {
   const router = useRouter()
   const page = Number(router.query.page) || 0
+  const queryid = useRouterQuery()
+
   const [{ offers, hasMore }] = usePaginatedQuery(getUserOffers, {
+    where: {
+      authorId: parseInt(queryid.userid),
+    },
     orderBy: {
       id: "asc",
     },
