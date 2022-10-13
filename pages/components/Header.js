@@ -13,7 +13,7 @@ import getPublicTags from "app/offer-tags/queries/getPublicTags"
 const UserInfo = () => {
   const currentUser = useCurrentUser()
   const [logoutMutation] = useMutation(logout)
-console.log(currentUser.id)
+
   if (currentUser) {
     const currentUserId = currentUser.id
     return (
@@ -33,7 +33,7 @@ console.log(currentUser.id)
         </div>
         <div>
           {" "}
-          <Link href={Routes.MyOffersPage({userid: currentUser.id })}>
+          <Link href={Routes.MyOffersPage({ userid: currentUser.id })}>
             <a>My Offers </a>
           </Link>
           <p></p>
