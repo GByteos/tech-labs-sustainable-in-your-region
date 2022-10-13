@@ -40,7 +40,10 @@ export const UserList = () => {
         <ul className="DisplayList">
           {user.map((user) => (
             <li key={user.id}>
-               <DisplayUser user={user}/>
+              <Link  href={Routes.MyOffersPage({ userid: user.id,
+              })}>
+              <a><DisplayUser user={user}/></a> 
+               </Link>
             </li>
           ))}
         </ul>

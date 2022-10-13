@@ -51,7 +51,7 @@ const NewOfferPage = () => {
               }
 
               const response = await axios.post("/api/createOffer", formData, config)
-              if (response.data.data === "sucess") {
+              if (response.data.data === "success") {
                 const offer = response.data.offer
 
                 router.push(
