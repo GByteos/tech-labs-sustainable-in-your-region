@@ -16,7 +16,20 @@ export default resolver.pipe(async ({ where, orderBy, skip = 0, take = 100 }) =>
       db.offer.count({
         where,
       }),
-    query: (paginateArgs) => db.offer.findMany({ ...paginateArgs, where, orderBy }),
+    query: (paginateArgs) =>
+      db.offer.findMany({
+        ...paginateArgs,
+        where,
+        orderBy,
+        include: {
+          offerTags: {
+            select: {
+              id: true,
+              name: true,
+            },
+          },
+        },
+      }),
   })
   return {
     offers,

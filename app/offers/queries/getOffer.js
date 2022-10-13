@@ -12,6 +12,14 @@ export default resolver.pipe(resolver.zod(GetOffer), resolver.authorize(), async
     where: {
       id,
     },
+    include: {
+      offerTags: {
+        select: {
+          id: true,
+          name: true,
+        },
+      },
+    },
   })
   if (!offer) throw new NotFoundError()
   return offer

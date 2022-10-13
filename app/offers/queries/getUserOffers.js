@@ -5,7 +5,6 @@ import db from "db"
 export default resolver.pipe(
   resolver.authorize(),
   async ({ where, orderBy, skip = 0, take = 100 }, { session }) => {
-   
     // In theory, this could also be done on client side
     where = { ...where, authorId: session.userId }
     const {
@@ -20,7 +19,20 @@ export default resolver.pipe(
         db.offer.count({
           where,
         }),
-      query: (paginateArgs) => db.offer.findMany({ ...paginateArgs, where, orderBy }),
+      query: (paginateArgs) =>
+        db.offer.findMany({
+          ...paginateArgs,
+          where,
+          orderBy,
+          include: {
+            offerTags: {
+              select: {
+                id: true,
+                name: true,
+              },
+            },
+          },
+        }),
     })
     return {
       offers,
