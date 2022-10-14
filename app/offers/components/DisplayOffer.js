@@ -4,6 +4,7 @@ import YL from "public/yourlogo.png"
 import { Routes } from "@blitzjs/next"
 import Truncate from "react-truncate"
 import getPublicTags from "app/offer-tags/queries/getPublicTags"
+import { OfferTagCategory } from "@prisma/client"
 
 function Logo({ offer }) {
   console.log({ offer })
@@ -30,10 +31,15 @@ function Logo({ offer }) {
 function DisplayOffer({ offer }) {
   // const tags = {
   //   offer.id: useQuery(getPublicTags, "")[0]}
-
+  console.log(offer.offerTags)
   return (
     <>
-      <p className="smallheader1">{offer.offerType} - tags</p>
+      <p className="smallheader1">
+        {offer.offerType} -{" "}
+        {offer.offerTags.map((tagname) => (
+          <p key={tagname.id} className="Tags"> {tagname.name} </p>
+        ))}
+      </p>
 
       <article className="eintrag">
         <div>

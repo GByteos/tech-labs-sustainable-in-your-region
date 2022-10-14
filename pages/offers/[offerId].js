@@ -13,7 +13,6 @@ import Image from "next/image"
 import MyOffersPage from "./myOffers"
 
 function Logo({ offer }) {
-  // console.log({ offer })
   if (!offer.logo) {
     return (
       <>
@@ -68,7 +67,10 @@ function EditDelete({ offer }) {
       </div>
     )
 }
-
+function OpTimeDate({ offer }) {
+  if (offer.offerType == "EVENT") return <h4>Date and time</h4>
+  else return <h4>Opening times</h4>
+}
 export const Offer = () => {
   const router = useRouter()
   const offerId = useParam("offerId", "number")
@@ -77,10 +79,22 @@ export const Offer = () => {
     id: offerId,
   })
 
+  const date = String(offer.date).split(" ", 4)
+
   return (
     <div>
       {/* <pre>{JSON.stringify(offer, "", 2)}</pre> */}
       <div>
+        <br />
+        <section className="TagSection">
+          {" "}
+          {offer.offerTags.map((tagname) => (
+            <p key={tagname.id} className="Tags">
+              {" "}
+              {tagname.name}{" "}
+            </p>
+          ))}
+        </section>
         <br />
         <div className="offerTitle">
           <Logo offer={offer} />
@@ -96,14 +110,21 @@ export const Offer = () => {
         <br />
         <section className="offerDescription">{offer.description}</section>
         <br />
+        <br />
         <section className="offerInfo">
           <div>
-            <h3>Opening Times</h3>
-            {offer.openingTimes}
+            <OpTimeDate offer={offer}/>
+            <div>
+              <br />
+              {String(date)}
+              <br />
+              {offer.openingTimes}
+            </div>
           </div>
           <div>
-            <h3>Location</h3>
+            <h4>Location</h4>
             <div>
+              <br />
               <a href={`http://maps.google.com/?q=${offer.street} ${offer.zip} ${offer.city}`}>
                 {offer.street} <br />
                 {offer.zip} {offer.city}
@@ -111,8 +132,9 @@ export const Offer = () => {
             </div>
           </div>
           <div>
-            <h3>Contact</h3>
+            <h4>Contact</h4>
             <div>
+              <br />
               Email:{" "}
               <a href={`mailto: ${offer.email}`}>
                 {offer.email}

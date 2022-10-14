@@ -463,10 +463,27 @@ searchBox {
 }
 
 .smallheader1 {
+  display: flex;
+  /* justify-content:space-around; */
   flex: 1;
   font-size: small;
   background-color: var(--light);
   color: white;
+  gap: 10px;
+  padding: 5px;
+}
+.Tags {
+  flex-direction: row;
+  font-size: x-small;
+  align-self: center;
+}
+.offerTitle .Tags {
+  flex-wrap: wrap;
+}
+.TagSection {
+  display: flex;
+  justify-content: flex-start;
+  gap: 10px;
 }
 
 .eintrag .displaylogo {
@@ -568,10 +585,13 @@ searchBox {
 }
 .offerInfo {
   display: flex;
+  
   justify-content: space-evenly;
   gap: 20px;
 }
-
+.offerInfo div div{
+  font-size: small;
+}
 a {
   color: var(--dark);
 }

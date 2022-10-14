@@ -49,7 +49,7 @@ export const OffersList = () => {
                 offerId: offer.id,
               })}
             >
-              <a>{offer.name}</a>
+              <a>{offer.name} - {offer.offerType}</a>
             </Link>
           </li>
         ))}

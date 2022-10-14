@@ -127,11 +127,11 @@ export function OfferForm(props) {
         )}
       </Field>
 
-      <Condition when="offerType" is="SHOP">
+      {/* <Condition when="offerType" is="SHOP"> */}
         <Field name="openingTimes">
           {({ input, meta }) => (
             <div className="FormElement">
-              <label htmlFor="openingTimes">Opening Times </label>
+              <label htmlFor="openingTimes">Opening Times / Time of Event </label>
               <br />
               <input
                 className="openingTimesInput"
@@ -144,7 +144,7 @@ export function OfferForm(props) {
             </div>
           )}
         </Field>
-      </Condition>
+      {/* </Condition> */}
 
       <Condition when="offerType" is="EVENT">
         <Field name="date">
