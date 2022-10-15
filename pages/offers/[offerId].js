@@ -53,7 +53,7 @@ function EditDelete({ offer }) {
               await deleteOfferMutation({
                 id: offer.id,
               })
-              router.push(Routes.MyOffersPage())
+              router.back()
             }
           }}
           style={{
