@@ -21,7 +21,13 @@ const Condition = ({ when, is, children }) => (
 
 export function OfferForm(props) {
   const [availableTags] = useQuery(getPublicTags)
-  console.log(props)
+  const initialTags = []
+  if (props.initialValues) {
+    for (const tag of props.initialValues.offerTags) {
+      const newTag = availableTags.find((t) => t.id === tag.id)
+      initialTags.push(newTag)
+    }
+  }
 
   return (
     <Form {...props} className="footform">
@@ -101,6 +107,7 @@ export function OfferForm(props) {
                 displayValue="name"
                 onRemove={input.onChange}
                 onSelect={input.onChange}
+                selectedValues={initialTags}
                 // groupBy="category"
               />
               {meta.error && meta.touched && <span>{meta.error}</span>}
