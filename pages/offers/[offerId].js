@@ -10,7 +10,6 @@ import deleteOffer from "app/offers/mutations/deleteOffer"
 import { useCurrentUser } from "app/core/hooks/useCurrentUser"
 import YL from "public/yourlogo.png"
 import Image from "next/image"
-import MyOffersPage from "./myOffers"
 
 function Logo({ offer }) {
   if (!offer.logo) {
@@ -33,6 +32,7 @@ function Logo({ offer }) {
     )
 }
 function EditDelete({ offer }) {
+  const router = useRouter()
   const [deleteOfferMutation] = useMutation(deleteOffer)
   const currentUser = useCurrentUser()
   const currentUserID = currentUser.id
@@ -113,7 +113,7 @@ export const Offer = () => {
         <br />
         <section className="offerInfo">
           <div>
-            <OpTimeDate offer={offer}/>
+            <OpTimeDate offer={offer} />
             <div>
               <br />
               {String(date)}

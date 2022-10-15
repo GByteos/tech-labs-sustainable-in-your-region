@@ -6,17 +6,21 @@ import { usePaginatedQuery } from "@blitzjs/rpc"
 import { useRouter } from "next/router"
 import Layout from "app/core/layouts/Layout"
 import getUserOffers from "app/offers/queries/getUserOffers"
+import { useSession } from "@blitzjs/auth"
 
 const ITEMS_PER_PAGE = 100
 
 export const OffersList = () => {
   const router = useRouter()
+  const session = useSession()
   const page = Number(router.query.page) || 0
-  const queryid = useRouterQuery()
+  const queryId = useRouterQuery()
+
+  const authorId = parseInt(queryId.userid) ? queryId.userid : session.userId
 
   const [{ offers, hasMore }] = usePaginatedQuery(getUserOffers, {
     where: {
-      authorId: parseInt(queryid.userid),
+      authorId: authorId,
     },
     orderBy: {
       id: "asc",
@@ -49,7 +53,9 @@ export const OffersList = () => {
                 offerId: offer.id,
               })}
             >
-              <a>{offer.name} - {offer.offerType}</a>
+              <a>
+                {offer.name} - {offer.offerType}
+              </a>
             </Link>
           </li>
         ))}

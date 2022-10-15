@@ -54,6 +54,8 @@ const NewOfferPage = () => {
               if (response.data.data === "success") {
                 const offer = response.data.offer
 
+                console.log("Created...")
+
                 router.push(
                   Routes.ShowOfferPage({
                     offerId: offer.id,
