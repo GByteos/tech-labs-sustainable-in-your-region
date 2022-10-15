@@ -21,8 +21,6 @@ const NewOfferPage = () => {
             try {
               const formData = new FormData()
 
-              console.log(values)
-
               // put all fields onto the formData for multer
               if (values.logo) formData.append("logo", values.logo[0])
               if (values.name) formData.append("name", values.name)
@@ -51,7 +49,7 @@ const NewOfferPage = () => {
               }
 
               const response = await axios.post("/api/createOffer", formData, config)
-              if (response.data.data === "success") {
+              if (response.data.data === "sucess") {
                 const offer = response.data.offer
 
                 console.log("Created...")
@@ -62,6 +60,8 @@ const NewOfferPage = () => {
                   })
                 )
               } else {
+                console.error("Uh an error occured...")
+                console.log(response.data)
                 // TODO: add some information, why the data was not accepted
               }
             } catch (error) {
