@@ -26,14 +26,9 @@ export const EditOffer = () => {
     }
   )
   return (
-    <>
-      <Head>
-        <title>Edit Offer {offer.id}</title>
-      </Head>
-
-      <div>
-        <h1>Edit Offer {offer.id}</h1>
-        <pre>{JSON.stringify(offer, null, 2)}</pre>
+    <Layout title={"Create New Offer"}>
+      <section>
+        <h1 className="editoffer">Edit Offer {offer.id}</h1>
 
         <OfferForm
           // TODO: activate schema
@@ -41,12 +36,6 @@ export const EditOffer = () => {
           initialValues={offer}
           onSubmit={async (values) => {
             try {
-              /*
-              const updated = await updateOfferMutation({
-                id: offer.id,
-                ...values,
-              });*/
-
               const formData = new FormData()
 
               // put all fields onto the formData for multer
@@ -58,11 +47,12 @@ export const EditOffer = () => {
               if (values.openingTimes) formData.append("openingTimes", values.openingTimes)
               if (values.date) formData.append("date", values.date)
               if (values.link) formData.append("link", values.link)
-              if (values.email) formData.append("email", values.email) 
+              if (values.email) formData.append("email", values.email)
               if (values.street) formData.append("street", values.street)
               if (values.zip) formData.append("zip", values.zip)
               if (values.city) formData.append("city", values.city)
               if (values.tel) formData.append("tel", values.tel)
+              if (values.offerTags) formData.append("offerTags", JSON.stringify(values.offerTags))
 
               // is needed, to identify and verify the user on server side
               const antiCSRFToken = getAntiCSRFToken()
@@ -87,6 +77,9 @@ export const EditOffer = () => {
                   })
                 )
               } else {
+                console.error("Uh an error occured...")
+                console.log(response.data)
+                throw new Error("Creaition failed on server side")
                 // TODO: add some information, why the data was not accepted
               }
             } catch (error) {
@@ -97,8 +90,14 @@ export const EditOffer = () => {
             }
           }}
         />
-      </div>
-    </>
+
+        <p>
+          <Link href={Routes.OffersPage()}>
+            <a>Offers</a>
+          </Link>
+        </p>
+      </section>
+    </Layout>
   )
 }
 
@@ -108,12 +107,6 @@ const EditOfferPage = () => {
       <Suspense fallback={<div>Loading...</div>}>
         <EditOffer />
       </Suspense>
-
-      <p>
-        <Link href={Routes.OffersPage()}>
-          <a>Offers</a>
-        </Link>
-      </p>
     </div>
   )
 }
