@@ -7,7 +7,7 @@ import { useParam } from "@blitzjs/next"
 import Layout from "app/core/layouts/Layout"
 import getOffer from "app/offers/queries/getOffer"
 import deleteOffer from "app/offers/mutations/deleteOffer"
-import { useCurrentUser } from "app/core/hooks/useCurrentUser"
+import { useSession } from "@blitzjs/auth"
 import YL from "public/yourlogo.png"
 import Image from "next/image"
 
@@ -34,11 +34,9 @@ function Logo({ offer }) {
 function EditDelete({ offer }) {
   const router = useRouter()
   const [deleteOfferMutation] = useMutation(deleteOffer)
-  const currentUser = useCurrentUser()
-  const currentUserID = currentUser.id
-  console.log(currentUser.id)
+  const session = useSession()
 
-  if (currentUser && offer.authorId == currentUserID)
+  if (offer.authorId === session.userId || session.role === "ADMIN")
     return (
       <div>
         <Link
