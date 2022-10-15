@@ -51,7 +51,6 @@ createOffer
           }),
         }
       }
-      console.log(values)
 
       // add server side values to the dataset
       values = {

@@ -32,22 +32,36 @@ updateOffer
     // req.file.path => contains the full image path and extension
     const session = await getSession(req, res)
 
-    console.log(req.body)
-    // mak an object and validate the content
-    let values = UpdateOffer.safeParse(JSON.parse(JSON.stringify(req.body)))
+    // make an object
+    const rawValues = JSON.parse(JSON.stringify(req.body))
+
+    // parse array of objects back
+    if (rawValues.offerTags) rawValues.offerTags = JSON.parse(rawValues.offerTags)
+
+    // validate
+    let values = UpdateOffer.safeParse(rawValues)
 
     if (values.success === true) {
+      // modify tags to be in connection prop
+      if (values.data.offerTags) {
+        values.data.offerTags = {
+          connect: values.data.offerTags.map((tag) => {
+            return { id: tag.id }
+          }),
+        }
+      }
+
       // add server side values to the dataset
-      values.data = {
+      values = {
         ...values.data,
         logo: req.file ? req.file.filename : undefined,
       }
 
       const offer = await db.offer.update({
         where: {
-          id: values.data.id,
+          id: values.id,
         },
-        data: values.data,
+        data: values,
       })
       console.log(offer)
       res.status(200).json({ data: "sucess", offer: offer })
