@@ -5,7 +5,7 @@ import { CreateOffer } from "../validation"
 
 export default resolver.pipe(
   resolver.zod(CreateOffer),
-  resolver.authorize(),
+  resolver.authorize("admin"),
   (input, { session }) => ({
     ...input,
     author: {

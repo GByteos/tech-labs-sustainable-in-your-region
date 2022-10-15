@@ -22,7 +22,7 @@ export default resolver.pipe(
 
     let deleted
 
-    if (offer && session.userId === offer.authorId) {
+    if (offer && (session.userId === offer.authorId || session.$isAuthorized("ADMIN"))) {
       deleted = await db.offer.deleteMany({
         where: {
           id,
