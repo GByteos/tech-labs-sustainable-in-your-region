@@ -59,6 +59,11 @@ updateOffer
         },
       })
 
+      // double check, if user is owner or admin
+      if (session.userId !== oldOffer.authorId && !session.$isAuthorized("ADMIN")) {
+        throw new Error("You are not autorized to change this offer.")
+      }
+
       // check if logo has been changed. If so, remove old file
       if (req.file && oldOffer.logo !== null) {
         await unlink(path.resolve(process.env.IMAGE_UPLOAD_URL, oldOffer.logo))
@@ -79,7 +84,6 @@ updateOffer
       console.log(offer)
       res.status(200).json({ data: "sucess", offer: offer })
     } else {
-      // TODO: remove uploaded fiel
       if (req.file) {
         await unlink(req.file.path)
       }
