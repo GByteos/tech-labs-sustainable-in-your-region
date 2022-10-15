@@ -49,7 +49,7 @@ const NewOfferPage = () => {
               }
 
               const response = await axios.post("/api/createOffer", formData, config)
-              if (response.data.data === "sucess") {
+              if (response.data.data === "success") {
                 const offer = response.data.offer
 
                 console.log("Created...")
@@ -61,7 +61,7 @@ const NewOfferPage = () => {
                 )
               } else {
                 console.error("Uh an error occured...")
-                console.log(response.data)
+                throw new Error("Creaition failed on server side")
                 // TODO: add some information, why the data was not accepted
               }
             } catch (error) {
