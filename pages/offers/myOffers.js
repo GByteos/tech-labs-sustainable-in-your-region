@@ -16,7 +16,7 @@ export const OffersList = () => {
   const page = Number(router.query.page) || 0
   const queryId = useRouterQuery()
 
-  const authorId = parseInt(queryId.userid) ? queryId.userid : session.userId
+  const authorId = queryId.userid ? parseInt(queryId.userid) : session.userId
 
   const [{ offers, hasMore }] = usePaginatedQuery(getUserOffers, {
     where: {

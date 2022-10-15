@@ -21,6 +21,7 @@ const Condition = ({ when, is, children }) => (
 
 export function OfferForm(props) {
   const [availableTags] = useQuery(getPublicTags)
+  console.log(props)
 
   return (
     <Form {...props} className="footform">
@@ -128,22 +129,22 @@ export function OfferForm(props) {
       </Field>
 
       {/* <Condition when="offerType" is="SHOP"> */}
-        <Field name="openingTimes">
-          {({ input, meta }) => (
-            <div className="FormElement">
-              <label htmlFor="openingTimes">Opening Times / Time of Event </label>
-              <br />
-              <input
-                className="openingTimesInput"
-                {...input}
-                type="textarea"
-                id="openingTimes"
-                placeholder="Mo-Fr: 8-12:30, 15-19:30"
-              />
-              {meta.error && meta.touched && <span>{meta.error}</span>}
-            </div>
-          )}
-        </Field>
+      <Field name="openingTimes">
+        {({ input, meta }) => (
+          <div className="FormElement">
+            <label htmlFor="openingTimes">Opening Times / Time of Event </label>
+            <br />
+            <input
+              className="openingTimesInput"
+              {...input}
+              type="textarea"
+              id="openingTimes"
+              placeholder="Mo-Fr: 8-12:30, 15-19:30"
+            />
+            {meta.error && meta.touched && <span>{meta.error}</span>}
+          </div>
+        )}
+      </Field>
       {/* </Condition> */}
 
       <Condition when="offerType" is="EVENT">
@@ -228,7 +229,12 @@ export function OfferForm(props) {
 
       <div className="FormElement">
         <label htmlFor="logo">Upload your image or logo</label>
-        <FileField type="file" id="file" name="logo" />
+        <FileField
+          type="file"
+          id="file"
+          initialValue={props.initialValues ? props.initialValues.logo : ""}
+          name="logo"
+        />
       </div>
       <br />
       <div className="FormElement">

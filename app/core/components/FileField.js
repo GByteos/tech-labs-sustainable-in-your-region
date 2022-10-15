@@ -3,17 +3,34 @@ import React, { useState } from "react"
 import Image from "next/image"
 import YL from "public/yourlogo.png"
 
-export const FileField = ({ name, ...props }) => {
+export const FileField = ({ name, initialValue, ...props }) => {
   const [selectedImage, setSelectedImage] = useState(null)
 
+  console.log(initialValue)
   return (
     <div>
-      <Image
-        alt="not fount"
-        width={"250px"}
-        height={"250px"}
-        src={selectedImage ? URL.createObjectURL(selectedImage) : YL}
-      />
+      {(() => {
+        if (initialValue !== "" && !selectedImage) {
+          return (
+            <Image
+              className="displaylogo"
+              src={"/api/getImage?imageId=" + initialValue}
+              alt="Offer Logo"
+              width="250px"
+              height="250px"
+            />
+          )
+        } else {
+          return (
+            <Image
+              alt="not fount"
+              width={"250px"}
+              height={"250px"}
+              src={selectedImage ? URL.createObjectURL(selectedImage) : YL}
+            />
+          )
+        }
+      })()}
       {/* replace this with react-dropzone at some point */}
       <Field name={name}>
         {({ input: { value, onChange, ...input }, meta }) => (

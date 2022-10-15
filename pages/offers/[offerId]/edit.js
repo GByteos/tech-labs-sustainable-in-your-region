@@ -25,10 +25,13 @@ export const EditOffer = () => {
       staleTime: Infinity,
     }
   )
+
+  console.log(offer)
+
   return (
-    <Layout title={"Create New Offer"}>
+    <Layout title={"Edit Offer"}>
       <section>
-        <h1 className="editoffer">Edit Offer {offer.id}</h1>
+        <h1 className="editoffer">Edit Offer {offer.name}</h1>
 
         <OfferForm
           // TODO: activate schema
