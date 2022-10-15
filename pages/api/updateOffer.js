@@ -43,19 +43,18 @@ updateOffer
     let values = UpdateOffer.safeParse(rawValues)
 
     if (values.success === true) {
-      // modify tags to be in connection prop
-      if (values.data.offerTags) {
-        values.data.offerTags = {
-          connect: values.data.offerTags.map((tag) => {
-            return { id: tag.id }
-          }),
-        }
-      }
-
       // get old offer to do some checking and optimasation in db writing
       const oldOffer = await db.offer.findFirst({
         where: {
           id: values.data.id,
+        },
+        include: {
+          offerTags: {
+            select: {
+              id: true,
+              name: true,
+            },
+          },
         },
       })
 
@@ -67,6 +66,37 @@ updateOffer
       // check if logo has been changed. If so, remove old file
       if (req.file && oldOffer.logo !== null) {
         await unlink(path.resolve(process.env.IMAGE_UPLOAD_URL, oldOffer.logo))
+      }
+
+      // get the delta of tags to be removed and added
+      const tagsToAddRaw = values.data.offerTags
+      const tagsToAdd = []
+      const tagsToRemove = oldOffer.offerTags
+
+      for (const tagToAdd of tagsToAddRaw) {
+        const index = tagsToRemove.findIndex((t) => t.id === tagToAdd.id)
+        if (index > -1) {
+          tagsToRemove.splice(index, 1)
+        } else {
+          tagsToAdd.push(tagToAdd)
+        }
+      }
+
+      console.log("Taggs to Add")
+      console.log(tagsToAdd)
+      console.log("Taggs to Remove")
+      console.log(tagsToRemove)
+
+      // modify tags to be in connection prop
+      if (values.data.offerTags) {
+        values.data.offerTags = {
+          connect: tagsToAdd.map((tag) => {
+            return { id: tag.id }
+          }),
+          disconnect: tagsToRemove.map((tag) => {
+            return { id: tag.id }
+          }),
+        }
       }
 
       // add server side values to the dataset

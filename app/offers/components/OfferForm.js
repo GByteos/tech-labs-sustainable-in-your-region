@@ -22,7 +22,7 @@ const Condition = ({ when, is, children }) => (
 export function OfferForm(props) {
   const [availableTags] = useQuery(getPublicTags)
   const initialTags = []
-  if (props.initialValues) {
+  if (props.initialValues.offerTags) {
     for (const tag of props.initialValues.offerTags) {
       const newTag = availableTags.find((t) => t.id === tag.id)
       initialTags.push(newTag)
