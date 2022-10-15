@@ -4,6 +4,7 @@ import db from "db"
 import { unlink } from "node:fs/promises"
 import { UpdateOffer } from "app/offers/validation"
 import imageUpload from "app/offers/components/imageUpload"
+import path from "path"
 
 const updateOffer = nextConnect({
   async onError(error, req, res) {
@@ -49,6 +50,18 @@ updateOffer
             return { id: tag.id }
           }),
         }
+      }
+
+      // get old offer to do some checking and optimasation in db writing
+      const oldOffer = await db.offer.findFirst({
+        where: {
+          id: values.data.id,
+        },
+      })
+
+      // check if logo has been changed. If so, remove old file
+      if (req.file && oldOffer.logo !== null) {
+        await unlink(path.resolve(process.env.IMAGE_UPLOAD_URL, oldOffer.logo))
       }
 
       // add server side values to the dataset

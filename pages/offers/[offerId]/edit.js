@@ -26,8 +26,6 @@ export const EditOffer = () => {
     }
   )
 
-  console.log(offer)
-
   return (
     <Layout title={"Edit Offer"}>
       <section>

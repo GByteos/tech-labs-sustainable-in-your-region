@@ -6,11 +6,10 @@ import YL from "public/yourlogo.png"
 export const FileField = ({ name, initialValue, ...props }) => {
   const [selectedImage, setSelectedImage] = useState(null)
 
-  console.log(initialValue)
   return (
     <div>
       {(() => {
-        if (initialValue !== "" && !selectedImage) {
+        if (initialValue && !selectedImage) {
           return (
             <Image
               className="displaylogo"
