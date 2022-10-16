@@ -16,7 +16,9 @@ const Layout = ({ title, children }) => {
         <HEADER />
       </Suspense>
       <main>
-        <LatestOffers /> <div className="content">{children}</div>
+        <Suspense fallback={<div>Loading...</div>}>
+          <LatestOffers /> <div className="content">{children}</div>
+        </Suspense>
       </main>
       <FOOTER />
     </>

@@ -1,4 +1,3 @@
-import { Suspense } from "react"
 import { Routes } from "@blitzjs/next"
 import Link from "next/link"
 import { useRouter } from "next/router"
@@ -11,79 +10,77 @@ import { CreateOffer } from "app/offers/validation"
 const NewOfferPage = () => {
   const router = useRouter()
   return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <Layout title={"Create New Offer"}>
-        <section>
-          <h1 className="newoffer">Create New Offer</h1>
+    <Layout title={"Create New Offer"}>
+      <section>
+        <h1 className="newoffer">Create New Offer</h1>
 
-          <OfferForm
-            className="OfferForm"
-            schema={CreateOffer}
-            onSubmit={async (values) => {
-              try {
-                const formData = new FormData()
+        <OfferForm
+          className="OfferForm"
+          schema={CreateOffer}
+          onSubmit={async (values) => {
+            try {
+              const formData = new FormData()
 
-                // put all fields onto the formData for multer
-                if (values.logo) formData.append("logo", values.logo[0])
-                if (values.name) formData.append("name", values.name)
-                if (values.offerType) formData.append("offerType", values.offerType)
-                if (values.description) formData.append("description", values.description)
-                if (values.openingTimes) formData.append("openingTimes", values.openingTimes)
-                if (values.date) formData.append("date", values.date)
-                if (values.link) formData.append("link", values.link)
-                if (values.email) formData.append("email", values.email)
-                if (values.street) formData.append("street", values.street)
-                if (values.zip) formData.append("zip", values.zip)
-                if (values.city) formData.append("city", values.city)
-                if (values.tel) formData.append("tel", values.tel)
-                if (values.offerTags) formData.append("offerTags", JSON.stringify(values.offerTags))
+              // put all fields onto the formData for multer
+              if (values.logo) formData.append("logo", values.logo[0])
+              if (values.name) formData.append("name", values.name)
+              if (values.offerType) formData.append("offerType", values.offerType)
+              if (values.description) formData.append("description", values.description)
+              if (values.openingTimes) formData.append("openingTimes", values.openingTimes)
+              if (values.date) formData.append("date", values.date)
+              if (values.link) formData.append("link", values.link)
+              if (values.email) formData.append("email", values.email)
+              if (values.street) formData.append("street", values.street)
+              if (values.zip) formData.append("zip", values.zip)
+              if (values.city) formData.append("city", values.city)
+              if (values.tel) formData.append("tel", values.tel)
+              if (values.offerTags) formData.append("offerTags", JSON.stringify(values.offerTags))
 
-                // is needed, to identify and verify the user on server side
-                const antiCSRFToken = getAntiCSRFToken()
+              // is needed, to identify and verify the user on server side
+              const antiCSRFToken = getAntiCSRFToken()
 
-                const config = {
-                  credentials: "include",
-                  headers: { "content-type": "multipart/form-data", "anti-csrf": antiCSRFToken },
-                  onUploadProgress: (event) => {
-                    // TODO: add a progres bar or similar here
-                    console.log(`Current progress:`, Math.round((event.loaded * 100) / event.total))
-                  },
-                }
-
-                const response = await axios.post("/api/createOffer", formData, config)
-                if (response.data.data === "sucess") {
-                  const offer = response.data.offer
-
-                  console.log("Created...")
-
-                  router.push(
-                    Routes.ShowOfferPage({
-                      offerId: offer.id,
-                    })
-                  )
-                } else {
-                  console.error("Uh an error occured...")
-                  console.log(response.data)
-                  throw new Error("Creaition failed on server side")
-                  // TODO: add some information, why the data was not accepted
-                }
-              } catch (error) {
-                console.error(error)
-                return {
-                  [FORM_ERROR]: error.toString(),
-                }
+              const config = {
+                credentials: "include",
+                headers: { "content-type": "multipart/form-data", "anti-csrf": antiCSRFToken },
+                onUploadProgress: (event) => {
+                  // TODO: add a progres bar or similar here
+                  console.log(`Current progress:`, Math.round((event.loaded * 100) / event.total))
+                },
               }
-            }}
-          />
 
-          <p>
-            <Link href={Routes.OffersPage()}>
-              <a>Offers</a>
-            </Link>
-          </p>
-        </section>
-      </Layout>
-    </Suspense>
+              const response = await axios.post("/api/createOffer", formData, config)
+              if (response.data.data === "sucess") {
+                const offer = response.data.offer
+
+                console.log("Created...")
+
+                router.push(
+                  Routes.ShowOfferPage({
+                    offerId: offer.id,
+                  })
+                )
+              } else {
+                console.error("Uh an error occured...")
+                console.log(response.data)
+                throw new Error("Creaition failed on server side")
+                // TODO: add some information, why the data was not accepted
+              }
+            } catch (error) {
+              console.error(error)
+              return {
+                [FORM_ERROR]: error.toString(),
+              }
+            }
+          }}
+        />
+
+        <p>
+          <Link href={Routes.OffersPage()}>
+            <a>Offers</a>
+          </Link>
+        </p>
+      </section>
+    </Layout>
   )
 }
 
