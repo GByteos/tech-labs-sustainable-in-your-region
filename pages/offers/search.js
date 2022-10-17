@@ -7,6 +7,8 @@ import { useRouter } from "next/router"
 import Layout from "app/core/layouts/Layout"
 import getPublicOffers from "app/offers/queries/getPublicOffers"
 import DisplayOffer from "app/offers/components/DisplayOffer"
+import Form from "app/core/components/Form"
+import { Field } from "react-final-form"
 
 const ITEMS_PER_PAGE = 20
 export const SearchList = () => {
@@ -22,8 +24,6 @@ export const SearchList = () => {
     }
   }
 
-  console.log(offerTags)
-  console.log(tags)
   const router = useRouter()
   const page = Number(router.query.page) || 0
   const [{ offers, hasMore }] = usePaginatedQuery(getPublicOffers, {
@@ -57,6 +57,17 @@ export const SearchList = () => {
 
   return (
     <div>
+      <Form onSubmit={() => {}}>
+        <Field name="name">
+          {({ input, meta }) => (
+            <div className="FormElement">
+              <input {...input} type="text" id="search" cols="30" />
+              <input type="submit" name="submit" id="submit" value="Search" />
+              {meta.error && meta.touched && <span>{meta.error}</span>}
+            </div>
+          )}
+        </Field>
+      </Form>
       <ul className="DisplayList">
         {offers.map((offer) => (
           <li key={offer.id}>
@@ -83,12 +94,6 @@ const SearchPage = () => {
       </Head>
 
       <div>
-        <p>
-          <Link href={Routes.NewOfferPage()}>
-            <a>Create Offer</a>
-          </Link>
-        </p>
-
         <Suspense fallback={<div>Loading...</div>}>
           <SearchList />
         </Suspense>
