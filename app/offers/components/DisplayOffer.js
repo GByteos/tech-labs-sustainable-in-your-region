@@ -3,12 +3,10 @@ import Link from "next/link"
 import YL from "public/yourlogo.png"
 import { Routes } from "@blitzjs/next"
 import Truncate from "react-truncate"
-import getPublicTags from "app/offer-tags/queries/getPublicTags"
-import { OfferTagCategory } from "@prisma/client"
+
 
 function Logo({ offer }) {
-  console.log({ offer })
-  if (!offer.logo) {
+   if (!offer.logo) {
     return (
       <>
         <Image className="displaylogo" src={YL} alt="Offer Logo" width="150px" height="150px" />
@@ -31,7 +29,7 @@ function Logo({ offer }) {
 function DisplayOffer({ offer }) {
   // const tags = {
   //   offer.id: useQuery(getPublicTags, "")[0]}
-  console.log(offer.offerTags)
+  
   return (
     <>
       <p className="smallheader1">

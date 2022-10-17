@@ -15,9 +15,9 @@ const Home = () => {
                   find all sustainable offers of your region and surroundings: shops with
                   sustainable products, regional and organic food, sharing offers, events, learning
                   opportunities, information and networking opportunities. We want to show the
-                  regional ecological handprin of your region , i.e. what is already there,
-                  possible, and can be easily used/accessed, contrary to the ecological footprint,
-                  and how you can increase your personal handprint.
+                  regional ecological handprint of your region , i.e. what is already there,
+                  possible, and can be easily used/accessed, contrary to the ecological footprint.
+                  All this will enable you to easily increase your personal handprint.
                 </p>
                 <br />
               </div>
@@ -44,7 +44,7 @@ const Home = () => {
                 <h3>What actually is sustainability?</h3>
                 <p className="para_main">
                   Sustainability – a word that we are facing more and more often in the last years.
-                  But what does it mean exactly? WHile in our everydaylife we associate it with
+                  But what does it mean exactly? While in our everydaylife we associate it with
                   longevity and protection of the environment, a sustainable development refers to a
                   responsible handling of the finite ressources of the planet.
                 </p>
