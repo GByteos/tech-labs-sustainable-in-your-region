@@ -3,36 +3,57 @@ import WSP from "public/weihersppl1.jpg"
 import AKU from "public/logo_aku.jpg"
 import Cal from "public/Calendar.jpg"
 
-function LatestOffers() {
+import getLatestOffers from "app/offers/queries/getLatestOffers"
+import { Routes } from "@blitzjs/next"
+import { useQuery } from "@blitzjs/rpc"
+import Link from "next/link"
+
+export const LatestOffersList = () => {
+  const [{ offers }] = useQuery(getLatestOffers, {
+    orderBy: {
+      createdAt: "desc",
+    },
+    take: 4,
+  })
+  return (
+    <>
+      <ul className="LatestOffersList">
+        {offers.map((offer) => (
+          <li key={offer.id}>
+            <h6>{offer.date}</h6>
+            <h5>{offer.offerType}</h5>
+            <Link
+              href={Routes.ShowOfferPage({
+                offerId: offer.id,
+              })}
+            >
+              <a>
+                <h4>{offer.name}</h4>
+              </a>
+            </Link>
+            {offer.offerTags.map((tagname) => (
+              <p key={tagname.id} className="Tags">
+                {" "}
+                {tagname.name}{" "}
+              </p>
+            ))}
+          </li>
+        ))}
+      </ul>
+    </>
+  )
+}
+const LatestOffers = () => {
   return (
     <aside>
       <div className="image_wrapper">
-        <p>Termine</p>
+        <p>Upcoming events</p>
         <a href="">
           <Image src={Cal} width="200px" height="150px" alt="Kalender für Juli" />
         </a>
       </div>
-      <div className="image_wrapper">
-        <p>Baumpfad am Weiherspielplatz</p>
-        <a href="../Baumpfad/index.html">
-          <Image
-            src={WSP}
-            width="200px"
-            height="150px"
-            alt="Bild vom Weiherspielplatz, an dem der Baumpfad entstehen soll"
-          />
-        </a>
-      </div>
-      <div className="image_wrapper">
-        <p>Aktivkreis Umwelt Markt&nbsp;Schwaben</p>
-        <a href="https://www.marktschwabenaktiv.de/aktivkreise/umwelt/index.html">
-          <Image
-            src={AKU}
-            width="200px"
-            height="100px"
-            alt="Logo des Aktivkreises Umwelt Markt Schwaben"
-          />
-        </a>
+      <div>
+        <LatestOffersList />
       </div>
     </aside>
   )

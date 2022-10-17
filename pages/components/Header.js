@@ -99,7 +99,7 @@ function HEADER() {
           </div>
         </article>
       </section>
-      <header>
+      <header className="MainHeader">
         <nav id="menu">
           <ul id="minilogo">
             <li>
