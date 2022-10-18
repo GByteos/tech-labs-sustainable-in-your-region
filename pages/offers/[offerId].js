@@ -160,15 +160,13 @@ const ShowOfferPage = () => {
           </Link>
         </p> */}
 
-        <Suspense fallback={<div>Loading...</div>}>
-          <Offer />
-        </Suspense>
+        <Offer />
       </main>
     </Layout>
   )
 }
 
-ShowOfferPage.authenticate = true
+//ShowOfferPage.authenticate = true
 
 // ShowOfferPage.getLayout = (page) => <Layout>{page}</Layout>;
 
