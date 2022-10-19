@@ -37,7 +37,7 @@ export const SignupForm = (props) => {
       >
       
         <div className="FormElement">
-          <LabeledTextField className="signupfield" name="name" label="Name" placeholder="Name" />
+          <LabeledTextField className="signupfield" name="name" label="Username" placeholder="Username" />
           <br />
           <LabeledTextField
             className="signupfield"

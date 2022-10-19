@@ -34,23 +34,7 @@ export const LabeledTextField = forwardRef(
           </div>
         )}
 
-        {/* <style jsx>{`
-          label {
-            display: flex;
-            flex-direction: column;
-            align-items: start;
-            font-size: 1rem;
-          }
-          input {
-            background: #f2f2f2;
-            font-size: 1rem;
-            padding: 0.25rem 0.5rem;
-            border-radius: 3px;
-            box-shadow: 0 4px 8px 8px rgba(34, 60, 
-            appearance: none;
-            margin-top: 0.5rem;
-          }
-        `}</style> */}
+       
       </div>
     )
   }
