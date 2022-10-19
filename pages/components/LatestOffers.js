@@ -53,6 +53,7 @@ const LatestOffers = () => {
         </a>
       </div>
       <div>
+        <p>Latest offers</p>
         <LatestOffersList />
       </div>
     </aside>

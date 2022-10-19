@@ -10,12 +10,21 @@ import { Routes } from "@blitzjs/next"
 import { useEffect, useState } from "react"
 import getPublicTags from "app/offer-tags/queries/getPublicTags"
 
+const UserCondition = ({ role }) => {
+  if (role === "ADMIN")
+    return (
+      <Link href={Routes.userPage()}>
+        <a> User</a>
+      </Link>
+    )
+}
+
 const UserInfo = () => {
   const currentUser = useCurrentUser()
   const [logoutMutation] = useMutation(logout)
-
+  console.log(currentUser)
   if (currentUser) {
-    const currentUserId = currentUser.id
+    // const currentUserId = currentUser.id
     return (
       <>
         <button
@@ -37,9 +46,7 @@ const UserInfo = () => {
             <a>My Offers </a>
           </Link>
           <p></p>
-          <Link href={Routes.userPage()}>
-            <a> User</a>
-          </Link>
+          <UserCondition role={currentUser.role} />
         </div>
       </>
     )
@@ -91,11 +98,9 @@ function HEADER() {
         <article className="logo">
           <Image src={logo} alt="Logo mit dem Handabdruck und Haken" width="180" height="200" />
           <div>
-            <h1>Nachhaltig in Markt&nbsp;Schwaben</h1>
+            <h1>Sustainable in Markt&nbsp;Schwaben</h1>
             <h2>{`${currenturl}`}</h2>
-            <h3 className="mainh3">
-              Die Mitmach-Seite für nachhaltige Angebote in und um Markt Schwaben
-            </h3>
+            <h3 className="mainh3">Sustainable offers in Markt Schwaben and sourroundings</h3>
           </div>
         </article>
       </section>

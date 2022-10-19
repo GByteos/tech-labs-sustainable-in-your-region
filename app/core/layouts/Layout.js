@@ -17,7 +17,11 @@ const Layout = ({ title, children }) => {
       </Suspense>
       <main>
         <Suspense fallback={<div>Loading...</div>}>
-          <LatestOffers /> <div className="content">{children}</div>
+          <LatestOffers />{" "}
+        </Suspense>
+        <Suspense fallback={<div>Loading...</div>}>
+          {" "}
+          <div className="content">{children}</div>
         </Suspense>
       </main>
       <FOOTER />

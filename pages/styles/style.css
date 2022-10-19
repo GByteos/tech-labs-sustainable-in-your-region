@@ -275,6 +275,9 @@ aside {
 .image_wrapper:hover > p {
   visibility: visible;
 }
+aside div>p{
+  color: var(--red);
+}
 
 /*  ====================== Einleitung =============== */
 .einl {
@@ -451,14 +454,17 @@ searchBox {
   color: white;
   gap: 10px;
   padding: 5px;
+ 
 }
 .Tags {
   flex-direction: row;
-  font-size: x-small;
+  font-size: small;
   align-self: center;
+  
 }
 .offerTitle .Tags {
   flex-wrap: wrap;
+ 
 }
 .TagSection {
   display: flex;
@@ -520,7 +526,7 @@ searchBox {
 }
 
 .offerlink:hover {
-  color: red;
+  color: var(--red);
   background-color: transparent;
   margin: 0px 0px 0px 500px;
   padding: 5px;
@@ -557,6 +563,7 @@ searchBox {
   display: flex;
   justify-content: space-evenly;
   gap: 20px;
+  background-color: var(--light);
 }
 .offerTitle div {
   flex: 1;
