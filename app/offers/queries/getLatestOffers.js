@@ -34,25 +34,3 @@ export default resolver.pipe(async ({ where, orderBy, skip = 0, take = 4 }) => {
   console.log(offers)
   return { offers, nextPage, hasMore, count }
 })
-
-// export default resolver.pipe(async ({  orderBy, skip = 0, take = 4, id }) => {
-//   // TODO: in multi-tenant app, you must add validation to ensure correct tenant
-//   const { items: offers } = await db.offer.findMany({
-//     //  where,
-// orderBy,
-// take,
-// include: {
-//   offerTags: {
-//     select: {
-//       id: true,
-//       name: true,
-//     },
-//   },
-// },
-//   })
-//   console.log(offers)
-
-//   return {
-//     offers,
-//   }
-// })

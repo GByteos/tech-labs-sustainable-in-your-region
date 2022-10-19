@@ -11,13 +11,12 @@ const Home = () => {
             <div className="einl">
               <div>
                 <p className="para_main">
-                  With this Website we want to facilitate a sustainable lifestyle. Here, you will
+                  With this website we want to facilitate a sustainable lifestyle. Here, you will
                   find all sustainable offers of your region and surroundings: shops with
                   sustainable products, regional and organic food, sharing offers, events, learning
                   opportunities, information and networking opportunities. We want to show the
-                  regional ecological handprint of your region , i.e. what is already there,
-                  possible, and can be easily used/accessed, contrary to the ecological footprint.
-                  All this will enable you to easily increase your personal handprint.
+                  ecological handprint of your region, contrary to the ecological footprint. That
+                  means: what is already available, possible and can be easily used/accessed. This will enable you to easily increase your personal handprint.
                 </p>
                 <br />
               </div>
