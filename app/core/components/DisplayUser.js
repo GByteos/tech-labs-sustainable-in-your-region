@@ -1,7 +1,6 @@
-import Image from "next/image"
-import Link from "next/link"
 
-import { Routes } from "@blitzjs/next"
+
+
 
 function DisplayUser({ user }) {
   // const tags = {
@@ -11,14 +10,11 @@ function DisplayUser({ user }) {
     <>
       <article>
         <div></div>
-
-        {/*  */}
         <div>
-          <a>
-            <p>
-              ID: {user.id} - {user.name} - {user.role} - {user.email}
-            </p>
-          </a>
+          <p>
+            ID: {user.id} - {user.name} - {user.role} - {user.email}
+          </p>
+        
         </div>
       </article>
     </>

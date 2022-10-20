@@ -7,7 +7,6 @@ import { useRouter } from "next/router"
 import Layout from "app/core/layouts/Layout"
 import getPublicOffers from "app/offers/queries/getPublicOffers"
 import DisplayOffer from "app/offers/components/DisplayOffer"
-import getPublicTags from "app/offer-tags/queries/getPublicTags"
 const ITEMS_PER_PAGE = 20
 
 export const OffersList = () => {
