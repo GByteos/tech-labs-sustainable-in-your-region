@@ -2,7 +2,7 @@ import Image from "next/image"
 import WSP from "public/weihersppl1.jpg"
 import AKU from "public/logo_aku.jpg"
 import Cal from "public/Calendar.jpg"
-
+import { Suspense } from "react"
 import getLatestOffers from "app/offers/queries/getLatestOffers"
 import { Routes } from "@blitzjs/next"
 import { useQuery } from "@blitzjs/rpc"
@@ -54,7 +54,9 @@ const LatestOffers = () => {
       </div>
       <div>
         <p>Latest offers</p>
-        <LatestOffersList />
+        <Suspense fallback={<div>Loading...</div>}>
+          <LatestOffersList />
+        </Suspense>
       </div>
     </aside>
   )

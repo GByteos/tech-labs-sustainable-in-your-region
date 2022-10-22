@@ -1,13 +1,12 @@
 import logo from "public/logo.png"
 import search from "public/search.png"
-import { Suspense } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { useCurrentUser } from "app/core/hooks/useCurrentUser"
 import logout from "app/auth/mutations/logout"
 import { useQuery, useMutation } from "@blitzjs/rpc"
 import { Routes } from "@blitzjs/next"
-import { useEffect, useState } from "react"
+import { useEffect, useState, Suspense } from "react"
 import getPublicTags from "app/offer-tags/queries/getPublicTags"
 
 const UserCondition = ({ role }) => {
@@ -27,27 +26,29 @@ const UserInfo = () => {
     // const currentUserId = currentUser.id
     return (
       <>
-        <button
-          className="button small"
-          onClick={async () => {
-            await logoutMutation()
-          }}
-        >
-          Logout
-        </button>
-        <div>
-          User id: <code>{currentUser.id}</code>
-          <br />
-          User role: <code>{currentUser.role}</code>
-        </div>
-        <div>
-          {" "}
-          <Link href={Routes.MyOffersPage({ userid: currentUser.id })}>
-            <a>My Offers </a>
-          </Link>
-          <p></p>
-          <UserCondition role={currentUser.role} />
-        </div>
+        <Suspense fallback={<div>Loading...</div>}>
+          <button
+            className="button small"
+            onClick={async () => {
+              await logoutMutation()
+            }}
+          >
+            Logout
+          </button>
+          <div>
+            User id: <code>{currentUser.id}</code>
+            <br />
+            User role: <code>{currentUser.role}</code>
+          </div>
+          <div>
+            {" "}
+            <Link href={Routes.MyOffersPage({ userid: currentUser.id })}>
+              <a>My Offers </a>
+            </Link>
+            <p></p>
+            <UserCondition role={currentUser.role} />
+          </div>
+        </Suspense>
       </>
     )
   } else {
@@ -68,10 +69,7 @@ const UserInfo = () => {
   }
 }
 
-function HEADER() {
-  const [currenturl, setUrl] = useState("")
-  useEffect(() => setUrl(window.location.href), [])
-
+const Menue = () => {
   // get the tags from the db
   const tags = {
     consume: useQuery(getPublicTags, "CONSUME")[0],
@@ -80,10 +78,116 @@ function HEADER() {
     health: useQuery(getPublicTags, "HEALTH")[0],
     inclusivity: useQuery(getPublicTags, "INCLUSIVITY")[0],
   }
+
+  tags.consume = useQuery(getPublicTags, "CONSUME")[0]
+
+  return (
+    <nav id="menu">
+      <ul id="minilogo">
+        <li>
+          <Link href={Routes.Home()}>
+            <Image src={logo} width="50px" height="50px" alt="Logo - back home Link" />
+          </Link>
+        </li>
+      </ul>
+      <ul>
+        <li>
+          <h3>Consume</h3>
+
+          <ul>
+            {tags.consume.map((tag) => (
+              <li key={tag.id}>
+                <Link href={Routes.SearchPage({ tags: JSON.stringify([tag.name]) })}>
+                  {tag.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </li>
+      </ul>
+      <ul>
+        <li>
+          <h3>Energy</h3>
+
+          <ul>
+            {tags.energy.map((tag) => (
+              <li key={tag.id}>
+                <Link href={Routes.SearchPage({ tags: JSON.stringify([tag.name]) })}>
+                  {tag.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </li>
+      </ul>
+      <ul>
+        <li>
+          <a href="#">
+            <h3>Education</h3>
+          </a>
+          <ul>
+            {tags.education.map((tag) => (
+              <li key={tag.id}>
+                <Link href={Routes.SearchPage({ tags: JSON.stringify([tag.name]) })}>
+                  {tag.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </li>
+      </ul>
+      <ul>
+        <li>
+          <h3>Health</h3>
+
+          <ul>
+            {tags.health.map((tag) => (
+              <li key={tag.id}>
+                <Link href={Routes.SearchPage({ tags: JSON.stringify([tag.name]) })}>
+                  {tag.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </li>
+      </ul>
+      <ul>
+        <li>
+          <a href="#">
+            <h3>Inclusivity</h3>
+          </a>
+          <ul>
+            {tags.inclusivity.map((tag) => (
+              <li key={tag.id}>
+                <Link href={Routes.SearchPage({ tags: JSON.stringify([tag.name]) })}>
+                  {tag.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </li>
+      </ul>
+      <ul>
+        <li>
+          <div>
+            <Link href={Routes.OffersPage()}>
+              <h3>All Offers</h3>
+            </Link>
+          </div>
+        </li>
+      </ul>
+    </nav>
+  )
+}
+
+function HEADER() {
+  const [currenturl, setUrl] = useState("")
+  useEffect(() => setUrl(window.location.href), [])
+
   return (
     <div>
       <div className="up">
-        <Suspense fallback="Loading...">
+        <Suspense fallback={<div>Loading...</div>}>
           <UserInfo />
         </Suspense>
 
@@ -105,101 +209,9 @@ function HEADER() {
         </article>
       </section>
       <header className="MainHeader">
-        <nav id="menu">
-          <ul id="minilogo">
-            <li>
-              <Link href={Routes.Home()}>
-                <Image src={logo} width="50px" height="50px" alt="Logo - back home Link" />
-              </Link>
-            </li>
-          </ul>
-          <ul>
-            <li>
-              <h3>Consume</h3>
-
-              <ul>
-                {tags.consume.map((tag) => (
-                  <li key={tag.id}>
-                    <Link href={Routes.SearchPage({ tags: JSON.stringify([tag.name]) })}>
-                      {tag.name}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </li>
-          </ul>
-          <ul>
-            <li>
-              <h3>Energy</h3>
-
-              <ul>
-                {tags.energy.map((tag) => (
-                  <li key={tag.id}>
-                    <Link href={Routes.SearchPage({ tags: JSON.stringify([tag.name]) })}>
-                      {tag.name}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </li>
-          </ul>
-          <ul>
-            <li>
-              <a href="#">
-                <h3>Education</h3>
-              </a>
-              <ul>
-                {tags.education.map((tag) => (
-                  <li key={tag.id}>
-                    <Link href={Routes.SearchPage({ tags: JSON.stringify([tag.name]) })}>
-                      {tag.name}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </li>
-          </ul>
-          <ul>
-            <li>
-              <h3>Health</h3>
-
-              <ul>
-                {tags.health.map((tag) => (
-                  <li key={tag.id}>
-                    <Link href={Routes.SearchPage({ tags: JSON.stringify([tag.name]) })}>
-                      {tag.name}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </li>
-          </ul>
-          <ul>
-            <li>
-              <a href="#">
-                <h3>Inclusivity</h3>
-              </a>
-              <ul>
-                {tags.inclusivity.map((tag) => (
-                  <li key={tag.id}>
-                    <Link href={Routes.SearchPage({ tags: JSON.stringify([tag.name]) })}>
-                      {tag.name}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </li>
-          </ul>
-          <ul>
-            <li>
-              <div>
-                <Link href={Routes.OffersPage()}>
-                  <h3>All Offers</h3>
-                </Link>
-              </div>
-            </li>
-          </ul>
-        </nav>
+        <Suspense fallback={<div>Loading...</div>}>
+          <Menue />
+        </Suspense>
       </header>
     </div>
   )
