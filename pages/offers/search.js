@@ -10,6 +10,7 @@ import getPublicOffers from "app/offers/queries/getPublicOffers"
 import DisplayOffer from "app/offers/components/DisplayOffer"
 import Form from "app/core/components/Form"
 import { Field } from "react-final-form"
+import { Multiselect } from "multiselect-react-dropdown"
 
 const ITEMS_PER_PAGE = 20
 export const SearchList = () => {
@@ -62,6 +63,7 @@ export const SearchList = () => {
   const search = (values) => {
     // update querry
     query.searchTerm = values.name
+    query.tags = JSON.stringify(values.selectedTags.map((t) => t.name))
     router.push({ query: query })
   }
 
@@ -74,6 +76,25 @@ export const SearchList = () => {
               <input {...input} type="text" id="search" cols="30" />
               <input type="submit" name="submit" id="submit" value="Search" />
               {meta.error && meta.touched && <span>{meta.error}</span>}
+            </div>
+          )}
+        </Field>
+        <Field name="selectedTags">
+          {({ input, meta }) => (
+            <div className="FormElement">
+              <label>
+                <Multiselect
+                  name={input.name}
+                  value={[input.value]}
+                  options={availableTags}
+                  displayValue="name"
+                  onRemove={input.onChange}
+                  onSelect={input.onChange}
+                  selectedValues={offerTags}
+                  // groupBy="category"
+                />
+                {meta.error && meta.touched && <span>{meta.error}</span>}
+              </label>
             </div>
           )}
         </Field>
