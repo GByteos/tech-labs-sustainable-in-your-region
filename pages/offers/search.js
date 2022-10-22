@@ -21,22 +21,32 @@ export const SearchList = () => {
 
   let offerTags = []
 
+  console.log(offerTags)
+
   if (tags && tags.length !== 0) {
     for (const tag of tags) {
       offerTags.push({ name: tag })
     }
   }
 
+  const where = {
+    offerTags: {
+      some: {
+        OR: [...offerTags],
+      },
+    },
+  }
+
+  if (query.searchTerm) {
+    where.description = {
+      contains: query.searchTerm,
+    }
+  }
+
   const router = useRouter()
   const page = Number(router.query.page) || 0
   const [{ offers, hasMore }] = usePaginatedQuery(getPublicOffers, {
-    where: {
-      offerTags: {
-        some: {
-          OR: [...offerTags],
-        },
-      },
-    },
+    where: where,
     orderBy: {
       id: "asc",
     },
@@ -69,7 +79,7 @@ export const SearchList = () => {
 
   return (
     <div>
-      <Form onSubmit={search}>
+      <Form onSubmit={search} initialValues={{ selectedTags: offerTags, name: query.searchTerm }}>
         <Field name="name">
           {({ input, meta }) => (
             <div className="FormElement">
