@@ -44,6 +44,7 @@ export const SearchList = () => {
   const goToPreviousPage = () =>
     router.push({
       query: {
+        ...query,
         page: page - 1,
       },
     })
@@ -51,6 +52,7 @@ export const SearchList = () => {
   const goToNextPage = () =>
     router.push({
       query: {
+        ...query,
         page: page + 1,
       },
     })
