@@ -2,7 +2,8 @@ import { Suspense, useState } from "react"
 import { Routes, useRouterQuery } from "@blitzjs/next"
 import Head from "next/head"
 import Link from "next/link"
-import { usePaginatedQuery } from "@blitzjs/rpc"
+import { usePaginatedQuery, useQuery } from "@blitzjs/rpc"
+import getPublicTags from "app/offer-tags/queries/getPublicTags"
 import { useRouter } from "next/router"
 import Layout from "app/core/layouts/Layout"
 import getPublicOffers from "app/offers/queries/getPublicOffers"
@@ -13,6 +14,7 @@ import { Field } from "react-final-form"
 const ITEMS_PER_PAGE = 20
 export const SearchList = () => {
   const query = useRouterQuery()
+  const [availableTags] = useQuery(getPublicTags)
 
   const tags = query.tags ? JSON.parse(decodeURIComponent(query.tags)) : null
 
@@ -57,9 +59,15 @@ export const SearchList = () => {
       },
     })
 
+  const search = (values) => {
+    // update querry
+    query.searchTerm = values.name
+    router.push({ query: query })
+  }
+
   return (
     <div>
-      <Form onSubmit={() => {}}>
+      <Form onSubmit={search}>
         <Field name="name">
           {({ input, meta }) => (
             <div className="FormElement">
