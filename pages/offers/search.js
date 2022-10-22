@@ -21,8 +21,6 @@ export const SearchList = () => {
 
   let offerTags = []
 
-  console.log(offerTags)
-
   if (tags && tags.length !== 0) {
     for (const tag of tags) {
       offerTags.push({ name: tag })
@@ -112,7 +110,7 @@ export const SearchList = () => {
       <ul className="DisplayList">
         {offers.map((offer) => (
           <li key={offer.id}>
-            <DisplayOffer offer={offer} />
+            <DisplayOffer offer={offer} highlightText={query.searchTerm} />
           </li>
         ))}
       </ul>

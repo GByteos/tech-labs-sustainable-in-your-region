@@ -584,10 +584,12 @@ a {
 a:hover {
   color: var(--red);
 }
+/*
 .offertext span {
   font-size: small;
   padding: 0 3px;
 }
+*/
 .signupfield {
   font-size: 0.8em;
 }

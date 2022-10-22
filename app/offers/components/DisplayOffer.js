@@ -2,7 +2,9 @@ import Image from "next/image"
 import Link from "next/link"
 import YL from "public/yourlogo.png"
 import { Routes } from "@blitzjs/next"
+import Highlight from "react-highlighter"
 import Truncate from "react-truncate"
+import { string } from "zod"
 
 function Logo({ offer }) {
   if (!offer.logo) {
@@ -25,7 +27,7 @@ function Logo({ offer }) {
     )
 }
 
-function DisplayOffer({ offer }) {
+function DisplayOffer({ offer, highlightText }) {
   // const tags = {
   //   offer.id: useQuery(getPublicTags, "")[0]}
 
@@ -60,7 +62,13 @@ function DisplayOffer({ offer }) {
             </a>
           </Link>
 
-          <p>{offer.description}</p>
+          {(() => {
+            if (highlightText) {
+              return <Highlight search={highlightText}>{offer.description}</Highlight>
+            } else {
+              return <p>{offer.description}</p>
+            }
+          })()}
         </div>
         <div className="para_main info">{offer.openingTimes}</div>
       </article>

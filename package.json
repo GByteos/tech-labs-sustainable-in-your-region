@@ -41,6 +41,7 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-final-form": "6.5.9",
+    "react-highlighter": "0.4.3",
     "react-truncate": "2.4.0",
     "zod": "3.17.3"
   },
