@@ -275,7 +275,7 @@ aside {
 .image_wrapper:hover > p {
   visibility: visible;
 }
-aside div>p{
+aside div > p {
   color: var(--red);
 }
 
@@ -423,7 +423,7 @@ input[type="submit"] {
 .FormElement label div {
   margin: auto;
 }
-/* 
+/*
 
 searchBox {
   border: "none";
@@ -454,17 +454,14 @@ searchBox {
   color: white;
   gap: 10px;
   padding: 5px;
- 
 }
 .Tags {
   flex-direction: row;
   font-size: small;
   align-self: center;
-  
 }
 .offerTitle .Tags {
   flex-wrap: wrap;
- 
 }
 .TagSection {
   display: flex;
@@ -494,6 +491,8 @@ searchBox {
 .offertext {
   flex: 4;
   width: 60%;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 .eintrag .para_main h3 {
@@ -585,10 +584,12 @@ a {
 a:hover {
   color: var(--red);
 }
+/*
 .offertext span {
   font-size: small;
   padding: 0 3px;
 }
+*/
 .signupfield {
   font-size: 0.8em;
 }
