@@ -77,7 +77,7 @@ export const Offer = () => {
     id: offerId,
   })
 
-  const date = String(offer.date).split(" ", 4)
+  const date = offer.date ? String(offer.date).split(" ", 4) : ""
 
   return (
     <div>
@@ -153,9 +153,7 @@ export const Offer = () => {
 const ShowOfferPage = () => {
   return (
     <Layout>
-     
-        <Offer />
-      
+      <Offer />
     </Layout>
   )
 }

@@ -33,7 +33,7 @@ export const UserList = () => {
         page: page + 1,
       },
     })
-  console.log(user)
+
   return (
     <div>
       <ul className="DisplayList">
