@@ -4,18 +4,18 @@ import { Field } from "react-final-form"
 function UserForm() {
   return (
     <>
-      <Form >
-        <div className="FormElement">
-          <label htmlFor="role">User role</label>
+      <Form onSubmit={() => {}}>
+        <div>
+          {/*  <label htmlFor="role">User role</label> */}
           <br />
           <Field id="role" name="role" component="select" defaultValue="">
             <option value=""></option>
-            <option value="USER">Shop</option>
-            <option value="ADMIN">Event</option>
-            <option value="MODERATION">Event</option>
+            <option value="USER">User</option>
+            <option value="MODERATOR">Moderator</option>
+            <option value="ADMIN">Admin</option>
           </Field>
         </div>
-        <div className="FormElement">
+        <div>
           <label htmlFor="submitRole"></label>
           <input type="submit" name="submitRole" id="submitRole" value="Change role" />
         </div>
