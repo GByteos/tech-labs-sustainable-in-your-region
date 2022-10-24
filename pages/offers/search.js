@@ -27,6 +27,9 @@ export const SearchList = () => {
     }
   }
 
+  let offerTypeShops = query.otShop ? query.otShop : true
+  let offerTypeEvents = query.otEvent ? query.otEvent : true
+
   const where = {
     offerTags: {
       some: {
@@ -72,6 +75,9 @@ export const SearchList = () => {
     // update querry
     query.searchTerm = values.name
     query.tags = JSON.stringify(values.selectedTags.map((t) => t.name))
+    query.otShop = values.checkBoxShop
+    query.otEvent = values.checkBoxEvent
+
     router.push({ query: query })
   }
 
@@ -103,6 +109,24 @@ export const SearchList = () => {
                 />
                 {meta.error && meta.touched && <span>{meta.error}</span>}
               </label>
+            </div>
+          )}
+        </Field>
+        <Field name="checkBoxShop">
+          {({ input, meta }) => (
+            <div className="FormElement">
+              <input type="checkbox" {...input} />
+              <label htmlFor="checkBoxShop">Shops</label>
+              {meta.error && meta.touched && <span>{meta.error}</span>}
+            </div>
+          )}
+        </Field>
+        <Field name="checkBoxEvent">
+          {({ input, meta }) => (
+            <div className="FormElement">
+              <input type="checkbox" {...input} />
+              <label htmlFor="checkBoxEvent">Events</label>
+              {meta.error && meta.touched && <span>{meta.error}</span>}
             </div>
           )}
         </Field>

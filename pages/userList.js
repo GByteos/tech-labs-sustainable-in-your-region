@@ -7,9 +7,7 @@ import getUsers from "app/core/queries/getUsers"
 import DisplayUser from "app/core/components/DisplayUser"
 import { Form } from "@blitzjs/next"
 import { Field } from "react-final-form"
-import UserForm from "app/core/components/UserForm"
 const ITEMS_PER_PAGE = 20
-
 
 export const UserList = () => {
   const router = useRouter()
