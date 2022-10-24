@@ -16,31 +16,29 @@ export const LatestOffersList = () => {
     take: 4,
   })
   return (
-    <>
-      <ul className="LatestOffersList">
-        {offers.map((offer) => (
-          <li key={offer.id}>
-            <h6>{offer.date}</h6>
-            <h5>{offer.offerType}</h5>
-            <Link
-              href={Routes.ShowOfferPage({
-                offerId: offer.id,
-              })}
-            >
-              <a>
-                <h4>{offer.name}</h4>
-              </a>
-            </Link>
-            {offer.offerTags.map((tagname) => (
-              <p key={tagname.id} className="Tags">
-                {" "}
-                {tagname.name}{" "}
-              </p>
-            ))}
-          </li>
-        ))}
-      </ul>
-    </>
+    <ul className="LatestOffersList">
+      {offers.map((offer) => (
+        <li key={offer.id}>
+          <h6>{offer.date}</h6>
+          <h5>{offer.offerType}</h5>
+          <Link
+            href={Routes.ShowOfferPage({
+              offerId: offer.id,
+            })}
+          >
+            <a>
+              <h4>{offer.name}</h4>
+            </a>
+          </Link>
+          {offer.offerTags.map((tagname) => (
+            <p key={tagname.id} className="Tags">
+              {" "}
+              {tagname.name}{" "}
+            </p>
+          ))}
+        </li>
+      ))}
+    </ul>
   )
 }
 const LatestOffers = () => {

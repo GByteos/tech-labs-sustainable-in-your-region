@@ -28,9 +28,6 @@ function Logo({ offer }) {
 }
 
 function DisplayOffer({ offer, highlightText }) {
-  // const tags = {
-  //   offer.id: useQuery(getPublicTags, "")[0]}
-
   return (
     <>
       <p className="smallheader1">
@@ -50,7 +47,6 @@ function DisplayOffer({ offer, highlightText }) {
           </a>
         </div>
 
-        {/*  */}
         <div className="para_main offertext">
           <Link
             href={Routes.ShowOfferPage({
@@ -58,7 +54,7 @@ function DisplayOffer({ offer, highlightText }) {
             })}
           >
             <a>
-              <h4>{offer.name}</h4>
+              <h3>{offer.name}</h3>
             </a>
           </Link>
 
@@ -70,7 +66,14 @@ function DisplayOffer({ offer, highlightText }) {
             }
           })()}
         </div>
-        <div className="para_main info">{offer.openingTimes}</div>
+        <div className="para_main info">
+          <h3>Contact</h3>
+          <p>
+            <a href={`mailto: ${offer.email}`}>{offer.email}</a> <br /><br/>
+            {offer.street}<br/>
+            {offer.zip}  {offer.city}
+          </p>
+        </div>
       </article>
     </>
   )

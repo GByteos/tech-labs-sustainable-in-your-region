@@ -153,15 +153,9 @@ export const Offer = () => {
 const ShowOfferPage = () => {
   return (
     <Layout>
-      <main>
-        {/* <p>
-          <Link href={Routes.MyOffersPage()}>
-            <a>My Offers</a>
-          </Link>
-        </p> */}
-
+     
         <Offer />
-      </main>
+      
     </Layout>
   )
 }

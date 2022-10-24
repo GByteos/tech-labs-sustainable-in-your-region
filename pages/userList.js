@@ -1,13 +1,15 @@
 import { Suspense } from "react"
-import { Routes } from "@blitzjs/next"
 import Head from "next/head"
-import Link from "next/link"
 import { usePaginatedQuery } from "@blitzjs/rpc"
 import { useRouter } from "next/router"
 import Layout from "app/core/layouts/Layout"
 import getUsers from "app/core/queries/getUsers"
 import DisplayUser from "app/core/components/DisplayUser"
+import { Form } from "@blitzjs/next"
+import { Field } from "react-final-form"
+import UserForm from "app/core/components/UserForm"
 const ITEMS_PER_PAGE = 20
+
 
 export const UserList = () => {
   const router = useRouter()
@@ -39,11 +41,8 @@ export const UserList = () => {
       <ul className="DisplayList">
         {user.map((user) => (
           <li key={user.id}>
-            <Link href={Routes.MyOffersPage({ userid: user.id })}>
-              <a>
-                <DisplayUser user={user} />
-              </a>
-            </Link>
+            <DisplayUser user={user} />
+            {/* <UserForm /> */}
           </li>
         ))}
       </ul>
