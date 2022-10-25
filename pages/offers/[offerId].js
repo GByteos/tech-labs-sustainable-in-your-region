@@ -65,7 +65,10 @@ function EditDelete({ offer }) {
           Delete
         </button>
         {(() => {
-          if (session.role === "ADMIN" || session.role === "MODERATOR") {
+          if (
+            (session.role === "ADMIN" || session.role === "MODERATOR") &&
+            offer.offerState !== "REVIEWED"
+          ) {
             return (
               <button
                 type="button"

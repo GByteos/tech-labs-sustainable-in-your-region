@@ -129,6 +129,7 @@ const seed = async () => {
         zip: faker.address.zipCode(),
         city: faker.address.city(),
         tel: faker.phone.number(),
+        offerState: faker.helpers.arrayElement(["NEW", "REVIEWED", "CHANGED"]),
         //        date: faker.date.soon(),
         offerType: faker.helpers.arrayElement(["SHOP", "EVENT"]),
         offerTags: {

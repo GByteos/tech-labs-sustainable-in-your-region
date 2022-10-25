@@ -55,7 +55,10 @@ export const OffersList = () => {
               })}
             >
               <a>
-                {offer.name} - {offer.offerType}
+                {offer.name} - {offer.offerType} -{" "}
+                {(() => {
+                  if (offer.offerState !== "REVIEWED") return "Waiting for review"
+                })()}
               </a>
             </Link>
           </li>
