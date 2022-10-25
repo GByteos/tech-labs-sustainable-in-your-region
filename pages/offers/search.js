@@ -13,6 +13,7 @@ import { Field } from "react-final-form"
 import { Multiselect } from "multiselect-react-dropdown"
 
 const ITEMS_PER_PAGE = 20
+
 export const SearchList = () => {
   const query = useRouterQuery()
   const [availableTags] = useQuery(getPublicTags)
@@ -28,7 +29,7 @@ export const SearchList = () => {
   }
 
   let offerTypeShops = query.otShop ? query.otShop : true
-  let offerTypeEvents = query.otEvent ? query.otEvent : true
+  // let offerTypeEvents = query.otEvent ? query.otEvent : true
 
   const where = {
     offerTags: {
@@ -46,13 +47,14 @@ export const SearchList = () => {
 
   const router = useRouter()
   const page = Number(router.query.page) || 0
-  const [{ offers, hasMore }] = usePaginatedQuery(getPublicOffers, {
+  const [{ offers, hasMore, count }] = usePaginatedQuery(getPublicOffers, {
     where: where,
     orderBy: {
       id: "asc",
     },
     skip: ITEMS_PER_PAGE * page,
     take: ITEMS_PER_PAGE,
+    count: count,
   })
 
   const goToPreviousPage = () =>
@@ -80,56 +82,68 @@ export const SearchList = () => {
 
     router.push({ query: query })
   }
-
   return (
-    <div>
+    <div className="search">
       <Form onSubmit={search} initialValues={{ selectedTags: offerTags, name: query.searchTerm }}>
-        <Field name="name">
-          {({ input, meta }) => (
-            <div className="FormElement">
-              <input {...input} type="text" id="search" cols="30" />
-              <input type="submit" name="submit" id="submit" value="Search" />
-              {meta.error && meta.touched && <span>{meta.error}</span>}
-            </div>
-          )}
-        </Field>
-        <Field name="selectedTags">
-          {({ input, meta }) => (
-            <div className="FormElement">
-              <label>
-                <Multiselect
-                  name={input.name}
-                  value={[input.value]}
-                  options={availableTags}
-                  displayValue="name"
-                  onRemove={input.onChange}
-                  onSelect={input.onChange}
-                  selectedValues={offerTags}
-                  // groupBy="category"
-                />
+        <div>
+          <h4>What are you searching for?</h4>
+          <Field name="name">
+            {({ input, meta }) => (
+              <div className="FormElement searchField">
+                <input {...input} type="text" id="search" cols="30" />
+                <input type="submit" name="submit" id="submit" value="Search" />
                 {meta.error && meta.touched && <span>{meta.error}</span>}
-              </label>
-            </div>
-          )}
-        </Field>
-        <Field name="checkBoxShop">
-          {({ input, meta }) => (
-            <div className="FormElement">
-              <input type="checkbox" {...input} />
-              <label htmlFor="checkBoxShop">Shops</label>
-              {meta.error && meta.touched && <span>{meta.error}</span>}
-            </div>
-          )}
-        </Field>
-        <Field name="checkBoxEvent">
-          {({ input, meta }) => (
-            <div className="FormElement">
-              <input type="checkbox" {...input} />
-              <label htmlFor="checkBoxEvent">Events</label>
-              {meta.error && meta.touched && <span>{meta.error}</span>}
-            </div>
-          )}
-        </Field>
+              </div>
+            )}
+          </Field>
+          <br />
+          <p>Found {count} offers</p>
+        </div>
+        <div>
+          <h4>Filter</h4>
+          <div className="searchCategory">
+            <Field name="checkBoxShop">
+              {({ input, meta }) => (
+                <div className="FormElement">
+                  <input type="checkbox" {...input} />
+                  <label htmlFor="checkBoxShop">Shops</label>
+                  {meta.error && meta.touched && <span>{meta.error}</span>}
+                </div>
+              )}
+            </Field>
+            <Field name="checkBoxEvent">
+              {({ input, meta }) => (
+                <div className="FormElement">
+                  <input type="checkbox" {...input} />
+                  <label htmlFor="checkBoxEvent">Events</label>
+                  {meta.error && meta.touched && <span>{meta.error}</span>}
+                </div>
+              )}
+            </Field>
+          </div>{" "}
+          <Field name="selectedTags">
+            {({ input, meta }) => (
+              <div className="FormElement">
+                <label>
+                  <Multiselect
+                    name={input.name}
+                    value={[input.value]}
+                    options={availableTags}
+                    displayValue="name"
+                    onRemove={input.onChange}
+                    onSelect={input.onChange}
+                    selectedValues={offerTags}
+                    // groupBy="category"
+                  />
+                  {meta.error && meta.touched && <span>{meta.error}</span>}
+                </label>
+                <input type="submit" name="submit" id="submit" value="Search" />
+              </div>
+              
+            )}
+            
+          </Field>
+        </div>
       </Form>
       <ul className="DisplayList">
         {offers.map((offer) => (

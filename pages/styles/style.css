@@ -503,7 +503,7 @@ searchBox {
   flex: 2;
   width: 20%;
 }
-.info p{
+.info p {
   font-size: small;
 }
 .para_main p {
@@ -597,4 +597,27 @@ a:hover {
 */
 .signupfield {
   font-size: 0.8em;
+}
+.search form {
+  margin: 3%, 0, 3%, 0;
+  gap: 5%;
+  align-items: flex-start;
+}
+.search form h4 {
+  font-size: medium;
+}
+.search .FormElement {
+  padding: 1%;
+  margin: 0;
+}
+.searchCategory {
+  display: flex;
+}
+.searchField {
+  align-self: flex-start;
+}
+
+.searchCategory .FormElement {
+  gap: 5%;
+  justify-content: flex-end;
 }
