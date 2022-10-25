@@ -2,19 +2,25 @@ import { Form } from "app/core/components/Form"
 import { Field } from "react-final-form"
 import { useMutation } from "@blitzjs/rpc"
 import deleteUser from "app/auth/mutations/deleteUser"
+import changeUserRole from "app/auth/mutations/changeUserRole"
 
 function UserForm({ user }) {
   const [deleteUserMutation] = useMutation(deleteUser)
+  const [changeUserRoleMutation] = useMutation(changeUserRole)
 
   return (
     <>
       <div>
-        <Form onSubmit={() => {}}>
+        <Form
+          onSubmit={(values) => {
+            changeUserRoleMutation({ id: user.id, role: values.role })
+          }}
+          initialValues={{ role: user.role }}
+        >
           <div>
             {/*  <label htmlFor="role">User role</label> */}
 
             <Field id="role" name="role" component="select" defaultValue="">
-              <option value=""></option>
               <option value="USER">User</option>
               <option value="MODERATOR">Moderator</option>
               <option value="ADMIN">Admin</option>
