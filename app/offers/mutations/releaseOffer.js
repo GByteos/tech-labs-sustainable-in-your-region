@@ -1,20 +1,21 @@
 import { resolver } from "@blitzjs/rpc"
 import db from "db"
 import { z } from "zod"
-const UpdateOffer = z.object({
+const ReleaseOffer = z.object({
   id: z.number(),
-  name: z.string(),
 })
 export default resolver.pipe(
-  resolver.zod(UpdateOffer),
-  resolver.authorize("ADMIN"),
-  async ({ id, ...data }) => {
+  resolver.zod(ReleaseOffer),
+  resolver.authorize(["ADMIN", "MODERATOR"]),
+  async ({ id }) => {
     // TODO: in multi-tenant app, you must add validation to ensure correct tenant
     const offer = await db.offer.update({
       where: {
         id,
       },
-      data,
+      data: {
+        offerState: "REVIEWED",
+      },
     })
     return offer
   }

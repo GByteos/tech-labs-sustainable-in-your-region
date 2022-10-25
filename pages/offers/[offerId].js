@@ -7,6 +7,7 @@ import { useParam } from "@blitzjs/next"
 import Layout from "app/core/layouts/Layout"
 import getOffer from "app/offers/queries/getOffer"
 import deleteOffer from "app/offers/mutations/deleteOffer"
+import releaseOffer from "app/offers/mutations/releaseOffer"
 import { useSession } from "@blitzjs/auth"
 import YL from "public/yourlogo.png"
 import Image from "next/image"
@@ -34,9 +35,10 @@ function Logo({ offer }) {
 function EditDelete({ offer }) {
   const router = useRouter()
   const [deleteOfferMutation] = useMutation(deleteOffer)
+  const [releaseOfferMutation] = useMutation(releaseOffer)
   const session = useSession()
 
-  if (offer.authorId === session.userId || session.role === "ADMIN")
+  if (offer.authorId === session.userId || session.role === "ADMIN" || session.role === "MODERATOR")
     return (
       <div>
         <Link
@@ -62,6 +64,28 @@ function EditDelete({ offer }) {
         >
           Delete
         </button>
+        {(() => {
+          if (session.role === "ADMIN" || session.role === "MODERATOR") {
+            return (
+              <button
+                type="button"
+                onClick={async () => {
+                  if (window.confirm("This will be released")) {
+                    await releaseOfferMutation({
+                      id: offer.id,
+                    })
+                    router.back()
+                  }
+                }}
+                style={{
+                  marginLeft: "0.5rem",
+                }}
+              >
+                Release
+              </button>
+            )
+          }
+        })()}
       </div>
     )
 }
