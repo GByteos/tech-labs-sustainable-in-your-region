@@ -56,6 +56,7 @@ createOffer
       values = {
         ...values.data,
         logo: req.file ? req.file.filename : undefined,
+        offerState: "NEW",
         author: {
           connect: {
             id: session.userId,

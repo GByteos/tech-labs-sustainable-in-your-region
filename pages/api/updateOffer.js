@@ -102,6 +102,7 @@ updateOffer
       // add server side values to the dataset
       values = {
         ...values.data,
+        offerState: "CHANGED",
         logo: req.file ? req.file.filename : undefined,
       }
 
