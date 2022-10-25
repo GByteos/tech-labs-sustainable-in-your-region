@@ -21,7 +21,7 @@ function DisplayUser({ user }) {
             </p>
           </div>
           <div className="UserList2">
-            <UserForm />
+            <UserForm user={user} />
           </div>
         </div>
       </article>

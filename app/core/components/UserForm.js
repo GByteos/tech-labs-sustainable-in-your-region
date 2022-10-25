@@ -1,25 +1,46 @@
 import { Form } from "app/core/components/Form"
 import { Field } from "react-final-form"
+import { useMutation } from "@blitzjs/rpc"
+import deleteUser from "app/auth/mutations/deleteUser"
 
-function UserForm() {
+function UserForm({ user }) {
+  const [deleteUserMutation] = useMutation(deleteUser)
+
   return (
     <>
-      <Form onSubmit={() => {}}>
-        <div >
-          {/*  <label htmlFor="role">User role</label> */}
+      <div>
+        <Form onSubmit={() => {}}>
+          <div>
+            {/*  <label htmlFor="role">User role</label> */}
 
-          <Field id="role" name="role" component="select" defaultValue="">
-            <option value=""></option>
-            <option value="USER">User</option>
-            <option value="MODERATOR">Moderator</option>
-            <option value="ADMIN">Admin</option>
-          </Field>
-        </div>
-        <div>
-          <label htmlFor="submitRole"></label>
-          <input type="submit" name="submitRole" id="submitRole" value="Change role" />
-        </div>
-      </Form>
+            <Field id="role" name="role" component="select" defaultValue="">
+              <option value=""></option>
+              <option value="USER">User</option>
+              <option value="MODERATOR">Moderator</option>
+              <option value="ADMIN">Admin</option>
+            </Field>
+          </div>
+          <div>
+            <label htmlFor="submitRole"></label>
+            <input type="submit" name="submitRole" id="submitRole" value="Change role" />
+          </div>
+        </Form>
+        <button
+          type="button"
+          onClick={async () => {
+            if (window.confirm("User will be deleted!")) {
+              await deleteUserMutation({
+                id: user.id,
+              })
+            }
+          }}
+          style={{
+            marginLeft: "0.5rem",
+          }}
+        >
+          Delete
+        </button>
+      </div>
     </>
   )
 }
