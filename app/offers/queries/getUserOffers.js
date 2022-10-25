@@ -4,8 +4,13 @@ import db from "db"
 
 export default resolver.pipe(
   resolver.authorize(),
-  async ({ where, orderBy, skip = 0, take = 100 }) => {
-    where.offerState = "REVIEWED"
+  async ({ where, orderBy, skip = 0, take = 100 }, { session }) => {
+    if (!session.$isAuthorized(["ADMIN", "MODERATOR"]) && !session.userId === where.id) {
+      where = {
+        ...where,
+        offerState: "REVIEWED",
+      }
+    }
 
     const {
       items: offers,

@@ -4,7 +4,6 @@ import { z } from "zod"
 import { unlink } from "node:fs/promises"
 import path from "path"
 import { NotFoundError } from "blitz"
-import { isThrowStatement } from "typescript"
 
 const DeleteOffer = z.object({
   id: z.number(),
@@ -13,7 +12,6 @@ export default resolver.pipe(
   resolver.zod(DeleteOffer),
   resolver.authorize(),
   async ({ id }, { session }) => {
-    // TODO: in multi-tenant app, you must add validation to ensure correct tenant
     const offer = await db.offer.findFirst({
       where: {
         id,
@@ -22,7 +20,10 @@ export default resolver.pipe(
 
     let deleted
 
-    if (offer && (session.userId === offer.authorId || session.$isAuthorized("ADMIN"))) {
+    if (
+      offer &&
+      (session.userId === offer.authorId || session.$isAuthorized(["ADMIN", "MODERATOR"]))
+    ) {
       deleted = await db.offer.deleteMany({
         where: {
           id,
