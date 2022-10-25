@@ -10,7 +10,7 @@ import { useEffect, useState, Suspense } from "react"
 import getPublicTags from "app/offer-tags/queries/getPublicTags"
 
 const UserCondition = ({ role }) => {
-  if (role === "ADMIN")
+  if (role === "ADMIN" || role === "MODERATOR")
     return (
       <Link href={Routes.userPage()}>
         <a> User</a>
