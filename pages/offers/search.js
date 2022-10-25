@@ -1,7 +1,6 @@
-import { Suspense, useState } from "react"
-import { Routes, useRouterQuery } from "@blitzjs/next"
+import { Suspense } from "react"
+import { useRouterQuery } from "@blitzjs/next"
 import Head from "next/head"
-import Link from "next/link"
 import { usePaginatedQuery, useQuery } from "@blitzjs/rpc"
 import getPublicTags from "app/offer-tags/queries/getPublicTags"
 import { useRouter } from "next/router"
@@ -74,7 +73,7 @@ export const SearchList = () => {
     })
 
   const search = (values) => {
-    // update querry
+    // update query
     query.searchTerm = values.name
     query.tags = JSON.stringify(values.selectedTags.map((t) => t.name))
     query.otShop = values.checkBoxShop
@@ -101,7 +100,7 @@ export const SearchList = () => {
         </div>
         <div>
           <h4>Filter</h4>
-          <div className="searchCategory">
+          {/* <div className="searchCategory">
             <Field name="checkBoxShop">
               {({ input, meta }) => (
                 <div className="FormElement">
@@ -120,7 +119,7 @@ export const SearchList = () => {
                 </div>
               )}
             </Field>
-          </div>{" "}
+          </div>{" "} */}
           <Field name="selectedTags">
             {({ input, meta }) => (
               <div className="FormElement">
@@ -139,9 +138,7 @@ export const SearchList = () => {
                 </label>
                 <input type="submit" name="submit" id="submit" value="Search" />
               </div>
-              
             )}
-            
           </Field>
         </div>
       </Form>
