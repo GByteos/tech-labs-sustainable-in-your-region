@@ -11,6 +11,7 @@ export default resolver.pipe(resolver.zod(GetOffer), async ({ id }) => {
   const offer = await db.offer.findFirst({
     where: {
       id,
+      offerState: "REVIEWED",
     },
     include: {
       offerTags: {

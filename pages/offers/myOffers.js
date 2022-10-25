@@ -45,9 +45,7 @@ export const OffersList = () => {
 
   return (
     <div>
-      <h3>
-      User-ID: {offers[1].authorId}
-      </h3>
+      <h3>User-ID: {authorId}</h3>
       <ul>
         {offers.map((offer) => (
           <li key={offer.id}>
@@ -87,7 +85,7 @@ const MyOffersPage = () => {
             <a>Create Offer</a>
           </Link>
         </p>
-<br/>
+        <br />
         <Suspense fallback={<div>Loading...</div>}>
           <OffersList />
         </Suspense>

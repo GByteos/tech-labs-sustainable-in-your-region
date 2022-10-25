@@ -66,14 +66,14 @@ model Token {
 // }
 
 model Offer {
-  id          Int      @id @default(autoincrement())
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  id          Int        @id @default(autoincrement())
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
   name        String
   description String
   link        String?
   logo        String?
-
+  offerState  OfferState @default(NEW)
 
   author   User @relation(fields: [authorId], references: [id])
   authorId Int
@@ -89,6 +89,12 @@ model Offer {
   tel          String?
   offerType    OfferType  @default(SHOP)
   offerTags    OfferTag[]
+}
+
+enum OfferState {
+  NEW
+  REVIEWED
+  CHANGED
 }
 
 enum OfferType {

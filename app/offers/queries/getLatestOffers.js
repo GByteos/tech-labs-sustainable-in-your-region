@@ -3,7 +3,11 @@ import { resolver } from "@blitzjs/rpc"
 import db from "db"
 
 export default resolver.pipe(async ({ where, orderBy, skip = 0, take = 4 }) => {
-  // TODO: in multi-tenant app, you must add validation to ensure correct tenant
+  where = {
+    ...where,
+    offerState: "REVIEWED",
+  }
+
   const {
     items: offers,
     hasMore,
