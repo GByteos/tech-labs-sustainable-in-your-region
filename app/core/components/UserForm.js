@@ -5,9 +5,9 @@ function UserForm() {
   return (
     <>
       <Form onSubmit={() => {}}>
-        <div>
+        <div >
           {/*  <label htmlFor="role">User role</label> */}
-          <br />
+
           <Field id="role" name="role" component="select" defaultValue="">
             <option value=""></option>
             <option value="USER">User</option>

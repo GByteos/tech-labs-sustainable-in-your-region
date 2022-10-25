@@ -28,7 +28,7 @@ export const SearchList = () => {
   }
 
   let offerTypeShops = query.otShop ? query.otShop : true
-  // let offerTypeEvents = query.otEvent ? query.otEvent : true
+  let offerTypeEvents = query.otEvent ? query.otEvent : true
 
   const where = {
     offerTags: {
@@ -100,7 +100,7 @@ export const SearchList = () => {
         </div>
         <div>
           <h4>Filter</h4>
-          {/* <div className="searchCategory">
+          <div className="searchCategory">
             <Field name="checkBoxShop">
               {({ input, meta }) => (
                 <div className="FormElement">
@@ -119,7 +119,7 @@ export const SearchList = () => {
                 </div>
               )}
             </Field>
-          </div>{" "} */}
+          </div>{" "}
           <Field name="selectedTags">
             {({ input, meta }) => (
               <div className="FormElement">

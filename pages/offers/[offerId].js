@@ -114,7 +114,7 @@ export const Offer = () => {
             <OpTimeDate offer={offer} />
             <div>
               <br />
-              {String(date)}
+              {date[0]}, {date[1]} {date[2]}, {date[3]}
               <br />
               {offer.openingTimes}
             </div>

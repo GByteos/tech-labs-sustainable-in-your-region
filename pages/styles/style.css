@@ -94,7 +94,7 @@ h1 {
   color: var(--red);
 }
 .mainh3 {
-  text-align: center;
+  text-align: left;
   align-self: flex-end;
   padding: 20px 0px 0px 0px;
 }
@@ -612,12 +612,22 @@ a:hover {
 }
 .searchCategory {
   display: flex;
+  margin: 0;
 }
 .searchField {
   align-self: flex-start;
 }
-
 .searchCategory .FormElement {
   gap: 5%;
   justify-content: flex-end;
+  margin: 0;
+}
+.UserList {
+  display: flex;
+}
+.UserList1 {
+  flex: 4;
+}
+.UserList2 {
+  flex: 2;
 }

@@ -9,17 +9,20 @@ function DisplayUser({ user }) {
   return (
     <>
       <article>
-        <div></div>
-        <div>
-          <p>
-            <Link href={Routes.MyOffersPage({ userid: user.id })}>
-              <a>
-                ID: {user.id} - Username: {user.name} - Role: {user.role}{" "}
-              </a>
-            </Link>
-            - email: <a href={`mailto: ${user.email}`}>{user.email}</a>
-          </p>
-          <UserForm />
+        <div className="UserList">
+          <div className="UserList1">
+            <p>
+              <Link href={Routes.MyOffersPage({ userid: user.id })}>
+                <a>
+                  ID: {user.id} - Username: {user.name} - Role: {user.role}{" "}
+                </a>
+              </Link>
+              - email: <a href={`mailto: ${user.email}`}>{user.email}</a>
+            </p>
+          </div>
+          <div className="UserList2">
+            <UserForm />
+          </div>
         </div>
       </article>
     </>

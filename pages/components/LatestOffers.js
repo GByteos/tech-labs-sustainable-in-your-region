@@ -15,11 +15,12 @@ export const LatestOffersList = () => {
     },
     take: 4,
   })
+
   return (
     <ul className="LatestOffersList">
       {offers.map((offer) => (
         <li key={offer.id}>
-          <h6>{offer.date}</h6>
+          <h6>{String(offer.date).split(" ", 4)}</h6>
           <h5>{offer.offerType}</h5>
           <Link
             href={Routes.ShowOfferPage({
