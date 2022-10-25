@@ -27,8 +27,18 @@ export const SearchList = () => {
     }
   }
 
-  let offerTypeShops = query.otShop ? query.otShop : true
-  let offerTypeEvents = query.otEvent ? query.otEvent : true
+  let offerTypeShops = query.otShop === undefined ? true : query.otShop === "true" ? true : false
+  let offerTypeEvents = query.otEvent === undefined ? true : query.otEvent === "true" ? true : false
+
+  let offerTypes = []
+
+  if (offerTypeShops) {
+    offerTypes.push({ offerType: "SHOP" })
+  }
+
+  if (offerTypeEvents) {
+    offerTypes.push({ offerType: "EVENT" })
+  }
 
   const where = {
     offerTags: {
@@ -36,6 +46,7 @@ export const SearchList = () => {
         OR: [...offerTags],
       },
     },
+    OR: [...offerTypes],
   }
 
   if (query.searchTerm) {
@@ -76,14 +87,22 @@ export const SearchList = () => {
     // update query
     query.searchTerm = values.name
     query.tags = JSON.stringify(values.selectedTags.map((t) => t.name))
-    query.otShop = values.checkBoxShop
-    query.otEvent = values.checkBoxEvent
+    query.otShop = values.checkBoxShop ? true : false
+    query.otEvent = values.checkBoxEvent ? true : false
 
     router.push({ query: query })
   }
   return (
     <div className="search">
-      <Form onSubmit={search} initialValues={{ selectedTags: offerTags, name: query.searchTerm }}>
+      <Form
+        onSubmit={search}
+        initialValues={{
+          selectedTags: offerTags,
+          name: query.searchTerm,
+          checkBoxShop: offerTypeShops,
+          checkBoxEvent: offerTypeEvents,
+        }}
+      >
         <div>
           <h4>What are you searching for?</h4>
           <Field name="name">
@@ -101,19 +120,19 @@ export const SearchList = () => {
         <div>
           <h4>Filter</h4>
           <div className="searchCategory">
-            <Field name="checkBoxShop">
+            <Field name="checkBoxShop" type="checkbox">
               {({ input, meta }) => (
                 <div className="FormElement">
-                  <input type="checkbox" {...input} />
+                  <input {...input} />
                   <label htmlFor="checkBoxShop">Shops</label>
                   {meta.error && meta.touched && <span>{meta.error}</span>}
                 </div>
               )}
             </Field>
-            <Field name="checkBoxEvent">
+            <Field name="checkBoxEvent" type="checkbox">
               {({ input, meta }) => (
                 <div className="FormElement">
-                  <input type="checkbox" {...input} />
+                  <input {...input} />
                   <label htmlFor="checkBoxEvent">Events</label>
                   {meta.error && meta.touched && <span>{meta.error}</span>}
                 </div>
